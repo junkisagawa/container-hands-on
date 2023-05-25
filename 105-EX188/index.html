@@ -9,22 +9,22 @@
       
       
       
+        <link rel="prev" href="../102-Getting_start_with_quay/">
       
-        <link rel="next" href="100-prerequired/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>コンテナ・ハンズオン (仮)</title>
+        <title>OpenShift Localの起動 - コンテナ・ハンズオン (仮)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -40,7 +40,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,11 +68,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -83,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -102,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              はじめに
+              OpenShift Localの起動
             
           </span>
         </div>
@@ -190,12 +185,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="." class="md-tabs__link md-tabs__link--active">
+    <a href=".." class="md-tabs__link">
       はじめに
     </a>
   </li>
@@ -210,7 +203,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="100-prerequired/" class="md-tabs__link">
+      <a href="../100-prerequired/" class="md-tabs__link">
         コンテナ編
       </a>
     </li>
@@ -220,13 +213,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="105-EX188/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         コンテナオーケストレーション編
       </a>
     </li>
@@ -254,7 +249,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -271,73 +266,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          はじめに
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         はじめに
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -379,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="100-prerequired/" class="md-nav__link">
+      <a href="../100-prerequired/" class="md-nav__link">
         準備
       </a>
     </li>
@@ -393,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="1-container_file/" class="md-nav__link">
+      <a href="../1-container_file/" class="md-nav__link">
         コンテナファイルの基本記述
       </a>
     </li>
@@ -407,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="container-build/" class="md-nav__link">
+      <a href="../container-build/" class="md-nav__link">
         コンテナイメージのビルド
       </a>
     </li>
@@ -421,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="104-Integration-ap_and_db/" class="md-nav__link">
+      <a href="../104-Integration-ap_and_db/" class="md-nav__link">
         複数のコンテナを連携させよう
       </a>
     </li>
@@ -435,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="102-Getting_start_with_quay/" class="md-nav__link">
+      <a href="../102-Getting_start_with_quay/" class="md-nav__link">
         コンテナリポジトリーへのpush
       </a>
     </li>
@@ -455,16 +388,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -473,7 +406,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           コンテナオーケストレーション編
@@ -484,11 +417,19 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="105-EX188/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         OpenShift Localの起動
       </a>
+      
     </li>
   
 
@@ -517,44 +458,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -569,36 +472,14 @@
                   
 
 
-<h1 id="_1">はじめに</h1>
-<p>本コンテンツは2023年6月-7月実施予定のコンテナ関連技術ハンズオンの講義資料です。内容については今後も継続して更新される点をご了承ください。コンテナ編/コンテナオーケストレーション編をを実施いただくことで、基礎的な内容をマスターいただきコンテナのメリット、開発-運用イメージをつけていただけると思います。あくまでも入門（101）内容のため、より深いスキルを身に着けたい方はRedHat社が提供する研修の受講もご検討ください。</p>
-<h2 id="_2">ハンズオン環境と前提条件</h2>
-<p>本ハンズオンは以下のような構成で実施します
-<img alt="環境" src="images/lab-environment.png" /></p>
-<p>また、第一部/第二部ともにRed Hat OpenShift Localのインストールが完了している想定です。未実施の場合は<a href="https://code.visualstudio.com/download">ガイド</a>の手順を参考に、導入をお願いいたします。  </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>最新版2.19はWindows11 Proでも問題なく動作することを検証済みです。古いバージョンを導入した場合、本ハンズオンの内容を正常に実施できない可能性がありますのでご注意ください。</p>
-</div>
-<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特に制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
-<hr />
-<h2 id="_3"><strong>アジェンダ</strong></h2>
-<h2 id="_4">第一部 コンテナ編</h2>
-<ol>
-<li><a href="/100-prerequired/">OpenShift Localの実行</a></li>
-<li><a href="/1-container_file/">コンテナファイルの基本記述</a></li>
-<li><a href="/container-build/">コンテナ・イメージのビルド</a></li>
-<li>コンテナのローカル起動</li>
-<li>コンテナリポジトリーへのpush</li>
-</ol>
-<h2 id="_5">第二部 コンテナオーケストレーション編</h2>
-<ol>
-<li>Kubernetes設定ファイルの記述</li>
-<li>設定ファイルを利用したデプロイ</li>
-<li>GUI上でのコンテナイメージのデプロイ</li>
-<li>S2Iを利用したデプロイ(Option)</li>
-<li>GitOpsを体験しよう(Option)</li>
-<li>OpenShiftでの監視について(Optiont)</li>
-</ol>
+  <h1>OpenShift Localの起動</h1>
+
+<p>Containerfileについて、よりバリエーションに富んだ構成を勉強したい！と思われた方は、udemyのこちらをチェックください。
+* <a href="https://www.udemy.com/course/lab-setup-and-test-course-for-redhat-ex180-podman-openshift/">Udemy.com - Lab setup &amp; Test course for Red Hat EX180 Podman &amp; OpenShift</a></p>
+<p>「Podman - Practice Questions and Solution」という枠にPractice Testが5つあります。
+こちらをぜひやってみてください。</p>
+<p>なお、お金は払いたくないなぁ、、、という方は、Practice Test1, Test2がプレビューとして無料公開されていますので、そちらをご参照ください。</p>
+<p>これを3回程度繰り返し実施してみてください。もし3回目でノーヒントで問題をクリアできるようになれば、<a href="https://www.redhat.com/ja/services/training/ex188-red-hat-certified-specialist-containers-exam">Red Hat 認定スペシャリスト試験 - Containers - (EX188試験) </a>をかなりの高確率で取得できるようになりますよ！</p>
 
 
 
@@ -685,10 +566,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>

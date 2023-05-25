@@ -9,22 +9,24 @@
       
       
       
+        <link rel="prev" href="../104-Integration-ap_and_db/">
       
-        <link rel="next" href="100-prerequired/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+        <link rel="next" href="../105-EX188/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>コンテナ・ハンズオン (仮)</title>
+        <title>コンテナリポジトリーへのpush - コンテナ・ハンズオン (仮)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -40,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#quayio" class="md-skip">
           Skip to content
         </a>
       
@@ -83,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              はじめに
+              コンテナリポジトリーへのpush
             
           </span>
         </div>
@@ -190,12 +192,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="." class="md-tabs__link md-tabs__link--active">
+    <a href=".." class="md-tabs__link">
       はじめに
     </a>
   </li>
@@ -204,13 +204,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="100-prerequired/" class="md-tabs__link">
+      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
         コンテナ編
       </a>
     </li>
@@ -226,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="105-EX188/" class="md-tabs__link">
+      <a href="../105-EX188/" class="md-tabs__link">
         コンテナオーケストレーション編
       </a>
     </li>
@@ -254,7 +256,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -271,6 +273,106 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          コンテナ編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナ編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../100-prerequired/" class="md-nav__link">
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-container_file/" class="md-nav__link">
+        コンテナファイルの基本記述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container-build/" class="md-nav__link">
+        コンテナイメージのビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104-Integration-ap_and_db/" class="md-nav__link">
+        複数のコンテナを連携させよう
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -283,12 +385,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          はじめに
+          コンテナリポジトリーへのpush
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        はじめに
+      <a href="./" class="md-nav__link md-nav__link--active">
+        コンテナリポジトリーへのpush
       </a>
       
         
@@ -307,30 +409,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#quayio_1" class="md-nav__link">
+    Quay.ioでアカウント作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quayio_2" class="md-nav__link">
+    Quay.io にサインインする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quayio_3" class="md-nav__link">
+    Quay.io を使ってみよう
+  </a>
+  
+    <nav class="md-nav" aria-label="Quay.io を使ってみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    新しいコンテナを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
+    コンテナーをイメージにタグ付けする
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#quayio_4" class="md-nav__link">
+    コンテナイメージを Quay.io にプッシュする
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    アジェンダ
+    登録されたコンテナイメージを確認しましょう
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
+        
+          <li class="md-nav__item">
+  <a href="#quayio_5" class="md-nav__link">
+    Quay.io からイメージをダウンロードする
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -338,106 +474,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          コンテナ編
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          コンテナ編
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="100-prerequired/" class="md-nav__link">
-        準備
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="1-container_file/" class="md-nav__link">
-        コンテナファイルの基本記述
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="container-build/" class="md-nav__link">
-        コンテナイメージのビルド
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="104-Integration-ap_and_db/" class="md-nav__link">
-        複数のコンテナを連携させよう
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="102-Getting_start_with_quay/" class="md-nav__link">
-        コンテナリポジトリーへのpush
-      </a>
     </li>
   
 
@@ -486,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="105-EX188/" class="md-nav__link">
+      <a href="../105-EX188/" class="md-nav__link">
         OpenShift Localの起動
       </a>
     </li>
@@ -527,30 +563,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#quayio_1" class="md-nav__link">
+    Quay.ioでアカウント作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quayio_2" class="md-nav__link">
+    Quay.io にサインインする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quayio_3" class="md-nav__link">
+    Quay.io を使ってみよう
+  </a>
+  
+    <nav class="md-nav" aria-label="Quay.io を使ってみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    新しいコンテナを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
+    コンテナーをイメージにタグ付けする
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#quayio_4" class="md-nav__link">
+    コンテナイメージを Quay.io にプッシュする
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    アジェンダ
+    登録されたコンテナイメージを確認しましょう
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
+        
+          <li class="md-nav__item">
+  <a href="#quayio_5" class="md-nav__link">
+    Quay.io からイメージをダウンロードする
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -569,36 +639,50 @@
                   
 
 
-<h1 id="_1">はじめに</h1>
-<p>本コンテンツは2023年6月-7月実施予定のコンテナ関連技術ハンズオンの講義資料です。内容については今後も継続して更新される点をご了承ください。コンテナ編/コンテナオーケストレーション編をを実施いただくことで、基礎的な内容をマスターいただきコンテナのメリット、開発-運用イメージをつけていただけると思います。あくまでも入門（101）内容のため、より深いスキルを身に着けたい方はRedHat社が提供する研修の受講もご検討ください。</p>
-<h2 id="_2">ハンズオン環境と前提条件</h2>
-<p>本ハンズオンは以下のような構成で実施します
-<img alt="環境" src="images/lab-environment.png" /></p>
-<p>また、第一部/第二部ともにRed Hat OpenShift Localのインストールが完了している想定です。未実施の場合は<a href="https://code.visualstudio.com/download">ガイド</a>の手順を参考に、導入をお願いいたします。  </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>最新版2.19はWindows11 Proでも問題なく動作することを検証済みです。古いバージョンを導入した場合、本ハンズオンの内容を正常に実施できない可能性がありますのでご注意ください。</p>
-</div>
-<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特に制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
-<hr />
-<h2 id="_3"><strong>アジェンダ</strong></h2>
-<h2 id="_4">第一部 コンテナ編</h2>
-<ol>
-<li><a href="/100-prerequired/">OpenShift Localの実行</a></li>
-<li><a href="/1-container_file/">コンテナファイルの基本記述</a></li>
-<li><a href="/container-build/">コンテナ・イメージのビルド</a></li>
-<li>コンテナのローカル起動</li>
-<li>コンテナリポジトリーへのpush</li>
-</ol>
-<h2 id="_5">第二部 コンテナオーケストレーション編</h2>
-<ol>
-<li>Kubernetes設定ファイルの記述</li>
-<li>設定ファイルを利用したデプロイ</li>
-<li>GUI上でのコンテナイメージのデプロイ</li>
-<li>S2Iを利用したデプロイ(Option)</li>
-<li>GitOpsを体験しよう(Option)</li>
-<li>OpenShiftでの監視について(Optiont)</li>
-</ol>
+<h1 id="quayio">はじめてのQuay.io</h1>
+<p>コンテナイメージの保管、管理、配布を行うレジストリーを、コンテナイメージレジストリーと呼びます。代表的なレジストリーサービスとして、Docker Hub、Quay.io、AWS Container Resistryがあります。本ハンズオンではRed Hat社の提供するコンテナイメージレジストリ「Quay.io」にアカウントを作成し、各自の環境からコンテナをpushしてみましょう。</p>
+<p>Quayは「キー」と発音します（クエィじゃないです）</p>
+<h2 id="quayio_1">Quay.ioでアカウント作成</h2>
+<p>Red Hatアカウントを持っていることが前提です。</p>
+<p>(Red Hat アカウントの作成方法はUIが変更されやすいこともあり、特にガイドはありません。やり方は「Red Hatアカウント作成」などで検索してみてください。）</p>
+<p>https://quay.io にアクセスします。</p>
+<p>右上のSIGN INをクリックしてください。</p>
+<p>注) 「Try for Free on Cloud」をクリックしないで下さい</p>
+<p>Red Hat アカウントの SSO ページが表示されたら、自身のRed Hat アカウントを入力して下さい。</p>
+<p><strong>DO180 Appendix に Red HatアカウントやQuay.ioの設定方法が記載されているので、そちらを参照下さい。</strong></p>
+<h2 id="quayio_2">Quay.io にサインインする</h2>
+<p>コンソール作業に戻ります。loginコマンドでサインインします。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>podman login quay.io
+</code></pre></div></p>
+<p>ユーザ名とパスワードを求められるので、Quay.ioで設定した情報を入力します。</p>
+<h2 id="quayio_3">Quay.io を使ってみよう</h2>
+<p>こちらのページをpodmanに置き換えて実行します。</p>
+<p>https://docs.quay.io/solution/getting-started.html</p>
+<h3 id="_1">新しいコンテナを作成する</h3>
+<p>コンテナイメージ ubuntu を実行し、新しいファイルを含むコンテナを新たに作成します。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman run ubuntu echo &quot;fun&quot; &gt; newfile
+</code></pre></div>
+コンテナはすぐに終了します。psコマンドでコンテナIDを表示し、どこかに書き留めましょう。(次で必要になります)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman ps -a
+</code></pre></div>
+<h3 id="_2">コンテナーをイメージにタグ付けする</h3>
+<p>次に、コンテナーを既知のイメージ名にタグ付けする必要があります</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman commit &lt;container id&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
+</code></pre></div>
+<p><code>&lt;container id&gt;</code>: 先ほど書き留めたコンテナID<br/>
+<code>&lt;username&gt;</code>: Quay.io のユーザ名<br/>
+<code>&lt;reponame&gt;</code>: 新しく作成したコンテナの名前</p>
+<h3 id="quayio_4">コンテナイメージを Quay.io にプッシュする</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman push quay.io/&lt;username&gt;/&lt;reponame&gt;
+</code></pre></div>
+<p>これで、コンテナイメージがコンテナレジストリに登録されました。</p>
+<h3 id="_3">登録されたコンテナイメージを確認しましょう</h3>
+<p>ブラウザで以下にアクセスしましょう
+https://quay.io/repository/</p>
+<p>Quay.ioにRed Hatアカウントでログインすると、自分のアカウントのリポジトリが参照できます。<br/>
+そこに、今回登録したコンテナイメージがあれば、登録は成功です。</p>
+<h3 id="quayio_5">Quay.io からイメージをダウンロードする</h3>
+<p>他のユーザがpushしたイメージをpullしてrunしてみましょう！</p>
 
 
 
@@ -685,10 +769,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>

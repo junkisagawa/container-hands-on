@@ -1,0 +1,1163 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../1-container_file/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+    
+    
+      
+        <title>準備 - コンテナ・ハンズオン (仮)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Inconsolata"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1openshift-local" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            コンテナ・ハンズオン (仮)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              準備
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Swich to Light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Swich to Light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to Dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to Dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      はじめに
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        コンテナ編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../105-EX188/" class="md-tabs__link">
+        コンテナオーケストレーション編
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    コンテナ・ハンズオン (仮)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          コンテナ編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナ編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          準備
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        準備
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#podman" class="md-nav__link">
+    Podmanの起動
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#podman_1" class="md-nav__link">
+    Podman 動作確認
+  </a>
+  
+    <nav class="md-nav" aria-label="Podman 動作確認">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    Hello World
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option" class="md-nav__link">
+    Option
+  </a>
+  
+    <nav class="md-nav" aria-label="Option">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman_2" class="md-nav__link">
+    podman コマンド実行
+  </a>
+  
+    <nav class="md-nav" aria-label="podman コマンド実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-podman-pull" class="md-nav__link">
+    1. コンテナ実行前の事前ダウンロード(podman pull)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-podman-images" class="md-nav__link">
+    2. ダウンロードしたコンテナイメージの確認(podman images)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-podman-run" class="md-nav__link">
+    5. デーモンコンテナの実行(podman run)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-container_file/" class="md-nav__link">
+        コンテナファイルの基本記述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container-build/" class="md-nav__link">
+        コンテナイメージのビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104-Integration-ap_and_db/" class="md-nav__link">
+        複数のコンテナを連携させよう
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../102-Getting_start_with_quay/" class="md-nav__link">
+        コンテナリポジトリーへのpush
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          コンテナオーケストレーション編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナオーケストレーション編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105-EX188/" class="md-nav__link">
+        OpenShift Localの起動
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#podman" class="md-nav__link">
+    Podmanの起動
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#podman_1" class="md-nav__link">
+    Podman 動作確認
+  </a>
+  
+    <nav class="md-nav" aria-label="Podman 動作確認">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    Hello World
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option" class="md-nav__link">
+    Option
+  </a>
+  
+    <nav class="md-nav" aria-label="Option">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman_2" class="md-nav__link">
+    podman コマンド実行
+  </a>
+  
+    <nav class="md-nav" aria-label="podman コマンド実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-podman-pull" class="md-nav__link">
+    1. コンテナ実行前の事前ダウンロード(podman pull)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-podman-images" class="md-nav__link">
+    2. ダウンロードしたコンテナイメージの確認(podman images)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-podman-run" class="md-nav__link">
+    5. デーモンコンテナの実行(podman run)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="1openshift-local">1.OpenShift Localの実行</h1>
+<p><strong>公式ページ</strong>：<a href="https://access.redhat.com/documentation/ja-jp/red_hat_openshift_local/2.19/html/getting_started_guide/index">Red Hat OpenShift Local</a></p>
+<h2 id="podman">Podmanの起動</h2>
+<p>Red Hat OpenShift Local は、OpenShift Container Platformおよび Podman コンテナーランタイムのプリセットを提供します。第一部ではPodmanを利用してコンテナの基本を学びます。以下コマンドを実行しPodmanを起動してください。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>preset<span class="w"> </span>podman
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crc<span class="w"> </span>setup
+</code></pre></div>
+<h2 id="podman_1">Podman 動作確認</h2>
+<h3 id="hello-world">Hello World</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman run hello-world
+</code></pre></div>
+<p>以下が出力されればOKです。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>!... Hello Podman World ...!
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>         .--&quot;--.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>       / -     - \
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      / (O)   (O) \
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   ~~~| -=(,Y,)=- |
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    .---. /`  \   |~~
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a> ~/  o  o \~~~~.----. ~~
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  | =(X)= |~  / (O (O) \
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>   ~~~~~~~  ~| =(Y_)=-  |
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  ~~~~    ~~~|   U      |~~
+</code></pre></div>
+Quay.ioからhelloという名前のコンテナを持ってきて(pull)、自分のpodman engine環境で実行した結果です。</p>
+<p>podmanのもぐらくんたちを素敵なアスキーアートで表現していますね。</p>
+<h2 id="option">Option</h2>
+<h3 id="podman_2">podman コマンド実行</h3>
+<p>いろいろ実行してみましょう。</p>
+<p><img alt="lifecycle" src="../images/image1.png" /></p>
+<h4 id="1-podman-pull">1. コンテナ実行前の事前ダウンロード(podman pull)</h4>
+<p>コンテナイメージをコンテナレジストリからダウンロードします。</p>
+<p>Publicなコンテナレジストリはいくつかありますが、有名なDockerのデフォルトレジストリである「docker.io」から「nginx」というコンテナを、Red HatのコンテナレジストリSaaSである「Quay.io」から「busybox」というコンテナイメージをダウンロードしてみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman pull docker.io/nginx
+</code></pre></div>
+<details>
+<summary>実行例</summary>
+
+ ```shell
+$ podman pull docker.io/nginx
+Trying to pull docker.io/library/nginx:latest...
+Getting image source signatures
+Copying blob sha256:75576236abf5959ff23b741ed8c4786e244155b9265db5e6ecda9d8261de529f
+Copying blob sha256:26c5c85e47da3022f1bdb9a112103646c5c29517d757e95426f16e4bd9533405
+Copying blob sha256:4f3256bdf66bf00bcec08043e67a80981428f0e0de12f963eac3c753b14d101d
+Copying blob sha256:2019c71d56550b97ce01e0b6ef8e971fec705186f2927d2cb109ac3e18edb0ac
+Copying blob sha256:8c767bdbc9aedd4bbf276c6f28aad18251cceacb768967c5702974ae1eac23cd
+Copying blob sha256:78e14bb05fd35b58587cd0c5ca2c2eb12b15031633ec30daa21c0ea3d2bb2a15
+Copying config sha256:6efc10a0510f143a90b69dc564a914574973223e88418d65c1f8809e08dc0a1f
+Writing manifest to image destination
+Storing signatures
+6efc10a0510f143a90b69dc564a914574973223e88418d65c1f8809e08dc0a1f
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&lt;/details&gt;
+</code></pre></div>
+podman pull quay.io/quay/busybox
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&lt;details&gt;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a> ```
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>$ podman pull quay.io/quay/busybox
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Trying to pull quay.io/quay/busybox:latest...
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Getting image source signatures
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Copying blob sha256:ee780d08a5b4de5192a526d422987f451d9a065e6da42aefe8c3b20023a250c7
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Copying blob sha256:9c075fe2c773108d2fe2c18ea170548b0ee30ef4e5e072d746e3f934e788b734
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Copying config sha256:e3121c769e3948dd4a7e1764f4841d044efcfda47804a5384597b7b117054c4c
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Writing manifest to image destination
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Storing signatures
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>e3121c769e3948dd4a7e1764f4841d044efcfda47804a5384597b7b117054c4c
+</code></pre></div>
+</details>
+
+<p>ダウンロードはこれだけです。簡単ですね。</p>
+<h4 id="2-podman-images">2. ダウンロードしたコンテナイメージの確認(podman images)</h4>
+<p>ダウンロード(pull)したコンテナイメージを一覧表示してみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>podman images
+</code></pre></div>
+<details>
+<summary>実行例</summary>
+
+ ```
+$ podman images
+REPOSITORY               TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/nginx  latest      6efc10a0510f  8 days ago   147 MB
+quay.io/quay/busybox     latest      e3121c769e39  2 years ago  1.45 MB
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>&lt;/details&gt;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ダウンロード(pull)したイメージがリストアップされていますね。
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#### 3. コンテナの実行(podman run)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>では、ダウンロード(pull)したコンテナを実行してみましょう。
+</code></pre></div>
+podman run -it --name test1 busybox sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>* どういう状態?: 
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  * busyboxコンテナをtest1という名前で作成、(-itオプションで)仮想端末(tty)にインタラクティブ接続し、コマンド実行可能な状態になっています。ls, pwd, echo コマンドなどお試しください。
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>* 停止：
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  * `exit`と入力しEnterしてください。
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#### 4. コンテナの状態の確認表示(podman ps)
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>実行中コンテナの状態を確認します。ps はLinuxのpsコマンドと同じく、実行中のプロセス(この場合、コンテナ)を表示します。
+</code></pre></div>
+podman ps
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&lt;details open&gt;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a> ```
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>$ podman ps
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+</code></pre></div>
+</details>
+
+<p>現在実行中のコンテナが1つもないことがわかります。</p>
+<p>続けて、停止状態を含めたコンテナの状態を確認します。 -aオプションをつけてpsコマンドを実行すると、停止中を含めた全コンテナが表示されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman ps -a
+</code></pre></div>
+<details open>
+<summary>実行例</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$ podman ps -a
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>CONTAINER ID  IMAGE                        COMMAND     CREATED     STATUS                 PORTS       NAMES
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>b7298b05638a  quay.io/quay/busybox:latest  sh          3 days ago  Exited (0) 3 days ago              test1
+</code></pre></div>
+</details>
+
+<p>先ほど起動したbusyboxコンテナが停止(Exit)状態にあることがわかります。</p>
+<h4 id="5-podman-run">5. デーモンコンテナの実行(podman run)</h4>
+<p>先ほどのコンテナは、<code>exit</code>すると同時に停止してしまいました。
+通常、コンテナは処理を実行するとフォアグラウンドで実行され、ユーザがexitコマンドなどで停止させると、実際に停止してしまいます。</p>
+<p>それだとwebサーバのような常時起動しておきたいコンテナは困ります。</p>
+<p>その場合、-dオプション (デタッチドモード, daemonではないんだね…)でバックグラウンド起動させることができます。早速nginxというwebサーバをバックグラウンド実行してみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
+</code></pre></div>
+<details open>
+<summary>実行例</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>97c59775a1fa10cf1dfee053a9293b2c006dd625ac16ca7c40ee3db1ac832618
+</code></pre></div>
+</details>
+
+<p>これは、8080ポートでnginxというWebサーバが起動しhttpリクエストを8080ポートで待っている状態です。
+ブラウザで　http://localhost:8080 にアクセスしてください。nginxのデフォルトページが表示されます。</p>
+<details>
+<summary>http://localhost:8080　へのアクセス例</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$ curl http://localhost:8080
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>&lt;!DOCTYPE html&gt;
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>&lt;html&gt;
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>&lt;head&gt;
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>&lt;style&gt;
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>html { color-scheme: light dark; }
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>body { width: 35em; margin: 0 auto;
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>font-family: Tahoma, Verdana, Arial, sans-serif; }
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>&lt;/style&gt;
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>&lt;/head&gt;
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>&lt;body&gt;
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>working. Further configuration is required.&lt;/p&gt;
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>&lt;p&gt;For online documentation and support please refer to
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>Commercial support is available at
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>&lt;/body&gt;
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>&lt;/html&gt;
+</code></pre></div>
+</details>
+
+<p>では、コンテナが起動状態かどうか確認してみましょう。podman ps を実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>podman ps
+</code></pre></div>
+<details open>
+<summary>実行例</summary>
+
+ ```
+$ podman ps
+CONTAINER ID  IMAGE                           COMMAND               CREATED     STATUS         PORTS             NAMES
+97c59775a1fa  docker.io/library/nginx:latest  nginx -g daemon o...  3 days ago  Up 3 days ago  0.0.0.0:0->0/tcp  docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>&lt;/details&gt;
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>namesがdocker-nginxのコンテナが表示されています。
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>docker-nginxが起動中ということです。
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>もう一度ブラウザで　http://localhost:8080 にアクセスしてください。やはりnginxのデフォルトページが表示されます。
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>#### 6. ログの確認(podman logs)
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>コンテナのログを確認できます。
+</code></pre></div>
+podman logs docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>このログは、標準出力(stdout)と標準エラー(stderr)へ書き出されたデータです。
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Linuxの`tail -f`と同様に、-fオプションを付けることで稼働しているコンテナのログをリアルタイムに確認できます。
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>以下を実行したら、もう一度ブラウザで　http://localhost:8080 にアクセスしてみてください。
+</code></pre></div>
+podman logs -f docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ログにアクセスログが出ましたか？ 出ない方はブラウザをリロードしてみてください。
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>#### 7. コンテナの停止(podman stop / podman kill)
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>docker-nginxを停止しましょう。
+</code></pre></div>
+podman stop docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>stopコマンドを実行したら、コンテナが停止していることを確認します。
+</code></pre></div>
+podman ps -a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>&lt;details&gt;
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman stop docker-nginx
+docker-nginx
+$ podman ps -a
+CONTAINER ID  IMAGE                           COMMAND               CREATED     STATUS                 PORTS             NAMES
+b7298b05638a  quay.io/quay/busybox:latest     sh                    3 days ago  Exited (0) 3 days ago                    test1
+97c59775a1fa  docker.io/library/nginx:latest  nginx -g daemon o...  3 days ago  Exited (0) 3 days ago  0.0.0.0:0->0/tcp  docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&lt;/details&gt;
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>docker-nginxコンテナのSTATUSがExited(停止)となっています。つまり、停止させることができました。
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>ちなみに、podman stopと同じくコンテナプロセスを停止する役割としてpodman killがあります。
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>podman stopはSIGTERM(プロセス通常停止)でコンテナプロセスを停止しますが、podman kill は SIGKILL(強制停止)でプロセスを停止しています。
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>通常はpodman stopでプロセスを停止し、それで止まらない場合、異常時などにkillを使うようにしましょう。
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>#### 8. コンテナの起動(podman start)
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>止めた docker-nginx コンテナを起動します。
+</code></pre></div>
+podman start docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>起動しているか確認します。
+</code></pre></div>
+podman ps -a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>&lt;details&gt;
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman ps -a
+CONTAINER ID  IMAGE                           COMMAND               CREATED     STATUS                 PORTS             NAMES
+b7298b05638a  quay.io/quay/busybox:latest     sh                    3 days ago  Exited (0) 3 days ago                    test1
+97c59775a1fa  docker.io/library/nginx:latest  nginx -g daemon o...  3 days ago  Up 3 days ago          0.0.0.0:0->0/tcp  docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>&lt;/details&gt;
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>docker-nginxコンテナのSTATUSがUp(起動)になっています。つまり、起動できました。
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>もう一度ブラウザで　http://localhost:8080 にアクセスしてください。nginxのデフォルトページが表示されます。
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>#### 9. コンテナの削除(podman rm)
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>使わないコンテナを削除します。
+</code></pre></div>
+podman rm docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>&lt;details open&gt;
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman rm docker-nginx
+Error: cannot remove container 97c59775a1fa10cf1dfee053a9293b2c006dd625ac16ca7c40ee3db1ac832618 as it is running - running or paused containers cannot be removed without force: container state improper
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>&lt;/details&gt;
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>エラーが表示されました。起動中のコンテナは、一度停止してから削除できます。
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>(Linuxのrmコマンドと同じく、**-f** オプションで強制的に削除可能です)
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>では、すでに止まっている他のコンテナを削除しましょう。busyboxコンテナは停止状態です。このコンテナの名前はtest1と名付けていました。
+</code></pre></div>
+podman rm test1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>
+</code></pre></div>
+podman ps -a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>&lt;details open&gt;
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman ps -a
+CONTAINER ID  IMAGE                           COMMAND               CREATED     STATUS         PORTS             NAMES
+97c59775a1fa  docker.io/library/nginx:latest  nginx -g daemon o...  3 days ago  Up 3 days ago  0.0.0.0:0->0/tcp  docker-nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>&lt;/details&gt;
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>リストから test1 コンテナ(busybox)が消えました。
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>#### 10. ローカルリポジトリからコンテナイメージの削除(podman rmi)
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>test1 コンテナはコンテナプロセスとしては削除しましたが、イメージ自体は残っています。
+</code></pre></div>
+podman images
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>&lt;details&gt;
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman images
+REPOSITORY               TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/nginx  latest      6efc10a0510f  8 days ago   147 MB
+quay.io/quay/busybox     latest      e3121c769e39  2 years ago  1.45 MB
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>&lt;/details&gt;
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>このイメージさえも削除してみましょう。
+</code></pre></div>
+podman rmi quay.io/quay/busybox
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>&lt;details&gt;
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+podman rmi quay.io/quay/busybox
+Untagged: quay.io/quay/busybox:latest
+Deleted: e3121c769e3948dd4a7e1764f4841d044efcfda47804a5384597b7b117054c4c
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>&lt;/details&gt;
+</code></pre></div>
+podman images
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>&lt;details&gt;
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman images
+REPOSITORY               TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/nginx  latest      6efc10a0510f  8 days ago   147 MB
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>&lt;/details&gt;
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>消えましたね。これでローカルリポジトリからイメージさえも消えました。
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>次回利用する際は、再度Quay.ioからダウンロードしローカルリポジトリに保存した上でコンテナ起動、という流れになります。
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>### 11. コンテナを複数人で共有利用する
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>コンテナは複数端末で共有利用可能です。実際に試してみましょう。
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>ターミナル[1]で以下を実行
+</code></pre></div>
+podman run -it ubuntu bash
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>&lt;details&gt;
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman run -it ubuntu bash
+Resolved "ubuntu" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/ubuntu:latest...
+Getting image source signatures
+Copying blob sha256:2ab09b027e7f3a0c2e8bb1944ac46de38cebab7145f0bd6effebfe5492c818b6
+Copying config sha256:08d22c0ceb150ddeb2237c5fa3129c0183f3cc6f5eeb2e7aa4016da3ad02140a
+Writing manifest to image destination
+Storing signatures
+root@670148e96359:/#
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>&lt;/details&gt;
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>Ubuntuが起動し、bashが実行されています。
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>別のターミナル「ターミナル[2]」で実行
+</code></pre></div>
+podman run -it --name fedora-t2 fedora bash
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>&lt;details&gt;
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman run -it --name fedora-t2 fedora bash
+Resolved "fedora" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull registry.fedoraproject.org/fedora:latest...
+Getting image source signatures
+Copying blob sha256:de924d42b91d6d6898968a85cf956b216065442e876409dc098996c2f9f6282d
+Copying config sha256:c9bfca6d0ac2a242226fa68db587ab26836e4b3fb5458284be7505e95b12c965
+Writing manifest to image destination
+Storing signatures
+[root@f18f6f12358e /]#
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>&lt;/details&gt;
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>fedoraが起動し、bashが実行されています。
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>さらに別のターミナル「ターミナル[3]」で実行
+</code></pre></div>
+podman ps
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>&lt;details&gt;
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman ps
+CONTAINER ID  IMAGE                                     COMMAND     CREATED     STATUS         PORTS       NAMES
+670148e96359  docker.io/library/ubuntu:latest           bash        3 days ago  Up 3 days ago              festive_carver
+f18f6f12358e  registry.fedoraproject.org/fedora:latest  bash        3 days ago  Up 3 days ago              fedora-t2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>&lt;/details&gt;
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>ubuntuとfedora-t2が起動していることを確認できます。
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>ターミナル[1]で実行していたubuntu bashでexitし、ターミナル[3]でもう一度
+</code></pre></div>
+podman ps
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>を実施します。
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>&lt;details&gt;
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman ps
+CONTAINER ID  IMAGE                                     COMMAND     CREATED     STATUS         PORTS       NAMES
+f18f6f12358e  registry.fedoraproject.org/fedora:latest  bash        3 days ago  Up 3 days ago              fedora-t2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>&lt;/details&gt;
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>ubuntuが消えてfedora-t2のみが起動していることを確認します。
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>ターミナル[1]で以下を実行し、ターミナル[2]で起動しているfedora-t2にターミナル[1]からbashが起動できることを確認します。
+</code></pre></div>
+podman exec -it fedora-t2 bash
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>&lt;details&gt;
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>&lt;summary&gt;実行例&lt;/summary&gt;
+</code></pre></div>
+$ podman exec -it fedora-t2 bash
+[root@f18f6f12358e /]#
+```
+</details>
+
+<p>起動しているコンテナに、他のターミナルからアクセスすることもできます。</p>
+<p>なお、<code>run</code> ではなく <code>exec</code> である点に留意してください。
+execは起動したコンテナ上でコマンド(今回はbash)を実行するコマンドで、runはコンテナを起動(createとstartを一気に実行)するコマンドになります。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/junkisagawa"  target="_blank" rel="noopener">Junki Sagawa</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
+      
+    
+  </body>
+</html>
