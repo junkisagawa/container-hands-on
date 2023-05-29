@@ -125,7 +125,7 @@
             
             
             
-            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to Dark mode"  type="radio" name="__palette" id="__palette_2">
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to Dark mode"  type="radio" name="__palette" id="__palette_2">
             
               <label class="md-header__button md-icon" title="Switch to Dark mode" for="__palette_1" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
@@ -228,6 +228,22 @@
     <li class="md-tabs__item">
       <a href="105-EX188/" class="md-tabs__link">
         コンテナオーケストレーション編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="option1-podman/" class="md-tabs__link">
+        参考情報
       </a>
     </li>
   
@@ -500,6 +516,57 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          参考情報
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          参考情報
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="option1-podman/" class="md-nav__link">
+        Podmanの基本
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -572,21 +639,22 @@
 <h1 id="_1">はじめに</h1>
 <p>本コンテンツは2023年6月-7月実施予定のコンテナ関連技術ハンズオンの講義資料です。内容については今後も継続して更新される点をご了承ください。コンテナ編/コンテナオーケストレーション編をを実施いただくことで、基礎的な内容をマスターいただきコンテナのメリット、開発-運用イメージをつけていただけると思います。あくまでも入門（101）内容のため、より深いスキルを身に着けたい方はRedHat社が提供する研修の受講もご検討ください。</p>
 <h2 id="_2">ハンズオン環境と前提条件</h2>
-<p>本ハンズオンは以下のような構成で実施します
+<p>本ハンズオンは以下のような構成で実施します。コンテナエンジンとしてPodman、オーケストレーションツールとしてOpenShift Localをを利用していきます。<br />
+コンテナと聞くと、Dockerを思い浮かべる方が多いと思いますが、<strong>RHEL8、CentOS8以降ではDockerのサポートは廃止されており</strong>、Podmanが採用されています。今回のハンズオンでは、コンテナの操作にPodmanを使用していきます。
 <img alt="環境" src="images/lab-environment.png" /></p>
 <p>また、第一部/第二部ともにRed Hat OpenShift Localのインストールが完了している想定です。未実施の場合は<a href="https://code.visualstudio.com/download">ガイド</a>の手順を参考に、導入をお願いいたします。  </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>最新版2.19はWindows11 Proでも問題なく動作することを検証済みです。古いバージョンを導入した場合、本ハンズオンの内容を正常に実施できない可能性がありますのでご注意ください。</p>
 </div>
-<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特に制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
+<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特にこだわりや社内の制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
 <hr />
 <h2 id="_3"><strong>アジェンダ</strong></h2>
 <h2 id="_4">第一部 コンテナ編</h2>
 <ol>
-<li><a href="/100-prerequired/">OpenShift Localの実行</a></li>
-<li><a href="/1-container_file/">コンテナファイルの基本記述</a></li>
-<li><a href="/container-build/">コンテナ・イメージのビルド</a></li>
+<li><a href="/container-hands-on/100-prerequired/">OpenShift Localの実行</a></li>
+<li><a href="/container-hands-on/1-container_file/">コンテナファイルの基本記述</a></li>
+<li><a href="/container-hands-on/container-build/">コンテナ・イメージのビルド</a></li>
 <li>コンテナのローカル起動</li>
 <li>コンテナリポジトリーへのpush</li>
 </ol>
