@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../1-container_file/">
+        <link rel="prev" href="../101-container_file/">
       
       
         <link rel="next" href="../104-Integration-ap_and_db/">
@@ -37,8 +37,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Inconsolata"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+JP:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans JP";--md-code-font:"Inconsolata"}</style>
       
     
     
@@ -349,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-container_file/" class="md-nav__link">
+      <a href="../101-container_file/" class="md-nav__link">
         コンテナファイルの基本記述
       </a>
     </li>
@@ -394,7 +394,34 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    コンテナイメージのビルド
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    ビルドコマンドの基本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルチステージビルド
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    オプション・ハンズオン
   </a>
   
 </li>
@@ -428,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../102-Getting_start_with_quay/" class="md-nav__link">
+      <a href="../105-container_image_registry/" class="md-nav__link">
         コンテナリポジトリーへのpush
       </a>
     </li>
@@ -570,7 +597,34 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    コンテナイメージのビルド
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    ビルドコマンドの基本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルチステージビルド
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    オプション・ハンズオン
   </a>
   
 </li>
@@ -592,7 +646,136 @@
 
   <h1>コンテナイメージのビルド</h1>
 
-<h2 id="_1">コンテナイメージのビルド</h2>
+<h2 id="_1">アプリケーションを含んだコンテナイメージのビルド</h2>
+<p>OpenLibertyイメージをもとに、Hello worldアプリケーションを読み込ませてみる。</p>
+<ul>
+<li>バージョン管理</li>
+<li>
+<ul>
+<li>レジストリへのアップロード</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>環境の切り替え
+ビルドは一度実施すれば終わりではなく、、アプリケーションに修正を加えたら再度実行します。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_2">ビルドコマンドの基本</h3>
+<h3 id="_3">マルチステージビルド</h3>
+<p>コンテナのビルドにおいて、複数のステージ（段階）を持つビルドをマルチステージビルドと呼びます。1-1で作成したコンテナファイルは1つの段階だけをもつ基本的なビルドになっていました。ここでは、Javaアプリケーションをビルドするステージ、作成したwarファイルを使用してOpenLiberty上で稼働させるステージの2つに分けたビルドを実施していきます。</p>
+<p>なぜマルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。</p>
+<ul>
+<li>
+<p>イメージサイズの削減: アプリケーションのビルド時にだけ必要なコンパイルやパッケージングを中間イメージとし、実行に必要な最終的なイメージと分離することができます。分離によって、最終的なイメージには稼働に必要なコンポーネントのみを含むことになるため、イメージサイズを小さくすることができます。一般的にアプリケーションビルドのために必要なコンポーネントを稼働時に残しておく必要はありません。開発者が作成したアプリケーションをコンテナ化するときは、マルチステージビルドを利用する以外にも、イメージレイヤーを少なくする、そもそものベースイメージを軽いものに変更するなどの対応をとり、イメージサイズは出来るように工夫しています。</p>
+</li>
+<li>
+<p>セキュリティの向上: ビルドステージのみで必要な依存関係を含めないことによって、脆弱性の可能性を減らすことができます。</p>
+</li>
+<li>
+<p>ビルドの効率化: ビルドステージではビルドに必要なタスク（コンパイル、パッケージング、テストなど）を実行し、最終的なイメージではそれらのタスクを実行する必要はありません。単一ステージのビルドでは、ビルドスクリプト内ですべてのタスクを実行する必要があります。しかし、マルチステージビルドでは、並列で実行することができます。</p>
+</li>
+</ul>
+<h2 id="_4">オプション・ハンズオン</h2>
+<p>マルチステージビルドを行うContainerfileを利用して、以下の流れを実行していきます。
+1. Javaの標準ライブラリを使用したシンプルなHTTPサーバーのコードを準備する
+2. Containerfileを作成する
+  - [Buildステージ]Maven等のコンパイルツールが含まれているベースイメージを使用して、Javaアプリケーションを作成
+  - [Productステージ]作成したアプリケーションを受け取り、OpenLibertyベースイメージ上で稼働させる
+3. myappという名前のイメージを作成する
+4. 作成したmyappをもとにコンテナを実行する
+5. ブラウザからアクセスして稼働確認する</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>myapp
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>myapp
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>src/main/java/com/example
+</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pom.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>myapp<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">                    </span><span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">                    </span><span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">                    </span><span class="nt">&lt;archive&gt;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">                        </span><span class="nt">&lt;manifest&gt;</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">                            </span><span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">                            </span><span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">                            </span><span class="nt">&lt;mainClass&gt;</span>com.example.HelloWorld<span class="nt">&lt;/mainClass&gt;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">                        </span><span class="nt">&lt;/manifest&gt;</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">                    </span><span class="nt">&lt;/archive&gt;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="nt">&lt;/project&gt;</span>
+</code></pre></div></td></tr></table></div>
 
 
 
