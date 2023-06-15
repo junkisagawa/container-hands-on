@@ -698,10 +698,10 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="_3">コンテナイメージのビルドおよび実行</h3>
 <p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image build -t node-hello:0.1 .
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman images build -t node-hello:0.1 .
 </code></pre></div></p>
 <p>次のコマンドを実行しましょう。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker run -d -p 8080:8080 --name node-hello node-hello:0.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman run -d -p 8080:8080 --name node-hello node-hello:0.1
 </code></pre></div>
 <p>ブラウザを開き、http://localhost:8080 にアクセスして、index.html の内容が表示されることを確認します。</p>
 <p><img alt="hello" src="../images/hello-world.png" /></p>
