@@ -369,6 +369,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           コンテナイメージのビルド
@@ -385,6 +387,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -393,7 +397,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     アプリケーションを含んだコンテナイメージのビルド
   </a>
   
@@ -401,14 +405,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     コンテナイメージに必要なファイルを用意する
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     コンテナイメージのビルドおよび実行
   </a>
   
@@ -420,7 +424,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     オプション・ハンズオン
   </a>
   
@@ -595,6 +599,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -603,7 +609,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     アプリケーションを含んだコンテナイメージのビルド
   </a>
   
@@ -611,14 +617,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     コンテナイメージに必要なファイルを用意する
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     コンテナイメージのビルドおよび実行
   </a>
   
@@ -630,7 +636,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     オプション・ハンズオン
   </a>
   
@@ -658,9 +664,18 @@
                   
 
 
-  <h1>コンテナイメージのビルド</h1>
-
-<h2 id="_1">アプリケーションを含んだコンテナイメージのビルド</h2>
+<h1 id="_1">アプリケーションを含んだコンテナを作成する</h1>
+<p>アプリケーションを含んだコンテナを作成するときも、基本的な流れは同じです。以下では、進め方の例を説明しています。</p>
+<ul>
+<li>開発チームがアプリケーションのソースコードを開発、修正します</li>
+<li>アプリケーションに必要なライブラリのインストール、ランタイムの設定などをコンテナファイルに記載します</li>
+<li>コンテナビルドを実施し、イメージを作成します</li>
+<li>開発環境でコンテナの稼働確認を行います</li>
+<li>組織で用意したコンテナリポジトリーにイメージをPUSHします</li>
+<li>他のメンバーはイメージをPULLし、自分の環境でコンテナを起動します</li>
+</ul>
+<p><img alt="開発の流れ" src="../images/104_fig1.png" /></p>
+<h2 id="_2">アプリケーションを含んだコンテナイメージのビルド</h2>
 <p>Node.jsイメージをベースとして使用し、HTTPサーバーを立ち上げルートパスへのアクセスに対してローカルで用意したindex.htmlを返却するコンテナを起動していきます。 大まかな作業内容は以下です。
 1. ホスト側の index.html ファイルを用意する 
 2. htmlファイルをコピーし、Node.jsを立ち上げるContainerfileを用意する
@@ -668,7 +683,7 @@
 4. コンテナを起動、ブラウザからアクセスして稼働確認する
 5. コンテナに入り、index.htmlを編集する
 6. コンテナを停止、削除する</p>
-<h3 id="_2">コンテナイメージに必要なファイルを用意する</h3>
+<h3 id="_3">コンテナイメージに必要なファイルを用意する</h3>
 <p>まずは作業用ディレクトリを用意し、index.htmlとContainerfileを作成します。
 任意のディレクトリ上で、以下のコマンドを実行してください。</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir node-hello
@@ -696,7 +711,7 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8"></a>
 <a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;npx&quot;, &quot;http-server&quot;, &quot;-p&quot;, &quot;8080&quot;]</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_3">コンテナイメージのビルドおよび実行</h3>
+<h3 id="_4">コンテナイメージのビルドおよび実行</h3>
 <p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman images build -t node-hello:0.1 .
 </code></pre></div></p>
@@ -719,7 +734,7 @@
 </code></pre></div>
 <p>以上が、開発したアプリケーションをコンテナで稼働させる基本的な流れです。次のチャプターでは、データベースコンテナとアプリケーションコンテナの2つを動かし、コンテナ同士を連携させる方法を学んでいきます。</p>
 <hr />
-<h2 id="_4">オプション・ハンズオン</h2>
+<h2 id="_5">オプション・ハンズオン</h2>
 <p>コンテナのビルドにおいて、複数のステージ（段階）を持つビルドをマルチステージビルドと呼びます。1-1で作成したコンテナファイルは1つの段階だけをもつ基本的なビルドになっていました。ここでは、Javaアプリケーションをビルドするステージ、作成したwarファイルを使用してOpenLiberty上で稼働させるステージの2つに分けたビルドを実施していきます。</p>
 <p>なぜマルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。  </p>
 <ul>
