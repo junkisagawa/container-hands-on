@@ -9,17 +9,15 @@
       
       
       
-        <link rel="prev" href="../104-Integration-ap_and_db/">
+        <link rel="prev" href="../option1-podman/">
       
-      
-        <link rel="next" href="../201-opening/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>コンテナリポジトリーへのpush - コンテナ・ハンズオン (仮)</title>
+        <title>12Factors - Cloud Native Architectureの基本 - コンテナ・ハンズオン (仮)</title>
       
     
     
@@ -71,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quayio" class="md-skip">
+        <a href="#cloudnative" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              コンテナリポジトリーへのpush
+              12Factors - Cloud Native Architectureの基本
             
           </span>
         </div>
@@ -204,15 +202,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
+      <a href="../100-prerequired/" class="md-tabs__link">
         コンテナ編
       </a>
     </li>
@@ -238,13 +234,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../option1-podman/" class="md-tabs__link">
+      <a href="../option1-podman/" class="md-tabs__link md-tabs__link--active">
         参考情報
       </a>
     </li>
@@ -304,16 +302,16 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
       
       
       
@@ -322,7 +320,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           コンテナ編
@@ -389,107 +387,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          コンテナリポジトリーへのpush
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../105-container_image_registry/" class="md-nav__link">
         コンテナリポジトリーへのpush
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quayio_1" class="md-nav__link">
-    Quay.ioでアカウント作成
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quayio_2" class="md-nav__link">
-    Quay.io にサインインする
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quayio_3" class="md-nav__link">
-    Quay.io を使ってみよう
-  </a>
-  
-    <nav class="md-nav" aria-label="Quay.io を使ってみよう">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    新しいコンテナを作成する
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    コンテナーをイメージにタグ付けする
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quayio_4" class="md-nav__link">
-    コンテナイメージを Quay.io にプッシュする
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    登録されたコンテナイメージを確認しましょう
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quayio_5" class="md-nav__link">
-    Quay.io からイメージをダウンロードする
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -558,16 +460,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
@@ -576,7 +478,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           参考情報
@@ -601,11 +503,55 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../option2-12factors/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          12Factors - Cloud Native Architectureの基本
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         12Factors - Cloud Native Architectureの基本
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloudnative" class="md-nav__link">
+    CloudNativeとコンテナ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    その3 設定 ~設定を環境変数に格納する
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -634,8 +580,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -644,64 +588,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quayio_1" class="md-nav__link">
-    Quay.ioでアカウント作成
+  <a href="#cloudnative" class="md-nav__link">
+    CloudNativeとコンテナ
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quayio_2" class="md-nav__link">
-    Quay.io にサインインする
+  <a href="#3" class="md-nav__link">
+    その3 設定 ~設定を環境変数に格納する
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quayio_3" class="md-nav__link">
-    Quay.io を使ってみよう
-  </a>
-  
-    <nav class="md-nav" aria-label="Quay.io を使ってみよう">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    新しいコンテナを作成する
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    コンテナーをイメージにタグ付けする
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quayio_4" class="md-nav__link">
-    コンテナイメージを Quay.io にプッシュする
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    登録されたコンテナイメージを確認しましょう
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quayio_5" class="md-nav__link">
-    Quay.io からイメージをダウンロードする
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -720,50 +616,24 @@
                   
 
 
-<h1 id="quayio">はじめてのQuay.io</h1>
-<p>コンテナイメージの保管、管理、配布を行うレジストリーを、コンテナイメージレジストリーと呼びます。代表的なレジストリーサービスとして、Docker Hub、Quay.io、AWS Container Resistryがあります。本ハンズオンではRed Hat社の提供するコンテナイメージレジストリ「Quay.io」にアカウントを作成し、各自の環境からコンテナをpushしてみましょう。</p>
-<p>Quayは「キー」と発音します（クエィじゃないです）</p>
-<h2 id="quayio_1">Quay.ioでアカウント作成</h2>
-<p>Red Hatアカウントを持っていることが前提です。</p>
-<p>(Red Hat アカウントの作成方法はUIが変更されやすいこともあり、特にガイドはありません。やり方は「Red Hatアカウント作成」などで検索してみてください。）</p>
-<p><a href="https://quay.io">https://quay.io</a> にアクセスします。</p>
-<p>右上のSIGN INをクリックしてください。</p>
-<p>注) 「Try for Free on Cloud」をクリックしないで下さい</p>
-<p>Red Hat アカウントの SSO ページが表示されたら、自身のRed Hat アカウントを入力して下さい。</p>
-<p><strong>DO180 Appendix に Red HatアカウントやQuay.ioの設定方法が記載されているので、そちらを参照下さい。</strong></p>
-<h2 id="quayio_2">Quay.io にサインインする</h2>
-<p>コンソール作業に戻ります。loginコマンドでサインインします。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>podman login quay.io
-</code></pre></div></p>
-<p>ユーザ名とパスワードを求められるので、Quay.ioで設定した情報を入力します。</p>
-<h2 id="quayio_3">Quay.io を使ってみよう</h2>
-<p>こちらのページをpodmanに置き換えて実行します。</p>
-<p>https://docs.quay.io/solution/getting-started.html</p>
-<h3 id="_1">新しいコンテナを作成する</h3>
-<p>コンテナイメージ ubuntu を実行し、新しいファイルを含むコンテナを新たに作成します。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman run ubuntu echo &quot;fun&quot; &gt; newfile
-</code></pre></div>
-コンテナはすぐに終了します。psコマンドでコンテナIDを表示し、どこかに書き留めましょう。(次で必要になります)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman ps -a
-</code></pre></div>
-<h3 id="_2">コンテナーをイメージにタグ付けする</h3>
-<p>次に、コンテナーを既知のイメージ名にタグ付けする必要があります</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman commit &lt;container id&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
-</code></pre></div>
-<p><code>&lt;container id&gt;</code>: 先ほど書き留めたコンテナID<br/>
-<code>&lt;username&gt;</code>: Quay.io のユーザ名<br/>
-<code>&lt;reponame&gt;</code>: 新しく作成したコンテナの名前</p>
-<h3 id="quayio_4">コンテナイメージを Quay.io にプッシュする</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman push quay.io/&lt;username&gt;/&lt;reponame&gt;
-</code></pre></div>
-<p>これで、コンテナイメージがコンテナレジストリに登録されました。</p>
-<h3 id="_3">登録されたコンテナイメージを確認しましょう</h3>
-<p>ブラウザで以下にアクセスしましょう
-https://quay.io/repository/</p>
-<p>Quay.ioにRed Hatアカウントでログインすると、自分のアカウントのリポジトリが参照できます。<br />
-そこに、今回登録したコンテナイメージがあれば、登録は成功です。</p>
-<h3 id="quayio_5">Quay.io からイメージをダウンロードする</h3>
-<p>他のユーザがpushしたイメージをpullしてrunしてみましょう！</p>
+  <h1>12Factors - Cloud Native Architectureの基本</h1>
+
+<h2 id="cloudnative">CloudNativeとコンテナ</h2>
+<p>12Factorsという考え方を聞いたことはあるでしょうか？クラウドネイティブ開発を行う12のプラクティスとして公開されています。モダナイゼーションはコンテナの活用を避けられない、クラウドを活用するためにはコンテナは避けられない技術となっています。
+今回は、12Factorsの中でも特にコンテナが重要な役割をしめるものをピックアップしてご紹介します。</p>
+<h2 id="3">その3 設定 ~設定を環境変数に格納する</h2>
+<p>アプリケーションの 設定 は、デプロイ（ステージング、本番、開発環境など）の間で異なり得る唯一のものである。設定には以下のものが含まれる。  </p>
+<ul>
+<li>データベース、Memcached、他のバックエンドサービスなどのリソースへのハンドル</li>
+<li>Amazon S3やTwitterなどの外部サービスの認証情報</li>
+<li>デプロイされたホストの正規化されたホスト名など、デプロイごとの値</li>
+</ul>
+<p>アプリケーションは時に設定を定数としてコード内に格納する。これはTwelve-Factorに違反している。Twelve-Factorは 設定をコードから厳密に分離すること を要求する。設定はデプロイごとに大きく異なるが、コードはそうではない。</p>
+<p>なお、この“設定”の定義には、アプリケーション内部の設定は 含まない ことに注意する。内部の設定とは、Railsにおけるconfig/routes.rbや、Springにおいてコードモジュールがどう接続されるかなどの設定を指す。この種の設定はデプロイの間で変わらないため、コードの内部で行うべきである。</p>
+<p>設定に対するもう1つのアプローチは、バージョン管理システムにチェックインされない設定ファイルを使う方法である。例として、Railsにおけるconfig/database.ymlがある。この方法は、リポジトリにチェックインされる定数を使うことに比べると非常に大きな進歩であるが、まだ弱点がある。設定ファイルが誤ってリポジトリにチェックインされやすいことと、設定ファイルが異なる場所に異なるフォーマットで散乱し、すべての設定を一つの場所で見たり管理したりすることが難しくなりがちであることである。その上、これらのフォーマットは言語やフレームワークに固有のものになりがちである。</p>
+<p>Twelve-Factor Appは設定を 環境変数 に格納する。 環境変数は、コードを変更することなくデプロイごとに簡単に変更できる。設定ファイルとは異なり、誤ってリポジトリにチェックインされる可能性はほとんどない。また、独自形式の設定ファイルやJava System Propertiesなど他の設定の仕組みとは異なり、環境変数は言語やOSに依存しない標準である。</p>
+<p>設定管理のもう1つの側面はグルーピングである。アプリケーションは設定を名前付きのグループ（しばしば“環境”と呼ばれる）にまとめることがある。グループは、Railsにおけるdevelopment、test、production環境のように、デプロイの名前を取って名付けられる。この方法はうまくスケールしない。アプリケーションのデプロイが増えるにつれて、新しい環境名（stagingやqa）が必要になる。さらにプロジェクトが拡大すると、開発者はjoes-stagingのような自分用の環境を追加する。結果として設定が組み合わせ的に爆発し、アプリケーションのデプロイの管理が非常に不安定になる。</p>
+<p>Twelve-Factor Appの場合、環境変数は粒度の細かい管理であり、それぞれの環境変数は互いに直交している。環境変数は“環境”としてまとめられることはないが、代わりにデプロイごとに独立して管理される。これは、アプリケーションのライフサイクルに渡って、アプリケーションが多くのデプロイへと自然に拡大していくにつれて、スムーズにスケールアップするモデルである。</p>
 
 
 

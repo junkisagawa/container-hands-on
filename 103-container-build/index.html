@@ -416,6 +416,26 @@
     コンテナイメージのビルドおよび実行
   </a>
   
+    <nav class="md-nav" aria-label="コンテナイメージのビルドおよび実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -424,8 +444,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    オプション・ハンズオン
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
   </a>
   
 </li>
@@ -576,6 +596,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option2-12factors/" class="md-nav__link">
+        12Factors - Cloud Native Architectureの基本
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -628,6 +662,26 @@
     コンテナイメージのビルドおよび実行
   </a>
   
+    <nav class="md-nav" aria-label="コンテナイメージのビルドおよび実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -636,8 +690,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    オプション・ハンズオン
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
   </a>
   
 </li>
@@ -676,12 +730,12 @@
 </ul>
 <p><img alt="開発の流れ" src="../images/104_fig1.png" /></p>
 <h2 id="_2">アプリケーションを含んだコンテナイメージのビルド</h2>
-<p>Node.jsイメージをベースとして使用し、HTTPサーバーを立ち上げルートパスへのアクセスに対してローカルで用意したindex.htmlを返却するコンテナを起動していきます。 大まかな作業内容は以下です。
+<p>それではアプリを含んだコンテナを作成していきましょう。Node.jsイメージをベースとして使用し、アクセスに対してローカルで用意したindex.htmlを返却するHTTPサーバーのコンテナを起動していきます。大まかな作業内容は以下です。<br />
 1. ホスト側の index.html ファイルを用意する 
-2. htmlファイルをコピーし、Node.jsを立ち上げるContainerfileを用意する
+2. Node.jsを立ち上げるContainerfileを用意する
 3. コンテナイメージをビルドする
 4. コンテナを起動、ブラウザからアクセスして稼働確認する
-5. コンテナに入り、index.htmlを編集する
+5. コンテナに入り、index.htmlを直接編集する
 6. コンテナを停止、削除する</p>
 <h3 id="_3">コンテナイメージに必要なファイルを用意する</h3>
 <p>まずは作業用ディレクトリを用意し、index.htmlとContainerfileを作成します。
@@ -713,30 +767,82 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="_4">コンテナイメージのビルドおよび実行</h3>
 <p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman images build -t node-hello:0.1 .
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image build -t node-hello:0.1 .
 </code></pre></div></p>
-<p>次のコマンドを実行しましょう。</p>
+<p>次のコマンドを実行しましょう。-d、-pというオプションが気になると思いますが、このあと説明するので今はスルーしてください。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman run -d -p 8080:8080 --name node-hello node-hello:0.1
 </code></pre></div>
 <p>ブラウザを開き、http://localhost:8080 にアクセスして、index.html の内容が表示されることを確認します。</p>
 <p><img alt="hello" src="../images/hello-world.png" /></p>
-<p>コンテナに入って index.html ファイルを直接変更します。以下のコマンドを実行します：</p>
+<div class="admonition note">
+<p class="admonition-title">podman runで使う知っておくべきオプション<p>podman runコマンドを使用する際には、いくつかの基本的なオプションを理解しておくと役立ちます。    </p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code></td>
+<td>ポートフォワーディング（ポートマッピング）を設定します。 -pの後に続く &lt;ホストのポート&gt;:&lt;コンテナのポート&gt; の形式で指定します。例えば、 -p 8080:80 はホストのポート8080をコンテナの80番ポートにリダイレクトします。先程はホストの8080をコンテナの8080にリダイレクトしていました。</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>コンテナをバックグラウンドモード（デタッチモード）で実行します。これにより、コンテナはバックグラウンドで実行され、シェルプロンプトがすぐに返されます。</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>(--interactive )このオプションは、コンテナの標準入力（stdin）を開いたままにするために使います。対話的な操作（例えばシェルを実行する際など）を行いたい場合に必要となります。</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>(--tty): このオプションは、仮想端末（tty）を割り当てるために使います。このオプションがあることで、コンテナが出力する内容がきれいにフォーマットされ、人間が読みやすい形で表示されます。</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>環境変数を設定します。 -e "ENV_VAR=value" の形式で指定します</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>ホストとコンテナ間でボリュームを共有（マウント）します。データを永続化したり、コンテナ間で共有したりする際に使用します。 -v &lt;ホストのディレクトリ&gt;:&lt;コンテナのディレクトリ&gt; の形式で指定します。</td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>コンテナに名前を付けます。コンテナを指定するときに、コンテナIDではなく自分でつけた名前を使用できるため、コンテナを管理するのが容易になります。</td>
+</tr>
+<tr>
+<td><code>--rm</code></td>
+<td>コンテナが停止したときに自動的にそのコンテナを削除します。指定しない場合は、停止したままコンテナが残り続けてしまう。</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<h4 id="_5">コンテナ内に入り、直接ファイルを編集する</h4>
+<p>コンテナに入って index.html ファイルを直接変更してみましょう。以下のコマンドを実行します：</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>node-hello<span class="w"> </span>/bin/bash
 </code></pre></div>
 コンテナ内のシェルに入ったら、テキストエディタを使用して index.html ファイルを編集します。worldという文字を、自分の名前に変更してみましょう。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>echo &quot;&lt;h1&gt;Hello, お名前&lt;/h1&gt;&quot; &gt; index.html
 </code></pre></div>
-コンテナ内から出るために、シェルで exit コマンドを実行します。その後、再度ブラウザから http://localhost:8080 にアクセスして、変更した内容が反映されていることを確認します。  </p>
-<p>このように、ホストディレクトリに index.html ファイルを作成し、それをDockerイメージにコピーすることで、コンテナ内での直接編集も可能です。ただし、コンテナを削除すると変更内容も失われるため、永続化する場合はボリュームマウントなどの方法を検討する必要があります。</p>
+コンテナ内から出るために、シェルで exit コマンドを実行します。その後、再度ブラウザから http://localhost:8080 にアクセスし、ブラウザをリロードしてください。変更した内容が反映されていることを確認します。 </p>
+<p>コンテナに入り直接必要なファイルを編集した場合、コンテナを削除すると変更内容も失われてしまいます。変更内容を永続化する場合はボリュームマウントなどの方法を検討する必要があります。  </p>
+<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容に関しては、コンテナの外に配置し、変数としてコンテナ内に取り込むことが多いです。
+アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理するようにしましょう。</p>
+<!-- 参考: 12Factors その3 設定編 -->
+
+<h4 id="_6">コンテナの停止と削除</h4>
 <p>最後に、コンテナを停止、削除しましょう。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman stop node-hello
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>podman rm node-hello
 </code></pre></div>
 <p>以上が、開発したアプリケーションをコンテナで稼働させる基本的な流れです。次のチャプターでは、データベースコンテナとアプリケーションコンテナの2つを動かし、コンテナ同士を連携させる方法を学んでいきます。</p>
 <hr />
-<h2 id="_5">オプション・ハンズオン</h2>
+<h2 id="lv2">オプション・ハンズオン Lv2</h2>
 <p>コンテナのビルドにおいて、複数のステージ（段階）を持つビルドをマルチステージビルドと呼びます。1-1で作成したコンテナファイルは1つの段階だけをもつ基本的なビルドになっていました。ここでは、Javaアプリケーションをビルドするステージ、作成したwarファイルを使用してOpenLiberty上で稼働させるステージの2つに分けたビルドを実施していきます。</p>
-<p>なぜマルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。  </p>
+<p>マルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。  </p>
 <ul>
 <li>
 <p>イメージサイズの削減: アプリケーションのビルド時にだけ必要なコンパイルやパッケージングを中間イメージとし、実行に必要な最終的なイメージと分離することができます。最終的なイメージには稼働に必要なコンポーネントのみを含むことになるため、イメージサイズを小さくすることができます</p>

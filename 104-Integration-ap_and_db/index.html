@@ -569,6 +569,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option2-12factors/" class="md-nav__link">
+        12Factors - Cloud Native Architectureの基本
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -665,8 +679,7 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>NETWORK ID    NAME        DRIVER
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>2f259bab93aa  podman      bridge
 </code></pre></div></p>
-<p><a href="./101-Install_and_getstarted.md">101-Install_and_getstarted.md</a> にて、以下のコマンドを紹介しました。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
 </code></pre></div>
 ここでは、以下の説明をしていました。<br/>
 <code>8080ポートでnginxというWebサーバが起動しhttpリクエストを8080ポートで待っている状態です。 ブラウザで　http://localhost:8080 にアクセスしてください。nginxのデフォルトページが表示されます。</code><br/>
@@ -681,9 +694,10 @@ podmanではユーザ定義のネットワークを作成することができ�
 <p>では、早速作成してみましょう。今回はRedmine用ネットワーク「r-nw」を生成します。このネットワークには、Redmineで利用するコンテナのみがアクセスします。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman network create r-nw
 </code></pre></div></p>
-<p>一瞬でできましたね。このネットワークへは、コンテナ起動(run)のオプションで<code>--network r-nw</code>を指定することで接続できるようになります。</p>
+<p>すぐに作成されたことが確認できます。このネットワークへは、コンテナ起動(run)のオプションで<code>--network r-nw</code>を指定することで接続できるようになります。</p>
 <h3 id="_2">データベースの導入</h3>
-<p>データベースとして、PostgreSQLを導入します。ネットワークはr-nwを指定します。
+<p>データベースとして、PostgreSQLを導入します。ネットワークはr-nwを指定します。<br />
+以下コマンドを実行してください。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman run -d --name red-postgres --network r-nw -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=redmine postgres
 </code></pre></div>
 デタッチモードで常時起動にしています。また、"-e"は環境変数としてコンテナに変数を渡す際に使うオプションです。ここでは、PostgreSQLのユーザ名とパスワードを渡しています。(どんな環境変数を渡せるかは、コンテナイメージ作成者が決定します。大体、コンテナレジストリに説明があるのでそちらを確認しましょう。)</p>
@@ -707,7 +721,8 @@ Hint) rm に"-f"をつけると、コンテナを停止することなくコン�
 </code></pre></div></li>
 </ol>
 <p>管理者パスワードは変更したものでログインできましたか？先程作成したプロジェクトは消えていませんか？これらはDBにデータが保存されているから実現できています。</p>
-<p>ということで、APサーバとDBサーバの連携例でした。</p>
+<p><strong>今回は基本を体験いただくために実施いただきましたが、実運用では複数のコンテナを連携させるとき、個別にdocker runをし、連携するためにnetworkを用意し...終わったらそれぞれdocker stop, docker rmで削除しという作業は無無駄が多くヒューマンエラーが起きやすいことが想像できると思います。まとめて管理するためのDockerComposeというものを利用したり、Podという単位で複数コンテナをまとめたり、Kubernetesを利用してDeloymentという単位でまとめたり...という運用が基本になっています。DockerComposeは今回取り扱いませんが、第二部でOpenShiftをつかったシステム全体の管理をご体感いただきます。今時点では、コンテナは便利そうだけど一つひとつ立ち上げたり削除するのは大変そうだなーと思っておいてください。
+...</strong></p>
 
 
 
