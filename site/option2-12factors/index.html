@@ -9,22 +9,22 @@
       
       
       
+        <link rel="prev" href="../option1-podman/">
       
-        <link rel="next" href="100-prerequired/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>コンテナ・ハンズオン (仮)</title>
+        <title>12Factors - Cloud Native Architectureの基本 - コンテナ・ハンズオン (仮)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#cloudnative" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              はじめに
+              12Factors - Cloud Native Architectureの基本
             
           </span>
         </div>
@@ -192,12 +192,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="." class="md-tabs__link md-tabs__link--active">
+    <a href=".." class="md-tabs__link">
       はじめに
     </a>
   </li>
@@ -212,7 +210,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="100-prerequired/" class="md-tabs__link">
+      <a href="../100-prerequired/" class="md-tabs__link">
         コンテナ編
       </a>
     </li>
@@ -228,7 +226,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="201-opening/" class="md-tabs__link">
+      <a href="../201-opening/" class="md-tabs__link">
         コンテナオーケストレーション編
       </a>
     </li>
@@ -238,13 +236,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="option1-podman/" class="md-tabs__link">
+      <a href="../option1-podman/" class="md-tabs__link md-tabs__link--active">
         参考情報
       </a>
     </li>
@@ -272,7 +272,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -289,73 +289,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          はじめに
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         はじめに
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -397,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="100-prerequired/" class="md-nav__link">
+      <a href="../100-prerequired/" class="md-nav__link">
         準備
       </a>
     </li>
@@ -411,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="101-container_file/" class="md-nav__link">
+      <a href="../101-container_file/" class="md-nav__link">
         コンテナファイルの基本記述
       </a>
     </li>
@@ -425,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="103-container-build/" class="md-nav__link">
+      <a href="../103-container-build/" class="md-nav__link">
         コンテナイメージのビルド
       </a>
     </li>
@@ -439,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="104-Integration-ap_and_db/" class="md-nav__link">
+      <a href="../104-Integration-ap_and_db/" class="md-nav__link">
         複数のコンテナを連携させよう
       </a>
     </li>
@@ -453,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="105-container_image_registry/" class="md-nav__link">
+      <a href="../105-container_image_registry/" class="md-nav__link">
         コンテナリポジトリーへのpush
       </a>
     </li>
@@ -504,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="201-opening/" class="md-nav__link">
+      <a href="../201-opening/" class="md-nav__link">
         OpenShift Localの起動
       </a>
     </li>
@@ -524,16 +462,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
@@ -542,7 +480,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           参考情報
@@ -555,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="option1-podman/" class="md-nav__link">
+      <a href="../option1-podman/" class="md-nav__link">
         Podmanの基本
       </a>
     </li>
@@ -567,11 +505,55 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="option2-12factors/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          12Factors - Cloud Native Architectureの基本
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         12Factors - Cloud Native Architectureの基本
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloudnative" class="md-nav__link">
+    CloudNativeとコンテナ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    その3 設定 ~設定を環境変数に格納する
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -600,8 +582,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -610,29 +590,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
+  <a href="#cloudnative" class="md-nav__link">
+    CloudNativeとコンテナ
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
+  <a href="#3" class="md-nav__link">
+    その3 設定 ~設定を環境変数に格納する
   </a>
   
 </li>
@@ -652,29 +618,24 @@
                   
 
 
-<h1 id="_1">はじめに</h1>
-<p>本コンテンツは2023年6月-7月実施予定のコンテナ関連技術ハンズオンの講義資料です。内容については今後も継続して更新される点をご了承ください。コンテナ編/コンテナオーケストレーション編をを実施いただくことで、基礎的な内容をマスターいただきコンテナのメリット、開発-運用イメージをつけていただけると思います。あくまでも入門（101）内容のため、より深いスキルを身に着けたい方はRedHat社が提供する研修の受講もご検討ください。</p>
-<h2 id="_2">ハンズオン環境と前提条件</h2>
-<p>本ハンズオンは以下のような構成で実施します。コンテナエンジンとしてPodman、オーケストレーションツールとしてOpenShift Localをを利用していきます。<br />
-コンテナと聞くと、Dockerを思い浮かべる方が多いと思いますが、<strong>RHEL8、CentOS8以降ではDockerのサポートは廃止されており</strong>、Podmanが採用されています。今回のハンズオンでは、コンテナの操作にPodmanを使用していきます。
-<img alt="環境" src="images/lab-environment.png" /></p>
-<p>また、第一部/第二部ともにRed Hat OpenShift Localのインストールが完了している想定です。未実施の場合は<a href="https://code.visualstudio.com/download">ガイド</a>の手順を参考に、導入をお願いいたします。  </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>最新版2.19はWindows11 Proでも問題なく動作することを検証済みです。古いバージョンを導入した場合、本ハンズオンの内容を正常に実施できない可能性がありますのでご注意ください。</p>
-</div>
-<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特にこだわりや社内の制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
-<hr />
-<h2 id="_3"><strong>アジェンダ</strong></h2>
-<h2 id="_4">第一部 コンテナ編</h2>
-<ol>
-<li><a href="/container-hands-on/100-prerequired/">OpenShift Localの実行</a></li>
-<li><a href="/container-hands-on/101-container_file/">コンテナファイルの基本記述</a></li>
-<li><a href="/container-hands-on/103-container-build/">コンテナ・イメージのビルド</a></li>
-<li><a href="/container-hands-on/104-Integration-ap_and_db.md/">複数のコンテナを連携する</a></li>
-<li><a href="/container-hands-on/105-container_image_registry.md//">コンテナリポジトリーへのpush</a></li>
-</ol>
-<h2 id="_5">第二部 コンテナオーケストレーション編</h2>
+  <h1>12Factors - Cloud Native Architectureの基本</h1>
+
+<h2 id="cloudnative">CloudNativeとコンテナ</h2>
+<p>12Factorsという考え方を聞いたことはあるでしょうか？クラウドネイティブ開発を行う12のプラクティスとして公開されています。モダナイゼーションはコンテナの活用を避けられない、クラウドを活用するためにはコンテナは避けられない技術となっています。
+今回は、12Factorsの中でも特にコンテナが重要な役割をしめるものをピックアップしてご紹介します。</p>
+<h2 id="3">その3 設定 ~設定を環境変数に格納する</h2>
+<p>アプリケーションの 設定 は、デプロイ（ステージング、本番、開発環境など）の間で異なり得る唯一のものである。設定には以下のものが含まれる。  </p>
+<ul>
+<li>データベース、Memcached、他のバックエンドサービスなどのリソースへのハンドル</li>
+<li>Amazon S3やTwitterなどの外部サービスの認証情報</li>
+<li>デプロイされたホストの正規化されたホスト名など、デプロイごとの値</li>
+</ul>
+<p>アプリケーションは時に設定を定数としてコード内に格納する。これはTwelve-Factorに違反している。Twelve-Factorは 設定をコードから厳密に分離すること を要求する。設定はデプロイごとに大きく異なるが、コードはそうではない。</p>
+<p>なお、この“設定”の定義には、アプリケーション内部の設定は 含まない ことに注意する。内部の設定とは、Railsにおけるconfig/routes.rbや、Springにおいてコードモジュールがどう接続されるかなどの設定を指す。この種の設定はデプロイの間で変わらないため、コードの内部で行うべきである。</p>
+<p>設定に対するもう1つのアプローチは、バージョン管理システムにチェックインされない設定ファイルを使う方法である。例として、Railsにおけるconfig/database.ymlがある。この方法は、リポジトリにチェックインされる定数を使うことに比べると非常に大きな進歩であるが、まだ弱点がある。設定ファイルが誤ってリポジトリにチェックインされやすいことと、設定ファイルが異なる場所に異なるフォーマットで散乱し、すべての設定を一つの場所で見たり管理したりすることが難しくなりがちであることである。その上、これらのフォーマットは言語やフレームワークに固有のものになりがちである。</p>
+<p>Twelve-Factor Appは設定を 環境変数 に格納する。 環境変数は、コードを変更することなくデプロイごとに簡単に変更できる。設定ファイルとは異なり、誤ってリポジトリにチェックインされる可能性はほとんどない。また、独自形式の設定ファイルやJava System Propertiesなど他の設定の仕組みとは異なり、環境変数は言語やOSに依存しない標準である。</p>
+<p>設定管理のもう1つの側面はグルーピングである。アプリケーションは設定を名前付きのグループ（しばしば“環境”と呼ばれる）にまとめることがある。グループは、Railsにおけるdevelopment、test、production環境のように、デプロイの名前を取って名付けられる。この方法はうまくスケールしない。アプリケーションのデプロイが増えるにつれて、新しい環境名（stagingやqa）が必要になる。さらにプロジェクトが拡大すると、開発者はjoes-stagingのような自分用の環境を追加する。結果として設定が組み合わせ的に爆発し、アプリケーションのデプロイの管理が非常に不安定になる。</p>
+<p>Twelve-Factor Appの場合、環境変数は粒度の細かい管理であり、それぞれの環境変数は互いに直交している。環境変数は“環境”としてまとめられることはないが、代わりにデプロイごとに独立して管理される。これは、アプリケーションのライフサイクルに渡って、アプリケーションが多くのデプロイへと自然に拡大していくにつれて、スムーズにスケールアップするモデルである。</p>
 
 
 
@@ -761,10 +722,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>

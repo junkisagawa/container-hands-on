@@ -1,7 +1,10 @@
-site_name: Observability関連Note
+site_name: コンテナ・ハンズオン (仮)
 theme:
   name: material
   lang: 'ja'
+  font:
+    text: IBM Plex Sans JP Light
+    code: Inconsolata
   palette:
     - scheme: slate
       primary: teal
@@ -14,7 +17,7 @@ theme:
         icon: material/toggle-switch
         name: Switch to Dark mode
       primary: teal
-      accent: lime
+      accent: purple
   features:
     - navigation.tabs
     - navigation.sections
@@ -27,13 +30,17 @@ theme:
     - content.code.copy
 nav:
   - はじめに: index.md
-  - turbonomic:
-    - prome-turbo: prome-turbo.md
-    - prometheus: prometheus.md
-  - Instana:
-    - Instana概要: instana.md
-  - その他メモ:
-    - Prometheusについて: prometheus.md
+  - コンテナ編:
+    - 準備: 100-prerequired.md
+    - コンテナファイルの基本記述: 101-container_file.md
+    - コンテナイメージのビルド: 103-container-build.md
+    - 複数のコンテナを連携させよう: 104-Integration-ap_and_db.md
+    - コンテナリポジトリーへのpush: 105-container_image_registry.md
+  - コンテナオーケストレーション編:
+    - OpenShift Localの起動: 201-opening.md
+  - 参考情報: 
+    - Podmanの基本: option1-podman.md
+    - 12Factors - Cloud Native Architectureの基本: option2-12factors.md
 extra:
   social:
     - icon: fontawesome/brands/github-alt
@@ -42,8 +49,11 @@ extra:
       link: https://twitter.com
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/
-
+extra_css:
+  - stylesheets/extra.css
 markdown_extensions:
+  - codehilite:
+      linenums: true
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
@@ -60,8 +70,8 @@ markdown_extensions:
   - pymdownx.superfences
   - footnotes
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.mark
   - attr_list
+  - md_in_html
 copyright: |
   &copy; 2023 <a href="https://github.com/junkisagawa"  target="_blank" rel="noopener">Junki Sagawa</a>

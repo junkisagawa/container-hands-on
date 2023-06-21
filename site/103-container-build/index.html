@@ -1,0 +1,1078 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../101-container_file/">
+      
+      
+        <link rel="next" href="../104-Integration-ap_and_db/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+    
+    
+      
+        <title>コンテナイメージのビルド - コンテナ・ハンズオン (仮)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+JP+Light:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans JP Light";--md-code-font:"Inconsolata"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            コンテナ・ハンズオン (仮)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              コンテナイメージのビルド
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Swich to Light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Swich to Light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to Dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to Dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      はじめに
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
+        コンテナ編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../201-opening/" class="md-tabs__link">
+        コンテナオーケストレーション編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../option1-podman/" class="md-tabs__link">
+        参考情報
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    コンテナ・ハンズオン (仮)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          コンテナ編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナ編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../100-prerequired/" class="md-nav__link">
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../101-container_file/" class="md-nav__link">
+        コンテナファイルの基本記述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          コンテナイメージのビルド
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        コンテナイメージのビルド
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    コンテナイメージに必要なファイルを用意する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    コンテナイメージのビルドおよび実行
+  </a>
+  
+    <nav class="md-nav" aria-label="コンテナイメージのビルドおよび実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104-Integration-ap_and_db/" class="md-nav__link">
+        複数のコンテナを連携させよう
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105-container_image_registry/" class="md-nav__link">
+        コンテナリポジトリーへのpush
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          コンテナオーケストレーション編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナオーケストレーション編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../201-opening/" class="md-nav__link">
+        OpenShift Localの起動
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          参考情報
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          参考情報
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option1-podman/" class="md-nav__link">
+        Podmanの基本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option2-12factors/" class="md-nav__link">
+        12Factors - Cloud Native Architectureの基本
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    コンテナイメージに必要なファイルを用意する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    コンテナイメージのビルドおよび実行
+  </a>
+  
+    <nav class="md-nav" aria-label="コンテナイメージのビルドおよび実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">アプリケーションを含んだコンテナを作成する</h1>
+<p>アプリケーションを含んだコンテナを作成するときも、基本的な流れは同じです。以下では、進め方の例を説明しています。</p>
+<ul>
+<li>開発チームがアプリケーションのソースコードを開発、修正します</li>
+<li>アプリケーションに必要なライブラリのインストール、ランタイムの設定などをコンテナファイルに記載します</li>
+<li>コンテナビルドを実施し、イメージを作成します</li>
+<li>開発環境でコンテナの稼働確認を行います</li>
+<li>組織で用意したコンテナリポジトリーにイメージをPUSHします</li>
+<li>他のメンバーはイメージをPULLし、自分の環境でコンテナを起動します</li>
+</ul>
+<p><img alt="開発の流れ" src="../images/104_fig1.png" /></p>
+<h2 id="_2">アプリケーションを含んだコンテナイメージのビルド</h2>
+<p>それではアプリを含んだコンテナを作成していきましょう。Node.jsイメージをベースとして使用し、アクセスに対してローカルで用意したindex.htmlを返却するHTTPサーバーのコンテナを起動していきます。大まかな作業内容は以下です。<br />
+1. ホスト側の index.html ファイルを用意する 
+2. Node.jsを立ち上げるContainerfileを用意する
+3. コンテナイメージをビルドする
+4. コンテナを起動、ブラウザからアクセスして稼働確認する
+5. コンテナに入り、index.htmlを直接編集する
+6. コンテナを停止、削除する</p>
+<h3 id="_3">コンテナイメージに必要なファイルを用意する</h3>
+<p>まずは作業用ディレクトリを用意し、index.htmlとContainerfileを作成します。
+任意のディレクトリ上で、以下のコマンドを実行してください。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir node-hello
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd node-hello
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>echo &quot;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&quot; &gt; ./index.html
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>touch Containerfile
+</code></pre></div>
+任意のテキストエディタを使用して、Containerfileを以下内容に更新します。<br />
+このContainerfileでは、index.html ファイルをコンテナにコピーし、ポート8080を公開してNode.jsのHTTPサーバーを実行しています。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Containerfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM node:14</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="l l-Scalar l-Scalar-Plain">COPY index.html .</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="l l-Scalar l-Scalar-Plain">EXPOSE 8080</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;npx&quot;, &quot;http-server&quot;, &quot;-p&quot;, &quot;8080&quot;]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_4">コンテナイメージのビルドおよび実行</h3>
+<p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image build -t node-hello:0.1 .
+</code></pre></div></p>
+<p>次のコマンドを実行しましょう。-d、-pというオプションが気になると思いますが、このあと説明するので今はスルーしてください。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman run -d -p 8080:8080 --name node-hello node-hello:0.1
+</code></pre></div>
+<p>ブラウザを開き、http://localhost:8080 にアクセスして、index.html の内容が表示されることを確認します。</p>
+<p><img alt="hello" src="../images/hello-world.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">podman runで使う知っておくべきオプション<p>podman runコマンドを使用する際には、いくつかの基本的なオプションを理解しておくと役立ちます。    </p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code></td>
+<td>ポートフォワーディング（ポートマッピング）を設定します。 -pの後に続く &lt;ホストのポート&gt;:&lt;コンテナのポート&gt; の形式で指定します。例えば、 -p 8080:80 はホストのポート8080をコンテナの80番ポートにリダイレクトします。先程はホストの8080をコンテナの8080にリダイレクトしていました。</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>コンテナをバックグラウンドモード（デタッチモード）で実行します。これにより、コンテナはバックグラウンドで実行され、シェルプロンプトがすぐに返されます。</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>(--interactive )このオプションは、コンテナの標準入力（stdin）を開いたままにするために使います。対話的な操作（例えばシェルを実行する際など）を行いたい場合に必要となります。</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>(--tty): このオプションは、仮想端末（tty）を割り当てるために使います。このオプションがあることで、コンテナが出力する内容がきれいにフォーマットされ、人間が読みやすい形で表示されます。</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>環境変数を設定します。 -e "ENV_VAR=value" の形式で指定します</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>ホストとコンテナ間でボリュームを共有（マウント）します。データを永続化したり、コンテナ間で共有したりする際に使用します。 -v &lt;ホストのディレクトリ&gt;:&lt;コンテナのディレクトリ&gt; の形式で指定します。</td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>コンテナに名前を付けます。コンテナを指定するときに、コンテナIDではなく自分でつけた名前を使用できるため、コンテナを管理するのが容易になります。</td>
+</tr>
+<tr>
+<td><code>--rm</code></td>
+<td>コンテナが停止したときに自動的にそのコンテナを削除します。指定しない場合は、停止したままコンテナが残り続けてしまう。</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<h4 id="_5">コンテナ内に入り、直接ファイルを編集する</h4>
+<p>コンテナに入って index.html ファイルを直接変更してみましょう。以下のコマンドを実行します：</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>node-hello<span class="w"> </span>/bin/bash
+</code></pre></div>
+コンテナ内のシェルに入ったら、テキストエディタを使用して index.html ファイルを編集します。worldという文字を、自分の名前に変更してみましょう。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>echo &quot;&lt;h1&gt;Hello, お名前&lt;/h1&gt;&quot; &gt; index.html
+</code></pre></div>
+コンテナ内から出るために、シェルで exit コマンドを実行します。その後、再度ブラウザから http://localhost:8080 にアクセスし、ブラウザをリロードしてください。変更した内容が反映されていることを確認します。 </p>
+<p>コンテナに入り直接必要なファイルを編集した場合、コンテナを削除すると変更内容も失われてしまいます。変更内容を永続化する場合はボリュームマウントなどの方法を検討する必要があります。  </p>
+<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容に関しては、コンテナの外に配置し、変数としてコンテナ内に取り込むことが多いです。
+アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理するようにしましょう。</p>
+<!-- 参考: 12Factors その3 設定編 -->
+
+<h4 id="_6">コンテナの停止と削除</h4>
+<p>最後に、コンテナを停止、削除しましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman stop node-hello
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>podman rm node-hello
+</code></pre></div>
+<p>以上が、開発したアプリケーションをコンテナで稼働させる基本的な流れです。次のチャプターでは、データベースコンテナとアプリケーションコンテナの2つを動かし、コンテナ同士を連携させる方法を学んでいきます。</p>
+<hr />
+<h2 id="lv2">オプション・ハンズオン Lv2</h2>
+<p>コンテナのビルドにおいて、複数のステージ（段階）を持つビルドをマルチステージビルドと呼びます。1-1で作成したコンテナファイルは1つの段階だけをもつ基本的なビルドになっていました。ここでは、Javaアプリケーションをビルドするステージ、作成したwarファイルを使用してOpenLiberty上で稼働させるステージの2つに分けたビルドを実施していきます。</p>
+<p>マルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。  </p>
+<ul>
+<li>
+<p>イメージサイズの削減: アプリケーションのビルド時にだけ必要なコンパイルやパッケージングを中間イメージとし、実行に必要な最終的なイメージと分離することができます。最終的なイメージには稼働に必要なコンポーネントのみを含むことになるため、イメージサイズを小さくすることができます</p>
+</li>
+<li>
+<p>セキュリティの向上: ビルドステージのみで必要な依存関係を含めないことによって、脆弱性の可能性を減らすことができます。</p>
+</li>
+<li>
+<p>ビルドの効率化: ビルドステージではビルドに必要なタスク（コンパイル、パッケージング、テストなど）を実行し、最終的なイメージではそれらのタスクを実行する必要はありません。単一ステージのビルドでは、ビルドスクリプト内ですべてのタスクを実行する必要があります。しかし、マルチステージビルドでは、並列で実行することができます。  </p>
+</li>
+</ul>
+<p>マルチステージビルドを行うContainerfileを利用して、以下の流れを実行していきます。<br />
+1. Javaの標準ライブラリを使用したシンプルなHTTPサーバーのコードを準備する
+2. Containerfileを作成する
+  - [Buildステージ]Maven等のコンパイルツールが含まれているベースイメージを使用して、Javaアプリケーションを作成
+  - [Productステージ]作成したアプリケーションを受け取り、OpenLibertyベースイメージ上で稼働させる
+3. myappという名前のイメージを作成する
+4. 作成したmyappをもとにコンテナを実行する
+5. ブラウザからアクセスして稼働確認する</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>myapp
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>myapp
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>src/main/java/com/example
+</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pom.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span>
+<span class="normal"><a href="#__codelineno-8-39">39</a></span>
+<span class="normal"><a href="#__codelineno-8-40">40</a></span>
+<span class="normal"><a href="#__codelineno-8-41">41</a></span>
+<span class="normal"><a href="#__codelineno-8-42">42</a></span>
+<span class="normal"><a href="#__codelineno-8-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="w"> </span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>myapp<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="w">                    </span><span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">                    </span><span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="w">                    </span><span class="nt">&lt;archive&gt;</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a><span class="w">                        </span><span class="nt">&lt;manifest&gt;</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="w">                            </span><span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="w">                            </span><span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a><span class="w">                            </span><span class="nt">&lt;mainClass&gt;</span>com.example.HelloWorld<span class="nt">&lt;/mainClass&gt;</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a><span class="w">                        </span><span class="nt">&lt;/manifest&gt;</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a><span class="w">                    </span><span class="nt">&lt;/archive&gt;</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42"></a><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43"></a><span class="nt">&lt;/project&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>マルチステージビルドを行うコンテナファイルは以下のようになります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># ビルドステージ</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="l l-Scalar l-Scalar-Plain">FROM maven:3.8.3-openjdk-11 AS build</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドに必要な依存関係をコピー</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="l l-Scalar l-Scalar-Plain">COPY pom.xml .</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="l l-Scalar l-Scalar-Plain">COPY src ./src</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="l l-Scalar l-Scalar-Plain"># アプリケーションのビルド</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="l l-Scalar l-Scalar-Plain">RUN mvn clean package</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="l l-Scalar l-Scalar-Plain"># プロダクションステージ</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="l l-Scalar l-Scalar-Plain">FROM adoptopenjdk:11-jre-hotspot AS production</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドステージからビルド成果物をコピー</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="l l-Scalar l-Scalar-Plain">COPY --from=build /app/target/myapp-1.0.0.jar .</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="l l-Scalar l-Scalar-Plain"># コンテナの実行時にアプリケーションを起動</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="l l-Scalar l-Scalar-Plain">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;myapp-1.0.0.jar&quot;]</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;-start&quot;]</span>
+</code></pre></div>
+<h2 id="todo">ToDo</h2>
+<p>上記のサンプルを利用して、Javaアプリケーション・コンテナを稼働させてみましょう。
+podman run を行うときのオプションは-p 8080:8080を使用してください。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/junkisagawa"  target="_blank" rel="noopener">Junki Sagawa</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
+      
+    
+  </body>
+</html>

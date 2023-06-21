@@ -9,22 +9,24 @@
       
       
       
+        <link rel="prev" href="../103-container-build/">
       
-        <link rel="next" href="100-prerequired/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+        <link rel="next" href="../105-container_image_registry/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>コンテナ・ハンズオン (仮)</title>
+        <title>複数のコンテナを連携させよう - コンテナ・ハンズオン (仮)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -40,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#apdb" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +87,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              はじめに
+              複数のコンテナを連携させよう
             
           </span>
         </div>
@@ -192,12 +194,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="." class="md-tabs__link md-tabs__link--active">
+    <a href=".." class="md-tabs__link">
       はじめに
     </a>
   </li>
@@ -206,13 +206,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="100-prerequired/" class="md-tabs__link">
+      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
         コンテナ編
       </a>
     </li>
@@ -228,7 +230,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="201-opening/" class="md-tabs__link">
+      <a href="../201-opening/" class="md-tabs__link">
         コンテナオーケストレーション編
       </a>
     </li>
@@ -244,7 +246,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="option1-podman/" class="md-tabs__link">
+      <a href="../option1-podman/" class="md-tabs__link">
         参考情報
       </a>
     </li>
@@ -272,7 +274,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
+    <a href=".." title="コンテナ・ハンズオン (仮)" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン (仮)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -289,6 +291,92 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          コンテナ編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナ編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../100-prerequired/" class="md-nav__link">
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../101-container_file/" class="md-nav__link">
+        コンテナファイルの基本記述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../103-container-build/" class="md-nav__link">
+        コンテナイメージのビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -301,12 +389,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          はじめに
+          複数のコンテナを連携させよう
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        はじめに
+      <a href="./" class="md-nav__link md-nav__link--active">
+        複数のコンテナを連携させよう
       </a>
       
         
@@ -325,30 +413,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#redmine" class="md-nav__link">
+    Redmineの構築
+  </a>
+  
+    <nav class="md-nav" aria-label="Redmineの構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ネットワークの導入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
+    データベースの導入
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
+        
+          <li class="md-nav__item">
+  <a href="#redmine_1" class="md-nav__link">
+    Redmineの導入
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -359,50 +453,6 @@
     </li>
   
 
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          コンテナ編
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          コンテナ編
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="100-prerequired/" class="md-nav__link">
-        準備
-      </a>
-    </li>
-  
-
             
           
             
@@ -411,49 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="101-container_file/" class="md-nav__link">
-        コンテナファイルの基本記述
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="103-container-build/" class="md-nav__link">
-        コンテナイメージのビルド
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="104-Integration-ap_and_db/" class="md-nav__link">
-        複数のコンテナを連携させよう
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="105-container_image_registry/" class="md-nav__link">
+      <a href="../105-container_image_registry/" class="md-nav__link">
         コンテナリポジトリーへのpush
       </a>
     </li>
@@ -504,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="201-opening/" class="md-nav__link">
+      <a href="../201-opening/" class="md-nav__link">
         OpenShift Localの起動
       </a>
     </li>
@@ -555,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="option1-podman/" class="md-nav__link">
+      <a href="../option1-podman/" class="md-nav__link">
         Podmanの基本
       </a>
     </li>
@@ -569,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="option2-12factors/" class="md-nav__link">
+      <a href="../option2-12factors/" class="md-nav__link">
         12Factors - Cloud Native Architectureの基本
       </a>
     </li>
@@ -610,30 +618,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#redmine" class="md-nav__link">
+    Redmineの構築
+  </a>
+  
+    <nav class="md-nav" aria-label="Redmineの構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ネットワークの導入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    ハンズオン環境と前提条件
+    データベースの導入
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    アジェンダ
+        
+          <li class="md-nav__item">
+  <a href="#redmine_1" class="md-nav__link">
+    Redmineの導入
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    第一部 コンテナ編
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第二部 コンテナオーケストレーション編
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -652,29 +666,65 @@
                   
 
 
-<h1 id="_1">はじめに</h1>
-<p>本コンテンツは2023年6月-7月実施予定のコンテナ関連技術ハンズオンの講義資料です。内容については今後も継続して更新される点をご了承ください。コンテナ編/コンテナオーケストレーション編をを実施いただくことで、基礎的な内容をマスターいただきコンテナのメリット、開発-運用イメージをつけていただけると思います。あくまでも入門（101）内容のため、より深いスキルを身に着けたい方はRedHat社が提供する研修の受講もご検討ください。</p>
-<h2 id="_2">ハンズオン環境と前提条件</h2>
-<p>本ハンズオンは以下のような構成で実施します。コンテナエンジンとしてPodman、オーケストレーションツールとしてOpenShift Localをを利用していきます。<br />
-コンテナと聞くと、Dockerを思い浮かべる方が多いと思いますが、<strong>RHEL8、CentOS8以降ではDockerのサポートは廃止されており</strong>、Podmanが採用されています。今回のハンズオンでは、コンテナの操作にPodmanを使用していきます。
-<img alt="環境" src="images/lab-environment.png" /></p>
-<p>また、第一部/第二部ともにRed Hat OpenShift Localのインストールが完了している想定です。未実施の場合は<a href="https://code.visualstudio.com/download">ガイド</a>の手順を参考に、導入をお願いいたします。  </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>最新版2.19はWindows11 Proでも問題なく動作することを検証済みです。古いバージョンを導入した場合、本ハンズオンの内容を正常に実施できない可能性がありますのでご注意ください。</p>
-</div>
-<p>ハンズオンの中では各種設定ファイルをyaml形式で作成・編集していきます。お使いのテキストエディタで実施いただいて問題ありません。特にこだわりや社内の制限がない方は、<a href="https://code.visualstudio.com/download">VisualStudio Code</a>の導入をおすすめいたします。</p>
-<hr />
-<h2 id="_3"><strong>アジェンダ</strong></h2>
-<h2 id="_4">第一部 コンテナ編</h2>
+<h1 id="apdb">APサーバコンテナとDBサーバコンテナを連携して動作させる</h1>
+<h2 id="redmine">Redmineの構築</h2>
+<p>RedmineというOSSのプロジェクト管理ツールがありますが、Container導入が案内されています。</p>
+<p>詳細は<a href="https://hub.docker.com/_/redmine">redmine - Official Images</a>を参照いただくとして、ここでは簡単に方法をご紹介します。</p>
+<p>今回は、「Run Redmine with a Database Container」という方法でRedmineを導入してみます。</p>
+<h3 id="_1">ネットワークの導入</h3>
+<p>実行中のコンテナはIPアドレスを保有しており、コンテナ間で通信を行うことができます。コンテナホスト内に保護されたコンテナ専用のネットワークを利用して、アプリケーションのコンテナからデータベースコンテナにアクセスすることができるのです。さらに、アプリケーションをコンテナホストの外側のネットワークに公開することもできます。</p>
+<p>まず、podman ネットワークの状況を確認するコマンドは、以下です。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>podman network ls
+</code></pre></div>
+結果は以下の通り、podmanネットワークのみが存在している状態です。コンテナは、デフォルトでこのpodmanネットワークに属します。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ podman network ls
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>NETWORK ID    NAME        DRIVER
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>2f259bab93aa  podman      bridge
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
+</code></pre></div>
+ここでは、以下の説明をしていました。<br/>
+<code>8080ポートでnginxというWebサーバが起動しhttpリクエストを8080ポートで待っている状態です。 ブラウザで　http://localhost:8080 にアクセスしてください。nginxのデフォルトページが表示されます。</code><br/>
+正しくは、nginxはbridgeドライバであるpodmanネットワークに属し、デフォルトの80ポートでリクエストを待っている状況です。"-p"オプションはpodman ネットワークのゲートウェイの8080ポートをnginxコンテナの80ポートにバインドしていることを示しています。これにより外部から8080ポートでアクセスすると、nginxコンテナの80ポート(=nginxコンテンツ)を参照できるのです。</p>
+<p><code>podman ps</code>を見ると以下の表記になっています。"PORTS"のところで、8080ポートを80/tcpポートにバインドしていることがわかりますね。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ podman ps
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>CONTAINER ID  IMAGE                           COMMAND               CREATED     STATUS      PORTS                 NAMES
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>6465fe425e17  docker.io/library/nginx:latest  nginx -g daemon o...  6 days ago  Up 6 days   0.0.0.0:8080-&gt;80/tcp  docker-nginx
+</code></pre></div></p>
+<p>では、特定のコンテナ同士のみが同じネットワークに属して会話を行いたい、という場合はどういった方法が取れるでしょうか。
+podmanではユーザ定義のネットワークを作成することができます。これにより、新たなIPネットワークのアドレス範囲が設定され、他のコンテナネットワークとは隔離されます。</p>
+<p>では、早速作成してみましょう。今回はRedmine用ネットワーク「r-nw」を生成します。このネットワークには、Redmineで利用するコンテナのみがアクセスします。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman network create r-nw
+</code></pre></div></p>
+<p>すぐに作成されたことが確認できます。このネットワークへは、コンテナ起動(run)のオプションで<code>--network r-nw</code>を指定することで接続できるようになります。</p>
+<h3 id="_2">データベースの導入</h3>
+<p>データベースとして、PostgreSQLを導入します。ネットワークはr-nwを指定します。<br />
+以下コマンドを実行してください。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman run -d --name red-postgres --network r-nw -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=redmine postgres
+</code></pre></div>
+デタッチモードで常時起動にしています。また、"-e"は環境変数としてコンテナに変数を渡す際に使うオプションです。ここでは、PostgreSQLのユーザ名とパスワードを渡しています。(どんな環境変数を渡せるかは、コンテナイメージ作成者が決定します。大体、コンテナレジストリに説明があるのでそちらを確認しましょう。)</p>
+<h3 id="redmine_1">Redmineの導入</h3>
+<p>続けて、Redmineを導入します。<br/>
+ネットワークはr-nwを、データベースを利用するために、DBの情報を環境変数として渡しています。<br/>
+ゲートウェイの8081ポートをRedmineの3000ポートにバインドしています。(redmineは3000ポートでアプリケーションを公開しています)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman run -d --name red-redmine --network r-nw -e REDMINE_DB_POSTGRES=red-postgres -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=secret -p 8081:3000 redmine
+</code></pre></div></p>
+<p>では、ブラウザでhttp://localhost:8081 にアクセスしてみましょう。Redmineのそっけないページが表示されましたか？
+1. デフォルトの管理者ユーザ名とパスワードは両方<code>admin</code>です。右上の「ログイン」からログインしてみてください。
+2. パスワードを変更してください。なんでもOKです。
+3. 適当に操作して、永続化必須な操作をしてみてください。例えば、「test1」プロジェクトを作成しましょう。
+4. 一旦ログアウトし、postgresqlコンテナを残したまま、redmineアプリケーションコンテナだけ削除します。コマンドは以下です。<br/>
+Hint) rm に"-f"をつけると、コンテナを停止することなくコンテナを強制削除することができます。<code>stop</code>から<code>rm</code>という手順が面倒な場合は、こちらもご利用ください。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>podman rm -f red-redmine
+</code></pre></div>
 <ol>
-<li><a href="/container-hands-on/100-prerequired/">OpenShift Localの実行</a></li>
-<li><a href="/container-hands-on/101-container_file/">コンテナファイルの基本記述</a></li>
-<li><a href="/container-hands-on/103-container-build/">コンテナ・イメージのビルド</a></li>
-<li><a href="/container-hands-on/104-Integration-ap_and_db.md/">複数のコンテナを連携する</a></li>
-<li><a href="/container-hands-on/105-container_image_registry.md//">コンテナリポジトリーへのpush</a></li>
+<li>再度、redmineアプリケーションコンテナを起動します。コマンドは以下です。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman run -d --name red-redmine --network r-nw -e REDMINE_DB_POSTGRES=red-postgres -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=secret -p 8081:3000 redmine
+</code></pre></div></li>
 </ol>
-<h2 id="_5">第二部 コンテナオーケストレーション編</h2>
+<p>管理者パスワードは変更したものでログインできましたか？先程作成したプロジェクトは消えていませんか？これらはDBにデータが保存されているから実現できています。</p>
+<p><strong>今回は基本を体験いただくために実施いただきましたが、実運用では複数のコンテナを連携させるとき、個別にdocker runをし、連携するためにnetworkを用意し...終わったらそれぞれdocker stop, docker rmで削除しという作業は無無駄が多くヒューマンエラーが起きやすいことが想像できると思います。まとめて管理するためのDockerComposeというものを利用したり、Podという単位で複数コンテナをまとめたり、Kubernetesを利用してDeloymentという単位でまとめたり...という運用が基本になっています。DockerComposeは今回取り扱いませんが、第二部でOpenShiftをつかったシステム全体の管理をご体感いただきます。今時点では、コンテナは便利そうだけど一つひとつ立ち上げたり削除するのは大変そうだなーと思っておいてください。
+...</strong></p>
 
 
 
@@ -761,10 +811,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>
