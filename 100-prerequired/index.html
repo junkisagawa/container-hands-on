@@ -37,10 +37,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+JP:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"IBM Plex Sans JP";--md-code-font:"Inconsolata"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+JP+Light:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans JP Light";--md-code-font:"Inconsolata"}</style>
       
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -71,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1openshift-local" class="md-skip">
+        <a href="#openshift-local" class="md-skip">
           Skip to content
         </a>
       
@@ -650,7 +652,7 @@
                   
 
 
-<h1 id="1openshift-local"><strong>1.OpenShift Localの実行</strong></h1>
+<h1 id="openshift-local">OpenShift Localの実行</h1>
 <p><strong>公式ページ</strong>：<a href="https://access.redhat.com/documentation/ja-jp/red_hat_openshift_local/2.19/html/getting_started_guide/index">Red Hat OpenShift Local</a></p>
 <h2 id="podman">Podmanの起動</h2>
 <p><strong>Red Hat OpenShift Local</strong> は、OpenShift Container Platformおよび Podman コンテナーランタイム、Red Hat Device Edgeのプリセットを提供します。"crc set preset" コマンドで使用するプリセットを選択した後、<em>setup, start</em> コマンドを実行することで起動します。プリセット名はそれぞれ<strong>openshift</strong>、 <strong>microshift</strong> です。第一部 コンテナ研修ではPodmanを使用していくので、preset podmanを指定します。  </p>
