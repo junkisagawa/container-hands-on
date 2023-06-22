@@ -12,14 +12,14 @@
         <link rel="prev" href="../105-container_image_registry/">
       
       
-        <link rel="next" href="../option1-podman/">
+        <link rel="next" href="../202-openshift1/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>OpenShift Localの起動 - コンテナ・ハンズオン (仮)</title>
+        <title>準備 - コンテナ・ハンズオン (仮)</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OpenShift Localの起動
+              準備
             
           </span>
         </div>
@@ -452,12 +452,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          OpenShift Localの起動
+          準備
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        OpenShift Localの起動
+        準備
       </a>
       
         
@@ -480,10 +480,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#k8sopenshift" class="md-nav__link">
+    k8s/OpenShiftで覚えておくべきリソースの種類
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openshift-local" class="md-nav__link">
+    OpenShift Localを起動してみよう
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenShift Localを起動してみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openshift-web" class="md-nav__link">
+    OpenShift Webコンソールへのアクセス
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../202-openshift1/" class="md-nav__link">
+        OpenShiftハンズオン
+      </a>
     </li>
   
 
@@ -591,6 +632,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#k8sopenshift" class="md-nav__link">
+    k8s/OpenShiftで覚えておくべきリソースの種類
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openshift-local" class="md-nav__link">
+    OpenShift Localを起動してみよう
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenShift Localを起動してみよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openshift-web" class="md-nav__link">
+    OpenShift Webコンソールへのアクセス
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -606,10 +674,53 @@
                   
 
 
-  <h1>OpenShift Localの起動</h1>
+  <h1>準備</h1>
 
 <h2 id="10">重要なポイントを10分で理解する</h2>
-<p>第一部のハンズオンでは、Podmanを使いコンテナの稼働を体験いただきました。今回はDBコンテナ、アプリコンテナの2つだけでしたのでコンテナの管理は容易でした。</p>
+<p>先日の座学パートの復習となりますが、コンテナオーケストレーションツールについて10分で復習していきます。  </p>
+<p>第一部のハンズオンでは、Podmanを使いコンテナの稼働を体験いただきました。DBコンテナ＆アプリコンテナの2つだけの場合はコンテナの管理は容易です。しかし、コンテナが大量になるにつれて管理が大変になることは想像に難くないでしょう。なんとGoogle社では、すべてのサービスがコンテナとして稼働しており20億個以上のコンテナがあるそうです(2014年時点で！)。一体どうやって20億ものコンテナを管理しているのでしょうか・・・？  </p>
+<p>コンテナーが大量になってくると管理しきれない部分<br />
+- 複数のコンテナホストの管理
+- 死活監視
+- スケジューリング
+- スケーリング
+- 障害時のリカバリー</p>
+<p>正解は<span style="color: orange; "> <strong>「コンテナ・オーケストレーションツールを活用する」</strong></span>です。  </p>
+<p>オーケストレーションツールにはKubernetes、Docker Swarm、Apache Mesosなどがあります。その中でもデファクト的な存在が "<strong>Kubernetes</strong>" です。Kubernetes (k8s または「kube」とも呼ばれる) は、もともとGoogle社が "Borg" という名前で自社のコンテナを管理していた仕組みがベースとなっています。2015年にCloud Native Computing FoundationにKubernetesプロジェクトとして寄贈されました。OSSなので自前で構築することもできますが、各Public Cloudがマネージド・サービスも提供しています。（ex. <a href="https://www.ibm.com/jp-ja/cloud/kubernetes-service">IBM Cloud Kubernetes Service</a>）  </p>
+<p>エンタープライズ向けKubernetesとして、長期サポートや開発者向けの便利ツール、CI/CDの強化、脆弱性対策など企業向けのセキュリティー強化を行ったものが Red Hat OpenShiftです。2つの違いをより理解したい！という場合は<a href="https://www.ibm.com/blogs/solutions/jp-ja/container-cocreation-center-05/">Blog Red Hat OpenShift と Kubernetes の違い</a>をご参照ください。</p>
+<h2 id="k8sopenshift">k8s/OpenShiftで覚えておくべきリソースの種類</h2>
+<p>k8sではコンテナを管理するために独自のリソースが用意されています。ここでは、最初に知っておくべき基本的なリソースを復習していきます。  </p>
+<p><strong>1. Pod  </strong><br />
+   Kubernetesで最小の運用単位です。Podには一つ以上のコンテナが入っており、共通のネットワークとストレージ（ボリューム）を共有します。Podの数は通常、ReplicaSetによって管理されます。
+   <img alt="Pod" src="../images/2-1.png" /></p>
+<p><strong>2. Replicaset  </strong><br />
+   指定された数のPodのレプリカが常に稼働していることを保証します。Podのスケーリング（増減）や障害からの回復などを自動的に行います。ReplicaSetは通常、Deploymentオブジェクトによって管理されます。
+   <img alt="Replicaset" src="../images/2-2.png" /></p>
+<p><strong>3. Deployment  </strong><br />
+   アプリケーションのデプロイやアップデートを管理します。Deploymentは、指定された数のPodの稼働を保証するためにReplicaSetを使用します。Deploymentを使用すると、アプリケーションのローリングアップデートやロールバックなどが可能になります。
+   <img alt="Deployment" src="../images/2-3.png" /></p>
+<p><strong>4. Service  </strong><br />
+   Serviceは、Podの動的な集合（たとえばReplicaSetにより管理されるPod群）に対して、ネットワークを介した安定したアクセスポイントを提供します。これにより、Podが消失・再作成されても、その他のコンポーネントからのアクセスは継続可能となります。また、Kubernetesクラスターの外部からのアクセスを管理する場合も使用されます。
+   <img alt="Service" src="../images/2-4.png" /></p>
+<h2 id="openshift-local">OpenShift Localを起動してみよう</h2>
+<p>それではOpenShift Localを起動していきましょう！これまでのハンズオンではPodmanを稼働させていたので、一度停止させる必要があります。また、startには10分弱かかる可能性があります。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crc<span class="w"> </span>delete
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>preset<span class="w"> </span>openshift
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>crc<span class="w"> </span>setup
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>crc<span class="w"> </span>start
+</code></pre></div>
+<h3 id="openshift-web">OpenShift Webコンソールへのアクセス</h3>
+<p>デフォルトの Web ブラウザで OpenShift Container Platform Web コンソールにアクセスするには、以下のコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>crc<span class="w"> </span>console
+</code></pre></div>
+<p>developerとkubeadminという二種類のロールが用意されています。プロジェクトまたは OpenShift アプリケーションを作成するために、developer ユーザーを使用します。kubeadminユーザーは、新しいユーザーの作成やロールの設定などの管理作業にのみ使用してください。  </p>
+<p>それでは、developerユーザーを使用してログインしてみましょう。
+ユーザー名/パスワードはdeveloper/developerです。</p>
+<p>無事アクセスが完了した方は、202ハンズオンを実施していきましょう。
+<a href="/container-hands-on/202-openshift1.md/">ハンズオン</a></p>
 
 
 

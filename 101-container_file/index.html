@@ -513,7 +513,21 @@
   
     <li class="md-nav__item">
       <a href="../201-opening/" class="md-nav__link">
-        OpenShift Localの起動
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../202-openshift1/" class="md-nav__link">
+        OpenShiftハンズオン
       </a>
     </li>
   
@@ -667,11 +681,10 @@
 
 
 <h1 id="containerfile">Containerfileを作ってみよう</h1>
-<hr />
 <p>本研修の第一歩として、コンテナの設計書を作成し、実際にコンテナを動かしてみましょう。コンテナはそれぞれが独立したシステム実行環境です。そのため、システムの実行に必要なライブラリや基本コマンドなどが<strong>すべて</strong>入っている必要があります。0から必要なものを用意するのは手間がかかるため、コンテナを作成する際は数多く用意されている大元になるイメージを使用します。ベースイメージと呼ばれるコンテナの元を選択し、その上に追加で必要なライブラリのインストール、独自に開発したアプリケーションを詰め込んでカスタマイズしていきます。</p>
 <ol>
 <li>コンテナファイル(定義書)の作成</li>
-<li>コンテナイメージをビルドする</li>
+<li>コンテナイメージのビルド</li>
 <li>イメージをRunしてコンテナ実行</li>
 </ol>
 <p><img alt="コンテナ開発の流れ" src="../images/101_fig1.png" /></p>
@@ -679,7 +692,7 @@
 <h2 id="1">1. コンテナファイルの作成</h2>
 <p>任意のフォルダに<span style="color: orange; "> Containerfile </span>というファイルを作ります。
 Containerfile（Dockerfile）はコンテナイメージをビルドするときの設計書になります。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>~/work/container-handson
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/work/container-handson
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>~/work/container-handson
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>messagefile
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>vi<span class="w"> </span>Containerfile
@@ -723,11 +736,11 @@ Containerfile（Dockerfile）はコンテナイメージをビルドするとき
 </tr>
 </tbody>
 </table>
-<p>上表では代表的なコマンドの概要をまとめました。Containerfileには多くのコマンドがあるため、詳細は<a href="https://qiita.com/mintak21/items/a6766e3efd6730c9519d">Qiita記事</a>や公式サイトをご参照ください。ContainerfileとDockerfileで利用可能なコマンドは同じです。そのため、Podman buildを行う際、Dockerfileを使用してコンテナイメージを作成することも可能です。<br />
-* Dockerfileリファレンス(日本語翻訳版): https://docs.docker.jp/engine/reference/builder.html</p>
+<p>上表では代表的なコマンドの概要をまとめました。Containerfileには多くのコマンドがあるため、詳細は<a href="https://qiita.com/mintak21/items/a6766e3efd6730c9519d">Qiita記事</a>や公式サイトをご参照ください。ContainerfileとDockerfileで利用可能なコマンドは同じです。そのため、Podman buildを行う際、Dockerfileを使用してコンテナイメージを作成することも可能です。  </p>
+<p><a href="https://docs.docker.jp/engine/reference/builder.html">Dockerfileリファレンス(日本語翻訳版):</a> </p>
 <hr />
 <h2 id="2">2. コンテナイメージのビルド</h2>
-<p>それでは、作成したContainerfileをもとに、コンテナイメージを作成(Build)していきましょう。イメージビルドを行うコマンドは <span style="color: orange; ">podman image build</span>です。このとき、作成するイメージ名やタグ名を指定することができます。</p>
+<p>それでは、作成したContainerfileをもとに、コンテナイメージを作成(Build)していきましょう。イメージビルドを行うコマンドは <span style="color: orange; ">podman image build</span>です。このとき、作成するイメージ名やタグ名を指定することができます。Containerfileとイメージ内に含めたいファイル郡を一つのディレクトリに配置し、それをビルドしていきます。</p>
 <table>
 <thead>
 <tr>
@@ -743,7 +756,7 @@ Containerfile（Dockerfile）はコンテナイメージをビルドするとき
 </tbody>
 </table>
 <p>今回は、first-hwという名前に1.0というタグをつけたイメージを作成します。Containerfileを作成したディレクトリにいる状態で、以下コマンドを実行してください。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>first-hw:1.0<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman<span class="w"> </span>image<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>first-hw:1.0<span class="w"> </span>.
 </code></pre></div>
 <details>
 <summary>実行例</summary>
@@ -863,9 +876,7 @@ Containerfile（Dockerfile）はコンテナイメージをビルドするとき
 <h4 id="_1">作成したイメージの確認</h4>
 <p>作成したコンテナイメージを確認します。現在の環境に導入されているイメージの一覧を取得するには、<code>podman image ls</code>コマンドを使用します。実行してみると、指定したイメージ名称とタグ、イメージIDと作成時間が表示されるはずです。<br />
 イメージIDはランダムな値が割り振られています。イメージ名を指定しないでビルドを行うと、Repository列は<None>になります。この場合はイメージIDを指定し、ビルド済みのイメージにタグやイメージ名をつけ直すことができます。実行するイメージをIDで実行することもできますが、名前とタグを指定して行うことが一般的です。  </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>podman<span class="w"> </span>image<span class="w"> </span>ls
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">REPOSITORY                                       TAG               IMAGE ID      CREATED         SIZE</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">localhost/first-hw                               1.0               2447f85fe621  59 seconds ago  525 MB</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">podman image ls</span>
 </code></pre></div>
 <hr />
 <h2 id="3">3. コンテナの実行</h2>
