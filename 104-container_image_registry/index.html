@@ -759,7 +759,7 @@
 <p>上記の画像の右側に <strong>Pro tip</strong> と書いてある箇所があります。<br />
 これは、作成したリポジトリーに対してイメージをPush（アップロード）するときに使用するコマンドです。今回はpodmanを使用しているため、<code>podman tag...</code> / <code>podman push...</code>コマンドをこのあと実行していきます。  </p>
 <div class="admonition info">
-<p class="admonition-title">Info<p>フリープランだと、一つだけPrivateレポジトリーを作成できます。研修で使うhello-worldコンテナイメージなのでPublicでも問題ないのですが、今後の参考のためPrivateをで作成します。もちろん、Quay.ioやIBM Container ResistryサービスでもPrivateリポジトリーを作成できます。</p>
+<p class="admonition-title">Info<p>フリープランの場合は1つだけPrivateレポジトリーを作成できます。研修で使うhello-worldコンテナイメージなのでPublicでも問題ないのですが、今後の参考のためPrivateで作成しています。もちろん、Quay.ioやIBM Container ResistryサービスでもPrivateリポジトリーを作成できます。</p>
 </p>
 </div>
 <div class="admonition question">
@@ -856,16 +856,16 @@
 <p>https://docs.quay.io/solution/getting-started.html</p>
 <h3 id="_4">新しいコンテナを作成する</h3>
 <p>コンテナイメージ ubuntu を実行し、新しいファイルを含むコンテナを新たに作成します。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman run ubuntu echo &quot;fun&quot; &gt; newfile
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman run  --name ubuntu ubuntu echo &quot;fun&quot; &gt; newfile
 </code></pre></div>
-コンテナはすぐに終了します。psコマンドでコンテナIDを表示し、どこかに書き留めましょう。(次で必要になります)</p>
+コンテナはすぐに終了します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman ps -a
 </code></pre></div>
 <h3 id="_5">コンテナーをイメージにタグ付けする</h3>
 <p>次に、コンテナーを既知のイメージ名にタグ付けする必要があります</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit &lt;container id&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit &lt;container名&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
 </code></pre></div>
-<p><code>&lt;container id&gt;</code>: 先ほど書き留めたコンテナID<br/>
+<p><code>&lt;container名&gt;</code>: ubuntu<br/>
 <code>&lt;username&gt;</code>: Quay.io のユーザ名<br/>
 <code>&lt;reponame&gt;</code>: 新しく作成したコンテナの名前</p>
 <h3 id="quayio_4">コンテナイメージを Quay.io にプッシュする</h3>
