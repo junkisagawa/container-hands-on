@@ -1,0 +1,1283 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../101-container_file/">
+      
+      
+        <link rel="next" href="../103-Integration-ap_and_db/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+    
+    
+      
+        <title>コンテナイメージのビルド - コンテナ・ハンズオン</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+JP+Light:300,300i,400,400i,700,700i%7CInconsolata:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans JP Light";--md-code-font:"Inconsolata"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="コンテナ・ハンズオン" class="md-header__button md-logo" aria-label="コンテナ・ハンズオン" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            コンテナ・ハンズオン
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              コンテナイメージのビルド
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Swich to Light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Swich to Light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to Dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to Dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      はじめに
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
+        コンテナ編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../201-opening/" class="md-tabs__link">
+        コンテナオーケストレーション編
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../option1-podman/" class="md-tabs__link">
+        参考情報(仮)
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="コンテナ・ハンズオン" class="md-nav__button md-logo" aria-label="コンテナ・ハンズオン" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    コンテナ・ハンズオン
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          コンテナ編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナ編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../100-prerequired/" class="md-nav__link">
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../101-container_file/" class="md-nav__link">
+        コンテナファイルの基本記述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          コンテナイメージのビルド
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        コンテナイメージのビルド
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    コンテナイメージに必要なファイルを用意する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    コンテナイメージの実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 変更を行ったコンテナからイメージを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.  データをコンテナの外で管理し、コンテナとマウントする方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    オプション説明
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../103-Integration-ap_and_db/" class="md-nav__link">
+        複数のコンテナを連携させよう
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104-container_image_registry/" class="md-nav__link">
+        コンテナリポジトリーへのpush
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          コンテナオーケストレーション編
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          コンテナオーケストレーション編
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../201-opening/" class="md-nav__link">
+        準備
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../202-openshift1/" class="md-nav__link">
+        OpenShiftの基本操作
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          参考情報(仮)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          参考情報(仮)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option1-podman/" class="md-nav__link">
+        Podmanの基本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option2-12factors/" class="md-nav__link">
+        12Factors - Cloud Native Architectureの基本
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションを含んだコンテナイメージのビルド
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションを含んだコンテナイメージのビルド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    コンテナイメージに必要なファイルを用意する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    コンテナイメージの実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コンテナ内に入り、直接ファイルを編集する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 変更を行ったコンテナからイメージを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.  データをコンテナの外で管理し、コンテナとマウントする方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    オプション説明
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    コンテナの停止と削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lv2" class="md-nav__link">
+    オプション・ハンズオン Lv2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">アプリケーションを含んだコンテナを作成する</h1>
+<p>アプリケーションを含んだコンテナを作成するときも、基本的な流れは同じです。以下では、進め方の例を説明しています。</p>
+<ul>
+<li>開発チームがアプリケーションのソースコードを開発、修正します</li>
+<li>アプリケーションに必要なライブラリのインストール、ランタイムの設定などをコンテナファイルに記載します</li>
+<li>コンテナビルドを実施し、イメージを作成します</li>
+<li>開発環境でコンテナの稼働確認を行います</li>
+<li>組織で用意したコンテナリポジトリーにイメージをPUSHします</li>
+<li>他のメンバーはイメージをPULLし、自分の環境でコンテナを起動します</li>
+</ul>
+<p><img alt="開発の流れ" src="../images/lightmode.png#only-light" />
+<img alt="開発の流れ" src="../images/darkmode.png#only-dark" /></p>
+<h2 id="_2">アプリケーションを含んだコンテナイメージのビルド</h2>
+<p>それではアプリを含んだコンテナを作成していきましょう。Node.jsイメージをベースとして使用し、アクセスに対してローカルで用意したindex.htmlを返却するHTTPサーバーのコンテナを起動していきます。大まかな作業内容は以下です。  </p>
+<ol>
+<li>ホスト側の index.html ファイルを用意する </li>
+<li>Node.jsを立ち上げるContainerfileを用意する</li>
+<li>コンテナイメージをビルドする</li>
+<li>コンテナを起動、ブラウザからアクセスして稼働確認する</li>
+<li>コンテナに入り、index.htmlを直接編集する</li>
+<li>変更内容が反映されているか、再度ブラウザから確認する</li>
+</ol>
+<h3 id="_3">コンテナイメージに必要なファイルを用意する</h3>
+<p>まずは作業用ディレクトリを用意し、index.htmlとContainerfileを作成します。
+任意のディレクトリ上で、以下のコマンドを実行してください。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir node-hello
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd node-hello
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>echo &quot;&lt;h1&gt;Hello, World!&lt;/h1&gt;&quot; &gt; ./index.html
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>touch Containerfile
+</code></pre></div>
+任意のテキストエディタを使用して、Containerfileを以下内容に更新します。<br />
+このContainerfileでは、index.html ファイルをコンテナにコピーし、ポート8080を公開してNode.jsのHTTPサーバーを実行するように定義しています。コンテナが立ち上がるときに<code>npx http-server -p 8080</code>が実行されます。</p>
+<!-- node.jsを触ったことがない方は細かい部分がきになると思うので、ご興味のある方は参考をご覧ください。 -->
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Containerfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM node:14</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="l l-Scalar l-Scalar-Plain">COPY index.html .</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="l l-Scalar l-Scalar-Plain">EXPOSE 8080</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;npx&quot;, &quot;http-server&quot;, &quot;-p&quot;, &quot;8080&quot;]</span>
+</code></pre></div></td></tr></table></div>
+<p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image build -t node-hello:0.1 .
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman image ls
+</code></pre></div></p>
+<h3 id="_4">コンテナイメージの実行</h3>
+<p>podman image lsで表示されたイメージリストの中にnode-helloが存在することを確認できたので、実際にコンテナを稼働させていきます。今回は、同じ内容のコンテナを2つ立ち上げます。<br />
+次のコマンドを実行しましょう。-d、-pというオプションはこのあと説明します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman container run -d -p 8080:8080 --name node-hello node-hello:0.1
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>podman container run -d -p 8081:8080 --name node-hello2 node-hello:0.1
+</code></pre></div>
+<p>今皆さんの環境では、node-helloというイメージから作成された2つのコンテナが稼働しています。
+<img alt="2つのコンテナが稼働中" src="../images/node-hello-darkmode.png#only-dark" />
+<img alt="2つのコンテナが稼働中" src="../images/node-hello.png#only-light" /></p>
+<p>ブラウザを開き、http://localhost:8080 および http:localhost:8081 にアクセスして、index.html の内容が表示されることを確認します。同じ内容が表示されていますが、それぞれ別のコンテナ内のhttp-serverからhtmlを取得しています。</p>
+<p><img alt="hello" src="../images/hello-world.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">podman runで使う知っておくべきオプション<p>podman runコマンドを使用する際には、いくつかの基本的なオプションを理解しておくと役立ちます。    </p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code></td>
+<td>ポートフォワーディング（ポートマッピング）を設定します。 -pの後に続く &lt;ホストのポート&gt;:&lt;コンテナのポート&gt; の形式で指定します。例えば、 -p 8080:80 はホストのポート8080をコンテナの80番ポートにリダイレクトします。先程はホストの8080をコンテナの8080にリダイレクトしていました。</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>コンテナをバックグラウンドモード（デタッチモード）で実行します。これにより、コンテナはバックグラウンドで実行され、シェルプロンプトがすぐに返されます。</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>(--interactive )このオプションは、コンテナの標準入力（stdin）を開いたままにするために使います。対話的な操作（例えばシェルを実行する際など）を行いたい場合に必要となります。</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>(--tty): このオプションは、仮想端末（tty）を割り当てるために使います。このオプションがあることで、コンテナが出力する内容がきれいにフォーマットされ、人間が読みやすい形で表示されます。</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>環境変数を設定します。 -e "ENV_VAR=value" の形式で指定します</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>ホストとコンテナ間でボリュームを共有（マウント）します。データを永続化したり、コンテナ間で共有したりする際に使用します。 -v &lt;ホストのディレクトリ&gt;:&lt;コンテナのディレクトリ&gt; の形式で指定します。</td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>コンテナに名前を付けます。コンテナを指定するときに、コンテナIDではなく自分でつけた名前を使用できるため、コンテナを管理するのが容易になります。</td>
+</tr>
+<tr>
+<td><code>--rm</code></td>
+<td>コンテナが停止したときに自動的にそのコンテナを削除します。指定しない場合は、停止したままコンテナが残り続けてしまう。</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<h3 id="_5">コンテナ内に入り、直接ファイルを編集する</h3>
+<p>今、皆様の環境ではnode-hello、node-hello2という2つのコンテナが動いています。<br />
+node-hello2 コンテナに入り index.html ファイルを直接変更してみましょう。コンテナに入るために、以下コマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>node-hello2<span class="w"> </span>/bin/bash
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">参考 WORKDIR<p>カレントディレクトが /app になっていることにお気づきでしょうか？これは、Containerfileに WORKDIR /app と指定しているためです。/appにindex.htmlもいるので、lsコマンドで確認してみてください。</p>
+</p>
+</div>
+<p>コンテナ内のシェルに入れました！それでは、index.htmlを編集するために、コンテナ内にテキストエディタであるVIMをインストールします。以下コマンドを実行してください。</p>
+<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apt-get<span class="w"> </span>update
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>apt-get<span class="w"> </span>install<span class="w"> </span>vim
+</code></pre></div>
+<p>これで、viコマンドを使いindex.htmlを編集していきます。<br />
+以下コマンドを実行すると、コンテナ内にあるindex.htmlをvimで開けます。</p>
+<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vi<span class="w"> </span>index.html
+</code></pre></div>
+<p>以下内容に変更しましょう。vimの操作については、ハンズオンのテーマとは外れてしまうため、説明は割愛します。
+vimでファイルを開いたあと、i を押して編集モードにうつり、必要な変更を実施したあと esc を押し編集モードから抜け、 :wq を入力すると 保存して閉じる です。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">index.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, from Node-hello2<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>変更が保存できたかどうか、念のため確認しておきましょう。
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat<span class="w"> </span>index.html
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>&lt;h1&gt;Hello,<span class="w"> </span>from<span class="w"> </span>Node-Hello2&lt;/h1&gt;
+</code></pre></div></p>
+<p>変更が完了したので、再度ブラウザから http://localhost:8081 にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。</p>
+<p><span style="color: orange; "><strong>重要: コンテナの特徴 揮発性と不変性</strong> </span></p>
+<p>コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。</p>
+<p>「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  </p>
+<ol>
+<li>変更を行った稼働中のコンテナから、新しいイメージを作成する</li>
+<li>データはコンテナの外で管理し、コンテナとマウントする</li>
+</ol>
+<p>それでは、node-helloコンテナを利用して実施していきましょう。  </p>
+<h3 id="1">1. 変更を行ったコンテナからイメージを作成する</h3>
+<p>これ方は、変更を行ったコンテナから新たなイメージを作成してしまう方法です。<code>podman container commit</code>を使います。
+コンテナを再度起動するときは、新たに作成したイメージを使用することで変更後のコンテナを立ち上げることが出来ます。<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman<span class="w"> </span>container<span class="w"> </span>commit<span class="w"> </span>コンテナ名<span class="o">(</span>or<span class="w"> </span>ID<span class="o">)</span><span class="w"> </span>作成するイメージ名:タグ
+</code></pre></div>
+<img alt="commit" src="../images/podman-commit-darkmode.png#only-dark" />
+<img alt="commit" src="../images/podman-commit.png#only-light" /></p>
+<p>それでは、先程変更を行ったnode-hello2コンテナを新しいイメージとして保存する方法を試していきましょう。node-hello2は、イメージ名node-hello:0.1をもとに作成され、以下2つの変更が入っています。<br />
+1. テキストエディタとして、vimをインストールした
+2. index.htmlの中身を変更した</p>
+<p>今回は、変更後のイメージをnode-hello:0.2にします。以下コマンドを実行してください。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman commit node-hello2 node-hello:0.2
+</code></pre></div></p>
+<p>コミットIDとしてランダムな文字列が表示されれば成功です。実際にイメージが作成されているのか、podman image lsコマンドを実行して確認してください。
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>REPOSITORY<span class="w">                         </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.2<span class="w">         </span>65999f65d1a3<span class="w">  </span><span class="m">7</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.1<span class="w">         </span>cf08a56e2c43<span class="w">  </span><span class="m">6</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>localhost/first-hw<span class="w">                 </span><span class="m">1</span>.0<span class="w">         </span>00757cb8db41<span class="w">  </span><span class="m">7</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">521</span><span class="w"> </span>MB
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>registry.fedoraproject.org/fedora<span class="w">  </span>latest<span class="w">      </span>4ad9a58f652f<span class="w">  </span><span class="m">10</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">    </span><span class="m">280</span><span class="w"> </span>MB
+</code></pre></div></p>
+<p>新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman container run -d -p 8083:8080 --name node-hello3 node-hello:0.2
+</code></pre></div></p>
+<p>ブラウザから<a href="localhost:8083">localhost:8083</a>にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。<br />
+以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。</p>
+<h3 id="2">2.  データをコンテナの外で管理し、コンテナとマウントする方法</h3>
+<p>次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。</p>
+<p><img alt="commit" src="../images/container-mount-darkmode.png#only-dark" />
+<img alt="commit" src="../images/container-mount.png#only-light" /></p>
+<p>上図のマウント方式を、バインドマウントと呼ばれています。ホスト上のファイルを直接コンテナからマウントする方法で、ローカル開発時には非常に便利です。ただ、今回のハンズオン環境ではWindows上で動いている仮想マシンの上でPodmanランタイムが動き、その中でコンテナが動いています。バインドマウントをするためには、ホストと仮想マシン =&gt; 仮想マシン仮想とコンテナのマウントとなり、ハンズオンで各設定を実施するのが難しいため割愛します。　　</p>
+<p>次に、こちらの図を御覧ください。これはボリュームマウントと呼ばれ、Podmanがホストとマウントされた仮想ボリュームを管理する方法です。実際の現場では、こちらのマウント方式がよく使われている印象があります。</p>
+<p>ボリュームを作成するためのコマンドは非常にシンプル。<code>podman volume create volume名</code> です。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>podman volume create hello-volume
+</code></pre></div>
+これで、podmanエンジンが管理し、実態はpodmanホスト（Windows上の仮想マシン）にあるボリュームが作成されました。マウントポイントを各クラウドが提供しているサービスにすることも可能です。</p>
+<p>作成されたvolumeの情報を確認するためには、<code>podman inspect</code>コマンドを使います。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>podman<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>hello-volume
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">[</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">     </span><span class="o">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">          </span><span class="s2">&quot;Name&quot;</span>:<span class="w"> </span><span class="s2">&quot;hello-volume&quot;</span>,
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">          </span><span class="s2">&quot;Driver&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">          </span><span class="s2">&quot;Mountpoint&quot;</span>:<span class="w"> </span><span class="s2">&quot;/var/home/core/.local/share/containers/storage/volumes/hello-volume/_data&quot;</span>,
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">          </span><span class="s2">&quot;CreatedAt&quot;</span>:<span class="w"> </span><span class="s2">&quot;2023-07-02T06:21:37.728193788Z&quot;</span>,
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">          </span><span class="s2">&quot;Labels&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">          </span><span class="s2">&quot;Scope&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">          </span><span class="s2">&quot;Options&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">          </span><span class="s2">&quot;MountCount&quot;</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">          </span><span class="s2">&quot;NeedsCopyUp&quot;</span>:<span class="w"> </span>true,
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">          </span><span class="s2">&quot;NeedsChown&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">     </span><span class="o">}</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="o">]</span>
+</code></pre></div>
+<h3 id="_6">オプション説明</h3>
+<p>Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>❯ crc podman-env
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>export PATH=&quot;/Users/junki/.crc/bin/oc:$PATH&quot;
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>export CONTAINER_SSHKEY=&quot;/Users/junki/.crc/machines/crc/id_ecdsa&quot;
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>export CONTAINER_HOST=&quot;ssh://core@127.0.0.1:2222/run/user/1000/podman/podman.sock&quot;
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>export DOCKER_HOST=&quot;unix:///Users/junki/.crc/machines/crc/docker.sock&quot;
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a># Run this command to configure your shell:
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a># eval $(crc podman-env)
+</code></pre></div>
+別ターミナルを立ち上げ、sshログインします。(多分windowsだとssh clientがない)
+デモにするか</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>❯ podman inspect sample
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>[
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>     {
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>          &quot;Name&quot;: &quot;sample&quot;,
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>          &quot;Driver&quot;: &quot;local&quot;,
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>          &quot;Mountpoint&quot;: &quot;/var/home/core/.local/share/containers/storage/volumes/sample/_data&quot;,
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>          &quot;CreatedAt&quot;: &quot;2023-07-01T16:05:32.372338467Z&quot;,
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>          &quot;Labels&quot;: {},
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>          &quot;Scope&quot;: &quot;local&quot;,
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>          &quot;Options&quot;: {},
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>          &quot;MountCount&quot;: 0,
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>          &quot;NeedsCopyUp&quot;: true,
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>          &quot;NeedsChown&quot;: true
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>     }
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>]
+</code></pre></div>
+Mountpointが確認できたので、ssh loginしている仮想マシン上で確認してみます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>mkdir ./mount
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
+</code></pre></div>
+<p>/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker run -d -p 8083:8080 --name node-hello4 -v ./mount:/app node-hello:v0.2
+</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
+アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理して起動時に読み込むようにしましょう。タグで管理することで、最新版のコンテナを起動したときにエラーが起きたら、すぐに一つ前のバージョンに切り替え戻すことができます。コンテナ・オーケストレーションツールを使うと、無停止でのバージョンアップ/バージョンダウンが可能になるのですが、それは2章で体験いただきます。。お楽しみに。</p>
+</p>
+</div>
+<!-- 参考: 12Factors その3 設定編 -->
+
+<h4 id="_7">コンテナの停止と削除</h4>
+<p>コンテナを停止、削除しましょう。コンテナは揮発性という特徴があるため、一度削除すると今行った変更は消えてしまいます。これは不便だ、と思われるかもしれませんが、イメージをもとにコンテナを立ち上げるため、再現性(= どんな環境でいつ立ち上げても同じコンテナが作られる)を担保につながっています。コンテナを直接編集しても元となるイメージは変わっていないため、一度削除して再作成した場合変更内容は保存されていないということです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>podman container stop node-hello
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>podman container rm node-hello
+</code></pre></div>
+<p>以上が、開発したアプリケーションをコンテナで稼働させる基本的な流れです。次のチャプターでは、データベースコンテナとアプリケーションコンテナの2つを動かし、コンテナ同士を連携させる方法を学んでいきます。</p>
+<hr />
+<h2 id="lv2">オプション・ハンズオン Lv2</h2>
+<p>コンテナのビルドにおいて、複数のステージ（段階）を持つビルドをマルチステージビルドと呼びます。1-1で作成したコンテナファイルは1つの段階だけをもつ基本的なビルドになっていました。ここでは、Javaアプリケーションをビルドするステージ、作成したwarファイルを使用してOpenLiberty上で稼働させるステージの2つに分けたビルドを実施していきます。</p>
+<p>マルチステージビルドを使うメリットは何でしょうか？使用されるケースとメリットを以下で紹介します。  </p>
+<ul>
+<li>
+<p>イメージサイズの削減: アプリケーションのビルド時にだけ必要なコンパイルやパッケージングを中間イメージとし、実行に必要な最終的なイメージと分離することができます。最終的なイメージには稼働に必要なコンポーネントのみを含むことになるため、イメージサイズを小さくすることができます</p>
+</li>
+<li>
+<p>セキュリティの向上: ビルドステージのみで必要な依存関係を含めないことによって、脆弱性の可能性を減らすことができます。</p>
+</li>
+<li>
+<p>ビルドの効率化: ビルドステージではビルドに必要なタスク（コンパイル、パッケージング、テストなど）を実行し、最終的なイメージではそれらのタスクを実行する必要はありません。単一ステージのビルドでは、ビルドスクリプト内ですべてのタスクを実行する必要があります。しかし、マルチステージビルドでは、並列で実行することができます。  </p>
+</li>
+</ul>
+<p>マルチステージビルドを行うContainerfileを利用して、以下の流れを実行していきます。<br />
+1. Javaの標準ライブラリを使用したシンプルなHTTPサーバーのコードを準備する
+2. Containerfileを作成する
+  - [Buildステージ]Maven等のコンパイルツールが含まれているベースイメージを使用して、Javaアプリケーションを作成
+  - [Productステージ]作成したアプリケーションを受け取り、OpenLibertyベースイメージ上で稼働させる
+3. myappという名前のイメージを作成する
+4. 作成したmyappをもとにコンテナを実行する
+5. ブラウザからアクセスして稼働確認する</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>mkdir<span class="w"> </span>myapp
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">cd</span><span class="w"> </span>myapp
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>src/main/java/com/example
+</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pom.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span>
+<span class="normal"><a href="#__codelineno-24-19">19</a></span>
+<span class="normal"><a href="#__codelineno-24-20">20</a></span>
+<span class="normal"><a href="#__codelineno-24-21">21</a></span>
+<span class="normal"><a href="#__codelineno-24-22">22</a></span>
+<span class="normal"><a href="#__codelineno-24-23">23</a></span>
+<span class="normal"><a href="#__codelineno-24-24">24</a></span>
+<span class="normal"><a href="#__codelineno-24-25">25</a></span>
+<span class="normal"><a href="#__codelineno-24-26">26</a></span>
+<span class="normal"><a href="#__codelineno-24-27">27</a></span>
+<span class="normal"><a href="#__codelineno-24-28">28</a></span>
+<span class="normal"><a href="#__codelineno-24-29">29</a></span>
+<span class="normal"><a href="#__codelineno-24-30">30</a></span>
+<span class="normal"><a href="#__codelineno-24-31">31</a></span>
+<span class="normal"><a href="#__codelineno-24-32">32</a></span>
+<span class="normal"><a href="#__codelineno-24-33">33</a></span>
+<span class="normal"><a href="#__codelineno-24-34">34</a></span>
+<span class="normal"><a href="#__codelineno-24-35">35</a></span>
+<span class="normal"><a href="#__codelineno-24-36">36</a></span>
+<span class="normal"><a href="#__codelineno-24-37">37</a></span>
+<span class="normal"><a href="#__codelineno-24-38">38</a></span>
+<span class="normal"><a href="#__codelineno-24-39">39</a></span>
+<span class="normal"><a href="#__codelineno-24-40">40</a></span>
+<span class="normal"><a href="#__codelineno-24-41">41</a></span>
+<span class="normal"><a href="#__codelineno-24-42">42</a></span>
+<span class="normal"><a href="#__codelineno-24-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="w"> </span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>myapp<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-24-23" name="__codelineno-24-23"></a><span class="w">                    </span><span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+<a id="__codelineno-24-24" name="__codelineno-24-24"></a><span class="w">                    </span><span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+<a id="__codelineno-24-25" name="__codelineno-24-25"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-24-26" name="__codelineno-24-26"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-24-27" name="__codelineno-24-27"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-24-28" name="__codelineno-24-28"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-24-29" name="__codelineno-24-29"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-24-30" name="__codelineno-24-30"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-24-31" name="__codelineno-24-31"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-24-32" name="__codelineno-24-32"></a><span class="w">                    </span><span class="nt">&lt;archive&gt;</span>
+<a id="__codelineno-24-33" name="__codelineno-24-33"></a><span class="w">                        </span><span class="nt">&lt;manifest&gt;</span>
+<a id="__codelineno-24-34" name="__codelineno-24-34"></a><span class="w">                            </span><span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+<a id="__codelineno-24-35" name="__codelineno-24-35"></a><span class="w">                            </span><span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+<a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">                            </span><span class="nt">&lt;mainClass&gt;</span>com.example.HelloWorld<span class="nt">&lt;/mainClass&gt;</span>
+<a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="w">                        </span><span class="nt">&lt;/manifest&gt;</span>
+<a id="__codelineno-24-38" name="__codelineno-24-38"></a><span class="w">                    </span><span class="nt">&lt;/archive&gt;</span>
+<a id="__codelineno-24-39" name="__codelineno-24-39"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-24-40" name="__codelineno-24-40"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-24-41" name="__codelineno-24-41"></a><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<a id="__codelineno-24-42" name="__codelineno-24-42"></a><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<a id="__codelineno-24-43" name="__codelineno-24-43"></a><span class="nt">&lt;/project&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>マルチステージビルドを行うコンテナファイルは以下のようになります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># ビルドステージ</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="l l-Scalar l-Scalar-Plain">FROM maven:3.8.3-openjdk-11 AS build</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドに必要な依存関係をコピー</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="l l-Scalar l-Scalar-Plain">COPY pom.xml .</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="l l-Scalar l-Scalar-Plain">COPY src ./src</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="l l-Scalar l-Scalar-Plain"># アプリケーションのビルド</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="l l-Scalar l-Scalar-Plain">RUN mvn clean package</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="l l-Scalar l-Scalar-Plain"># プロダクションステージ</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="l l-Scalar l-Scalar-Plain">FROM adoptopenjdk:11-jre-hotspot AS production</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドステージからビルド成果物をコピー</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="l l-Scalar l-Scalar-Plain">COPY --from=build /app/target/myapp-1.0.0.jar .</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="l l-Scalar l-Scalar-Plain"># コンテナの実行時にアプリケーションを起動</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="l l-Scalar l-Scalar-Plain">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;myapp-1.0.0.jar&quot;]</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;-start&quot;]</span>
+</code></pre></div>
+<h2 id="todo">ToDo</h2>
+<p>上記のサンプルを利用して、Javaアプリケーション・コンテナを稼働させてみましょう。
+podman run を行うときのオプションは-p 8080:8080を使用してください。</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/junkisagawa"  target="_blank" rel="noopener">Junki Sagawa</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../103-Integration-ap_and_db/">
       
       
-        <link rel="next" href="../101-container_file/">
+        <link rel="next" href="../201-opening/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>準備 - コンテナ・ハンズオン</title>
+        <title>コンテナリポジトリーへのpush - コンテナ・ハンズオン</title>
       
     
     
@@ -114,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openshift-local" class="md-skip">
+        <a href="#docker-hub" class="md-skip">
           Skip to content
         </a>
       
@@ -147,7 +147,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              準備
+              コンテナリポジトリーへのpush
             
           </span>
         </div>
@@ -220,7 +220,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../100-prerequired/" class="md-tabs__link md-tabs__link--active">
         コンテナ編
       </a>
     </li>
@@ -341,72 +341,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          準備
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../100-prerequired/" class="md-nav__link">
         準備
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#podman" class="md-nav__link">
-    Podmanの起動
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#podman_1" class="md-nav__link">
-    Podman 動作確認
-  </a>
-  
-    <nav class="md-nav" aria-label="Podman 動作確認">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hello-world" class="md-nav__link">
-    Hello World
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -458,11 +397,100 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../104-container_image_registry/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          コンテナリポジトリーへのpush
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         コンテナリポジトリーへのpush
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dockerhub" class="md-nav__link">
+    DockerHub アカウント作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    はじめてのリポジトリー作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    リポジトリーへイメージをPushしよう
+  </a>
+  
+    <nav class="md-nav" aria-label="リポジトリーへイメージをPushしよう">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman-login" class="md-nav__link">
+    podman login
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    イメージ:タグの設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    イメージプッシュ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push_1" class="md-nav__link">
+    Push結果の確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -631,23 +659,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#podman" class="md-nav__link">
-    Podmanの起動
+  <a href="#dockerhub" class="md-nav__link">
+    DockerHub アカウント作成
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#podman_1" class="md-nav__link">
-    Podman 動作確認
+  <a href="#_1" class="md-nav__link">
+    はじめてのリポジトリー作成
   </a>
   
-    <nav class="md-nav" aria-label="Podman 動作確認">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    リポジトリーへイメージをPushしよう
+  </a>
+  
+    <nav class="md-nav" aria-label="リポジトリーへイメージをPushしよう">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hello-world" class="md-nav__link">
-    Hello World
+  <a href="#podman-login" class="md-nav__link">
+    podman login
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    イメージ:タグの設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    イメージプッシュ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push_1" class="md-nav__link">
+    Push結果の確認
   </a>
   
 </li>
@@ -672,105 +728,164 @@
                   
 
 
-<h1 id="openshift-local">OpenShift Localの実行</h1>
-<p><strong>公式ページ</strong>：<a href="https://access.redhat.com/documentation/ja-jp/red_hat_openshift_local/2.19/html/getting_started_guide/index">Red Hat OpenShift Local</a></p>
-<h2 id="podman">Podmanの起動</h2>
-<p><strong>Red Hat OpenShift Local</strong> は、OpenShift Container Platformおよび Podman コンテナーランタイム、Red Hat Device Edgeのプリセットを提供します。"crc set preset" コマンドで使用するプリセットを選択した後、<em>setup, start</em> コマンドを実行することで起動します。プリセット名はそれぞれ<strong>openshift</strong>、 <strong>microshift</strong> です。第一部 コンテナ研修ではPodmanを使用していくので、preset podmanを指定します。  </p>
-<p>以下3つのコマンドを実行し、Podmanを起動してください。完了するまで1-2分くらいかかります。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>preset<span class="w"> </span>podman
+<h1 id="docker-hub">はじめてのDocker Hub</h1>
+<p>コンテナイメージの保管、管理、配布を行うサービスを、コンテナイメージレジストリーと呼びます。代表的なレジストリーサービスとして、Docker Hub、Quay.io、AWS Container Registryがあります。本ハンズオンでは、DockerHubにアカウントを作成し各自の環境からコンテナイメージをpushしていきます。</p>
+<p>Quayは「キー」と発音します（クエィじゃないです）</p>
+<h2 id="dockerhub">DockerHub アカウント作成</h2>
+<div class="admonition note">
+<p>以下、Dockerアカウント作成の手順です。私が試したときの流れをもとに手順化しているため、スクリーンショットと実際の画面が異なる可能性があります。もし手順通り進めない場合は、申し訳有りませんが<a href="https://docs.docker.jp/mac/step_five.html">公式のガイド</a>をご参照ください。</p>
+</div>
+<p>ブラウザで<a href="https://hub.docker.com/">https://hub.docker.com/</a>にアクセスし、アカウントを作成していきます。<br />
+任意のユーザー名、メールアドレス、パスワードを入力してください。各チェックボックスをチェックし、Sign Upをクリックします。  </p>
+<p><img alt="アカウント作成ページ" src="../images/hub.docker.com.png" /></p>
+<p>入力したメールアドレスに認証リンク付きのメールが届くので、クリックして認証をします。  </p>
+<p>再度ブラウザに戻り、メールアドレスとパスワードを入力すると以下画面に遷移します。<br />
+プランは<strong>Personal</strong>を選択してください。</p>
+<p><img alt="Plan選択" src="../images/docker-account-create.png" /></p>
+<p>以上で、アカウントの作成は完了です！</p>
+<h2 id="_1">はじめてのリポジトリー作成</h2>
+<p>今回のハンズオンで作成してきたコンテナイメージを管理するために、DockerHubでリポジトリーを作成します。   </p>
+<ul>
+<li>Create Repositoryををクリックします。  </li>
+</ul>
+<p><img alt="create Repo" src="../images/create-repo.png" /> </p>
+<ul>
+<li>リポジトリー名に "handson-[各自のお名前]"を入力します。</li>
+<li>Descriptionには任意の説明を入力します。空欄でも大丈夫です。</li>
+<li>Visibilityは、Privateを選択します。</li>
+<li>入力内容を確認し、Createボタンをクリックしてください。 </li>
+</ul>
+<p><img alt="create Repo" src="../images/docker-create-repo2.png" />  </p>
+<p>上記の画像の右側に <strong>Pro tip</strong> と書いてある箇所があります。<br />
+これは、作成したリポジトリーに対してイメージをPush（アップロード）するときに使用するコマンドです。今回はpodmanを使用しているため、<code>podman tag...</code> / <code>podman push...</code>コマンドをこのあと実行していきます。  </p>
+<div class="admonition info">
+<p class="admonition-title">Info<p>フリープランだと、一つだけPrivateレポジトリーを作成できます。研修で使うhello-worldコンテナイメージなのでPublicでも問題ないのですが、今後の参考のためPrivateをで作成します。もちろん、Quay.ioやIBM Container ResistryサービスでもPrivateリポジトリーを作成できます。</p>
+</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">レジストリーとリポジトリーって違うの？<p>コンテナ・レジストリーとコンテナ・リポジトリーという概念の違いに混乱しがちですが、レジストリーの中にリポジトリーがあります。
+コンテナ・レジストリーは、DockerHubやQuay.io、IBM Container Registryといった管理場所を指し、コンテナ・リポジトリーはイメージをバージョン管理する場所です。ユーザーはリポジトリーを複数作成でき、一つのリポジトリーの中で同じ名前のコンテナイメージをタグを用いてバージョン管理します。
+レジストリー &gt; ユーザー &gt; リポジトリー &gt; タグ です。</p>
+</p>
+</div>
+<h2 id="push">リポジトリーへイメージをPushしよう</h2>
+<p>ここまでのハンズオンで作成したイメージをプッシュしてみます。
+まずは、現在ローカル環境にあるイメージをを確認しましょう。podmanで保存されているイメージの一覧を表示するコマンドは覚えていますか？</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>REPOSITORY<span class="w">              </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>localhost/node-hello<span class="w">    </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">4</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>localhost/node-hello<span class="w">    </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker.io/library/node<span class="w">  </span><span class="m">14</span><span class="w">          </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">   </span><span class="m">884</span><span class="w"> </span>MB
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crc<span class="w"> </span>setup
+<p>node-hello:0.2をプッシュしていきます。</p>
+<h3 id="podman-login">podman login</h3>
+<p>まずはCLIからdockerHubへログインしましょう。以下コマンドを実行すると、ユーザー名とパスワードを求められるので入力します。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman login docker.io
+</code></pre></div></p>
+<p><code>Login Succeeded!</code> と表示されれば、作成したアカウントへログイン成功です。</p>
+<h3 id="_2">イメージ:タグの設定</h3>
+<p>プッシュするためには、保存先のリポジトリー情報に従ってタグをつけ直す必要があります。タグを変更するためには、<code>podman image tag</code> コマンドを使用します。書式は以下です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image tag &lt;元のイメージ名&gt;:&lt;タグ&gt; &lt;アカウント名&gt;/&lt;変更する名前(リポジトリ名)&gt;:&lt;タグ&gt;
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>crc<span class="w"> </span>start
+<p>それでは、node-hello:0.2というイメージに、タグ付けしましょう。<br />
+参考として、私のアカウント(ariariariariari)でのコマンドを以下に示します。皆さんのアカウント名に変えて実行してください。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman<span class="w"> </span>image<span class="w"> </span>tag<span class="w"> </span>node-hello:0.2<span class="w"> </span>docker.io/ariariariariari/handson-sagawa:0.2
+</code></pre></div>
+<p>podman image lsで確認すると、新しいイメージ（タグ）が追加されているはずです。</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>images
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>REPOSITORY<span class="w">                                           </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">         </span>SIZE
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>localhost/ariariariariari/handson-sagawa<span class="w">             </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">41</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker.io/library/node<span class="w">                               </span><span class="m">14</span><span class="w">          </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">    </span><span class="m">884</span><span class="w"> </span>MB
+</code></pre></div>
+<h3 id="_3">イメージプッシュ</h3>
+<p>用意したプライベートリポジトリーへの向き先に設定できたので、<code>podman push</code>コマンドでイメージをプッシュします。
+事前にpodman login docker.ioを使いdockerhubへログインしている状態のため、プライベートリポジトリーへのpushが成功します。他の管理サービスにイメージをpushするときは、リポジトリホスト名/アカウント名/リポジトリ名:タグを設定したあとに、podman login &lt;リポジトリホスト名&gt; してからpushという流れになります。</p>
+<p>以下コマンドを実行し、作成済みのdockerHubへイメージをプッシュしてください。<br />
+（ユーザー名、リポジトリ名は各自の環境に合わせて変更）</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman push docker.io/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;/node-hello:0.2
 </code></pre></div>
 <details>
 <summary>実行例</summary>
-<div class="highlight"><span class="filename">出力例</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>❯<span class="w"> </span>crc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>preset<span class="w"> </span>podman
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Changes<span class="w"> </span>to<span class="w"> </span>configuration<span class="w"> </span>property<span class="w"> </span><span class="s1">&#39;preset&#39;</span><span class="w"> </span>are<span class="w"> </span>only<span class="w"> </span>applied<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>CRC<span class="w"> </span>instance<span class="w"> </span>is<span class="w"> </span>created.
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>If<span class="w"> </span>you<span class="w"> </span>already<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>running<span class="w"> </span>CRC<span class="w"> </span>instance<span class="w"> </span>with<span class="w"> </span>different<span class="w"> </span>preset,<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>this<span class="w"> </span>configuration<span class="w"> </span>change<span class="w"> </span>to<span class="w"> </span>take<span class="w"> </span>effect,<span class="w"> </span>delete<span class="w"> </span>the<span class="w"> </span>CRC<span class="w"> </span>instance<span class="w"> </span>with<span class="w"> </span><span class="s1">&#39;crc delete&#39;</span>,<span class="w"> </span>setup<span class="w"> </span>it<span class="w"> </span>with<span class="w"> </span><span class="sb">`</span>crc<span class="w"> </span>setup<span class="sb">`</span><span class="w"> </span>and<span class="w"> </span>start<span class="w"> </span>it<span class="w"> </span>with<span class="w"> </span><span class="s1">&#39;crc start&#39;</span>.
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>❯<span class="w"> </span>crc<span class="w"> </span>setup
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>INFO<span class="w"> </span>Using<span class="w"> </span>bundle<span class="w"> </span>path<span class="w"> </span>/Users/junki/.crc/cache/crc_podman_vfkit_4.3.1_arm64.crcbundle
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>as<span class="w"> </span>non-root
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc-admin-helper<span class="w"> </span>executable<span class="w"> </span>is<span class="w"> </span>cached
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>obsolete<span class="w"> </span>admin-helper<span class="w"> </span>executable
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>supported<span class="w"> </span>CPU<span class="w"> </span>architecture
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>INFO<span class="w"> </span>Checking<span class="w"> </span>minimum<span class="w"> </span>RAM<span class="w"> </span>requirements
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc<span class="w"> </span>executable<span class="w"> </span>symlink<span class="w"> </span>exists
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>emulated<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>M1<span class="w"> </span>CPU
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>vfkit<span class="w"> </span>is<span class="w"> </span>installed
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>CRC<span class="w"> </span>bundle<span class="w"> </span>is<span class="w"> </span>extracted<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;$HOME/.crc&#39;</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>/Users/junki/.crc/cache/crc_podman_vfkit_4.3.1_arm64.crcbundle<span class="w"> </span>exists
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>old<span class="w"> </span>launchd<span class="w"> </span>config<span class="w"> </span><span class="k">for</span><span class="w"> </span>tray<span class="w"> </span>and/or<span class="w"> </span>daemon<span class="w"> </span>exists
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc<span class="w"> </span>daemon<span class="w"> </span>plist<span class="w"> </span>file<span class="w"> </span>is<span class="w"> </span>present<span class="w"> </span>and<span class="w"> </span>loaded
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Your<span class="w"> </span>system<span class="w"> </span>is<span class="w"> </span>correctly<span class="w"> </span>setup<span class="w"> </span><span class="k">for</span><span class="w"> </span>using<span class="w"> </span>CRC.<span class="w"> </span>Use<span class="w"> </span><span class="s1">&#39;crc start&#39;</span><span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>the<span class="w"> </span>instance
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>❯<span class="w"> </span>crc<span class="w"> </span>start
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>WARN<span class="w"> </span>A<span class="w"> </span>new<span class="w"> </span>version<span class="w"> </span><span class="o">(</span><span class="m">2</span>.19.0<span class="o">)</span><span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>published<span class="w"> </span>on<span class="w"> </span>https://developers.redhat.com/content-gateway/file/pub/openshift-v4/clients/crc/2.19.0/crc-macos-installer.pkg
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>as<span class="w"> </span>non-root
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc-admin-helper<span class="w"> </span>executable<span class="w"> </span>is<span class="w"> </span>cached
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>obsolete<span class="w"> </span>admin-helper<span class="w"> </span>executable
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>supported<span class="w"> </span>CPU<span class="w"> </span>architecture
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>INFO<span class="w"> </span>Checking<span class="w"> </span>minimum<span class="w"> </span>RAM<span class="w"> </span>requirements
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc<span class="w"> </span>executable<span class="w"> </span>symlink<span class="w"> </span>exists
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>running<span class="w"> </span>emulated<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>M1<span class="w"> </span>CPU
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>vfkit<span class="w"> </span>is<span class="w"> </span>installed
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>old<span class="w"> </span>launchd<span class="w"> </span>config<span class="w"> </span><span class="k">for</span><span class="w"> </span>tray<span class="w"> </span>and/or<span class="w"> </span>daemon<span class="w"> </span>exists
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>INFO<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>crc<span class="w"> </span>daemon<span class="w"> </span>plist<span class="w"> </span>file<span class="w"> </span>is<span class="w"> </span>present<span class="w"> </span>and<span class="w"> </span>loaded
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>INFO<span class="w"> </span>Loading<span class="w"> </span>bundle:<span class="w"> </span>crc_podman_vfkit_4.3.1_arm64...
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>INFO<span class="w"> </span>CRC<span class="w"> </span>instance<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>with<span class="w"> </span>IP<span class="w"> </span><span class="m">127</span>.0.0.1
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>INFO<span class="w"> </span>CRC<span class="w"> </span>VM<span class="w"> </span>is<span class="w"> </span>running
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>INFO<span class="w"> </span>Configuring<span class="w"> </span>shared<span class="w"> </span>directories
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>INFO<span class="w"> </span>Adding<span class="w"> </span>new<span class="w"> </span>bearer<span class="w"> </span>token<span class="w"> </span><span class="k">for</span><span class="w"> </span>cockpit<span class="w"> </span>webconsole
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>podman<span class="w"> </span>runtime<span class="w"> </span>is<span class="w"> </span>now<span class="w"> </span>running.
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>Use<span class="w"> </span>the<span class="w"> </span><span class="s1">&#39;podman&#39;</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface:
+<div class="highlight"><span class="filename">出力例</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>push<span class="w"> </span>docker.io/ariariariariari/handson-sagawa:0.2
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Getting<span class="w"> </span>image<span class="w"> </span><span class="nb">source</span><span class="w"> </span>signatures
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:476197c298e4e088678ca20c8926bf187cbc0966548706119c1a3afcb4cf1ca6
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:cfec405a23bc89639c747f170cc165513ee5689c72bb9f97bf3867b332e12e46
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:173621e7addd9a122d7aa8c00c6741b6b4426b7b76d65cd26e33c42defc8f4d9
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:82da4502ad28ee2d71f5f6706b53a848c9af3cf0a86c9c28cbb4e9d3c295827c
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:f3e76aaba7cc466ba4d2e82fc9793e1f31a0aa02cfeb3f0d8f6daee49cb6ec4e
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:708291ce05346c36e436ab8b6f65e9cb194ead0fa4be7b7a9737c7b84f768e62
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:20649f23472c55c0d1a6f51859a4cdf1c0ee387d1b6e1c6d7dff142e3e510150
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:b078da4dfde3335d754012aa1f4999f014a9d92c9d974365a504b40300011030
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:4d772e48367e80db04ffe51d27570fa07be0fe9da239ae16c0cc5767054f4742
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:795de09243daf7f1e4a603ea1c0af287a55599d883daa3947fcac78bcd8c65ef
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:41dd985ca0d2333b880841c30425b7fcc4dec84b874756b3dcb47c6d6291eef2
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>Copying<span class="w"> </span>config<span class="w"> </span>sha256:0ab809cbac4d4ff074ead1f4872b8b455feaffefe557c2ac699a652e46662fc5
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>Writing<span class="w"> </span>manifest<span class="w"> </span>to<span class="w"> </span>image<span class="w"> </span>destination
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Storing<span class="w"> </span>signatures
 </code></pre></div>
-
 </details>
 
-<h2 id="podman_1">Podman 動作確認</h2>
-<p>以下コマンドでPodmanが正常に動作しているかを確認します。Client情報やVersionが表示されれば正常動作しています。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span>version
-</code></pre></div></p>
-<h3 id="hello-world">Hello World</h3>
-<p>Podmanの稼働が確認できたので、コンテナを起動してみましょう。<br />
-以下が動作イメージです。</p>
-<p><img alt="初めてのコンテナ" src="../images/hello.png#only-light" />
-<img alt="初めてのコンテナ" src="../images/hello-dark.png#only-dark" /></p>
-<p>podman runコマンドは指定したイメージをもとにコンテナを起動するコマンドです。runコマンドを実行すると、podmanは指定されたイメージがローカル環境に存在するか確認し、存在しない場合はイメージリポジトリを探しにいきます。見つかった場合はローカル環境にpullし、イメージをもとにコンテナを起動します。<br />
-コンテナの起動時に、ボリュームの指定や環境変数の指定といったオプションをつけることができます。この後のハンズオンで登場する度に説明します。  </p>
-<ul>
-<li>以下コマンドを実行してください。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman container run --name podman-hello-world hello-world
-</code></pre></div>
-<p>「hello-worldというイメージからpodman-hello-worldという名前のコンテナを起動しろ！」というコマンドです。--nameオプションをつけない場合、コンテナはランダムなIDで生成されます。起動中のコンテナを操作する際にランダムなIDだと大変なので、名前をつけるようにしましょう。</p>
-<p>以下が出力されればOKです。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!... Hello Podman World ...!
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>         .--&quot;--.
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>       / -     - \
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>      / (O)   (O) \
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   ~~~| -=(,Y,)=- |
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    .---. /`  \   |~~
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a> ~/  o  o \~~~~.----. ~~
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  | =(X)= |~  / (O (O) \
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>   ~~~~~~~  ~| =(Y_)=-  |
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  ~~~~    ~~~|   U      |~~
-</code></pre></div>
-<a href="https://quay.io/">Quay.io</a>からhello-world（podman-hello）という名前のコンテナイメージを取得(pull)、自分のpodman engine環境で実行（run）した結果です。</p>
-<p>podmanのもぐらくん達を素敵なアスキーアートで表現していますね。<br />
-もぐらに見えますが、実はセルキーというアザラシの妖精らしいです。ノルウェーの民間伝承で登場する神話上の動物で、陸にあがるときは「あざらしの皮」を脱いで人間人間に化けるのだとか...。</p>
-<div class="admonition success">
-<p class="admonition-title">Success</p>
-<p>第一部コンテナを進めていく準備が完了しました！podmanの基本コマンドはdockerコマンドと共通です。ハンズオンの中で色々なpodman コマンドを実行していきますが、ご興味がある方は<a href="/container-hands-on/option1-podman/">参考: Podmanの基本を学ぶ</a> を実施してみてください</p>
+<h3 id="push_1">Push結果の確認</h3>
+<p>再度ブラウザからDockerHubにアクセスし、結果を確認します。
+<img alt="push結果の確認" src="../images/image_pushed.png" />
+<img alt="push結果の確認" src="../images/tag_version_management.png" /></p>
+<p>version 0.2のイメージがpushされていることが確認できます。</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>以上で <strong>はじめてのDockerHub</strong> は完了です！ ここまでの実践で、コンテナを開発する流れ、複数のコンテナを連携させる方法、イメージを管理するレポジトリーサービスの使い方を体験いただけたと思います。第二部 コンテナ・オーケストレーション編では本番環境でコンテナを採用する際のプラットフォームとなるOpenShiftを用いてコンテナ開発 ~ コンテナ運用の流れを実施していきます。引き続きよろしくお願いいたします！</p>
 </div>
+<hr />
+<h1 id="quayio">【参考】 Quay.io</h1>
+<p>以下は参考情報です。DockerHubと同じ用に、Quay.ioでのアカウント作成方法、リポジトリー作成方法、イメージのプッシュ方法を参考として記述しています。</p>
+<h2 id="quayio_1">Quay.ioでアカウント作成</h2>
+<p>Red Hatアカウントを持っていることが前提です。</p>
+<p>(Red Hat アカウントの作成方法はUIが変更されやすいこともあり、特にガイドはありません。やり方は「Red Hatアカウント作成」などで検索してみてください。）</p>
+<p><a href="https://quay.io">https://quay.io</a> にアクセスします。</p>
+<p>右上のSIGN INをクリックしてください。</p>
+<p>注) 「Try for Free on Cloud」をクリックしないで下さい</p>
+<p>Red Hat アカウントの SSO ページが表示されたら、自身のRed Hat アカウントを入力して下さい。</p>
+<h2 id="quayio_2">Quay.io にサインインする</h2>
+<p>コンソール作業に戻ります。loginコマンドでサインインします。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>podman login quay.io
+</code></pre></div></p>
+<p>ユーザ名とパスワードを求められるので、Quay.ioで設定した情報を入力します。</p>
+<h2 id="quayio_3">Quay.io を使ってみよう</h2>
+<p>こちらのページをpodmanに置き換えて実行します。</p>
+<p>https://docs.quay.io/solution/getting-started.html</p>
+<h3 id="_4">新しいコンテナを作成する</h3>
+<p>コンテナイメージ ubuntu を実行し、新しいファイルを含むコンテナを新たに作成します。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman run ubuntu echo &quot;fun&quot; &gt; newfile
+</code></pre></div>
+コンテナはすぐに終了します。psコマンドでコンテナIDを表示し、どこかに書き留めましょう。(次で必要になります)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman ps -a
+</code></pre></div>
+<h3 id="_5">コンテナーをイメージにタグ付けする</h3>
+<p>次に、コンテナーを既知のイメージ名にタグ付けする必要があります</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit &lt;container id&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
+</code></pre></div>
+<p><code>&lt;container id&gt;</code>: 先ほど書き留めたコンテナID<br/>
+<code>&lt;username&gt;</code>: Quay.io のユーザ名<br/>
+<code>&lt;reponame&gt;</code>: 新しく作成したコンテナの名前</p>
+<h3 id="quayio_4">コンテナイメージを Quay.io にプッシュする</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman push quay.io/&lt;username&gt;/&lt;reponame&gt;
+</code></pre></div>
+<p>これで、コンテナイメージがコンテナレジストリに登録されました。</p>
+<h3 id="_6">登録されたコンテナイメージを確認しましょう</h3>
+<p>ブラウザで以下にアクセスしましょう
+https://quay.io/repository/</p>
+<p>Quay.ioにRed Hatアカウントでログインすると、自分のアカウントのリポジトリが参照できます。<br />
+そこに、今回登録したコンテナイメージがあれば、登録は成功です。</p>
+<h3 id="quayio_5">Quay.io からイメージをダウンロードする</h3>
+<p>他のユーザがpushしたイメージをpullしてrunしてみましょう！</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
       
     
   </small>
