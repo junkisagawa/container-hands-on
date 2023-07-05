@@ -1020,7 +1020,7 @@ Mountpointが確認できたので、ssh loginしている仮想マシン上で�
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
 </code></pre></div>
 <p>/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker run -d -p 8083:8080 --name node-hello4 -v ./mount:/app node-hello:v0.2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>podman run -d -p 8083:8080 --name node-hello4 -v ./mount:/app node-hello:v0.2
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
