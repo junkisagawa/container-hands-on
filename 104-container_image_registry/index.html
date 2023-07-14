@@ -804,7 +804,7 @@
 事前にpodman login docker.ioを使いdockerhubへログインしている状態のため、プライベートリポジトリーへのpushが成功します。他の管理サービスにイメージをpushするときは、リポジトリホスト名/アカウント名/リポジトリ名:タグを設定したあとに、podman login &lt;リポジトリホスト名&gt; してからpushという流れになります。</p>
 <p>以下コマンドを実行し、作成済みのdockerHubへイメージをプッシュしてください。<br />
 （ユーザー名、リポジトリ名は各自の環境に合わせて変更）</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman push docker.io/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;/node-hello:0.2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman push docker.io/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;:0.2
 </code></pre></div>
 <details>
 <summary>実行例</summary>
@@ -885,7 +885,7 @@ https://quay.io/repository/</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
       
     
   </small>

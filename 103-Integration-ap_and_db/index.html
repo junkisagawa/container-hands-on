@@ -704,7 +704,7 @@
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman run -d --name docker-nginx -p 8080:80 docker.io/nginx
 </code></pre></div>
 ここでは、以下の説明をしていました。<br/>
-<code>8080ポートでnginxというWebサーバが起動しhttpリクエストを8080ポートで待っている状態です。 ブラウザで　http://localhost:8080 にアクセスしてください。nginxのデフォルトページが表示されます。</code><br/>
+8080ポートでnginxというWebサーバが起動しhttpリクエストを8080ポートで待っている状態です。 ブラウザで　<a href="http://localhost:8080">http://localhost:8080</a> にアクセスしてください。nginxのデフォルトページが表示されます。<br/>
 正しくは、nginxはbridgeドライバであるpodmanネットワークに属し、デフォルトの80ポートでリクエストを待っている状況です。"-p"オプションはpodman ネットワークのゲートウェイの8080ポートをnginxコンテナの80ポートにバインドしていることを示しています。これにより外部から8080ポートでアクセスすると、nginxコンテナの80ポート(=nginxコンテンツ)を参照できるのです。</p>
 <p><code>podman ps</code>を見ると以下の表記になっています。"PORTS"のところで、8080ポートを80/tcpポートにバインドしていることがわかりますね。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ podman ps
@@ -729,7 +729,7 @@ podmanではユーザ定義のネットワークを作成することができ�
 ゲートウェイの8081ポートをRedmineの3000ポートにバインドしています。(redmineは3000ポートでアプリケーションを公開しています)
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman run -d --name red-redmine --network r-nw -e REDMINE_DB_POSTGRES=red-postgres -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=secret -p 8081:3000 redmine
 </code></pre></div></p>
-<p>では、ブラウザでhttp://localhost:8081 にアクセスしてみましょう。Redmineのそっけないページが表示されましたか？
+<p>では、ブラウザで<a href="http://localhost:8081">http://localhost:8081</a> にアクセスしてみましょう。Redmineのそっけないページが表示されましたか？
 1. デフォルトの管理者ユーザ名とパスワードは両方<code>admin</code>です。右上の「ログイン」からログインしてみてください。
 2. パスワードを変更してください。なんでもOKです。
 3. 適当に操作して、永続化必須な操作をしてみてください。例えば、「test1」プロジェクトを作成しましょう。
@@ -743,15 +743,17 @@ Hint) rm に"-f"をつけると、コンテナを停止することなくコン�
 </code></pre></div></li>
 </ol>
 <p>管理者パスワードは変更したものでログインできましたか？先程作成したプロジェクトは消えていませんか？これらはDBにデータが保存されているから実現できています。</p>
-<p><strong>今回は基本を体験いただくために実施いただきましたが、実運用では複数のコンテナを連携させるとき、個別にdocker runをし、連携するためにnetworkを用意し...終わったらそれぞれ stop, rmで削除しという作業は無駄が多くヒューマンエラーが起きやすいことが想像できると思います。まとめて管理するためのDockerComposeというものを利用したり、Podという単位で複数コンテナをまとめたり、Kubernetesを利用してDeloymentという単位でまとめたり...という運用が基本になっています。DockerComposeは今回取り扱いませんが、第二部でOpenShiftをつかったシステム全体の管理をご体感いただきます。今時点では、コンテナは便利そうだけど一つひとつ立ち上げたり削除するのは大変そうだなーと思っておいてください。
-...</strong></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>複数のコンテナを連携することが出来ました！今回は基本を体験いただくために実施いただきましたが、実運用では複数のコンテナを連携させるとき、個別にdocker runをし、連携するためにnetworkを用意し...終わったらそれぞれ stop, rmで削除しという作業は無駄が多くヒューマンエラーが起きやすいことが想像できると思います。まとめて管理するためのDockerComposeというものを利用したり、Podという単位で複数コンテナをまとめたり、Kubernetesを利用してDeloymentという単位でまとめたり...という運用が基本になっています。DockerComposeは今回取り扱いませんが、第二部でOpenShiftをつかったシステム全体の管理をご体感いただきます。今時点では、コンテナは便利そうだけど一つひとつ立ち上げたり削除するのは大変そうだなーと思っておいてください。</p>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
       
     
   </small>

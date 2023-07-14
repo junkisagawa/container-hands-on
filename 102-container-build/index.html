@@ -824,7 +824,7 @@
 <span class="normal"><a href="#__codelineno-1-6">6</a></span>
 <span class="normal"><a href="#__codelineno-1-7">7</a></span>
 <span class="normal"><a href="#__codelineno-1-8">8</a></span>
-<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM node:14</span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM registry.access.redhat.com/ubi8/nodejs-14</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a>
@@ -848,7 +848,7 @@
 <p>今皆さんの環境では、node-helloというイメージから作成された2つのコンテナが稼働しています。
 <img alt="2つのコンテナが稼働中" src="../images/node-hello-darkmode.png#only-dark" />
 <img alt="2つのコンテナが稼働中" src="../images/node-hello.png#only-light" /></p>
-<p>ブラウザを開き、http://localhost:8080 および http:localhost:8081 にアクセスして、index.html の内容が表示されることを確認します。同じ内容が表示されていますが、それぞれ別のコンテナ内のhttp-serverからhtmlを取得しています。</p>
+<p>ブラウザを開き、<a href="http://localhost:8080">http://localhost:8080</a> および <a href="http://localhost:8081">http:localhost:8081</a> にアクセスして、index.html の内容が表示されることを確認します。同じ内容が表示されていますが、それぞれ別のコンテナ内のhttp-serverからhtmlを取得しています。</p>
 <p><img alt="hello" src="../images/hello-world.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">podman runで使う知っておくべきオプション<p>podman runコマンドを使用する際には、いくつかの基本的なオプションを理解しておくと役立ちます。    </p>
@@ -921,7 +921,7 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat<span class="w"> </span>index.html
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>&lt;h1&gt;Hello,<span class="w"> </span>from<span class="w"> </span>Node-Hello2&lt;/h1&gt;
 </code></pre></div></p>
-<p>変更が完了したので、再度ブラウザから http://localhost:8081 にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。</p>
+<p>変更が完了したので、再度ブラウザから <a href="http://localhost:8080">http://localhost:8081</a> にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。</p>
 <p><span style="color: orange; "><strong>重要: コンテナの特徴 揮発性と不変性</strong> </span></p>
 <p>コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。</p>
 <p>「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  </p>
@@ -954,7 +954,7 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <p>新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman container run -d -p 8083:8080 --name node-hello3 node-hello:0.2
 </code></pre></div></p>
-<p>ブラウザから<a href="localhost:8083">localhost:8083</a>にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。<br />
+<p>ブラウザから<a href="http://localhost:8083">localhost:8083</a>にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。<br />
 以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。</p>
 <h3 id="2">2.  データをコンテナの外で管理し、コンテナとマウントする方法</h3>
 <p>次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。</p>
@@ -984,7 +984,7 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="o">]</span>
 </code></pre></div>
 <h3 id="_6">オプション説明</h3>
-<p>Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。</p>
+<p><strong>Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。</strong></p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>❯ crc podman-env
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>export PATH=&quot;/Users/junki/.crc/bin/oc:$PATH&quot;
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>export CONTAINER_SSHKEY=&quot;/Users/junki/.crc/machines/crc/id_ecdsa&quot;
@@ -993,8 +993,7 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a># Run this command to configure your shell:
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a># eval $(crc podman-env)
 </code></pre></div>
-別ターミナルを立ち上げ、sshログインします。(多分windowsだとssh clientがない)
-デモにするか</p>
+別ターミナルを立ち上げ、sshログインします。</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>❯ podman inspect sample
@@ -1020,7 +1019,7 @@ Mountpointが確認できたので、ssh loginしている仮想マシン上で�
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
 </code></pre></div>
 <p>/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>podman run -d -p 8083:8080 --name node-hello4 -v ./mount:/app node-hello:v0.2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>podman run -d -p 8084:8080 --name node-hello4 -v ./mount:/app node-hello:0.2
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
@@ -1030,6 +1029,7 @@ Mountpointが確認できたので、ssh loginしている仮想マシン上で�
 <!-- 参考: 12Factors その3 設定編 -->
 
 <h4 id="_7">コンテナの停止と削除</h4>
+<p><strong>ハンズオン: 全員実施</strong>  </p>
 <p>コンテナを停止、削除しましょう。コンテナは揮発性という特徴があるため、一度削除すると今行った変更は消えてしまいます。これは不便だ、と思われるかもしれませんが、イメージをもとにコンテナを立ち上げるため、再現性(= どんな環境でいつ立ち上げても同じコンテナが作られる)を担保につながっています。コンテナを直接編集しても元となるイメージは変わっていないため、一度削除して再作成した場合変更内容は保存されていないということです。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>podman container stop node-hello
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>podman container rm node-hello
@@ -1182,7 +1182,7 @@ podman run を行うときのオプションは-p 8080:8080を使用してくだ
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
       
     
   </small>

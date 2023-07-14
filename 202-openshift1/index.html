@@ -652,20 +652,34 @@
 </div>
 <h2 id="_2">コンテナイメージのデプロイ</h2>
 <p>「開発者」パースペクティブに変更し、「+追加」をクリックします。<br/>
-画面右側の「コンテナイメージ」をクリックします。</p>
-<p>「外部レジストリーからのイメージ名」には先ほどDocker Hubにpushしたイメージを指定します。<br/>
-<code>docker.io/&lt;username&gt;/&lt;reponame&gt;</code> です。</p>
-<p>ランタイムアイコンは好みですが、<code>python</code>を選択します。</p>
-<p><img alt="image2" src="../images/104-2.png" /></p>
-<p>アプリケーションは「アプリケーションの作成」を選択します。アプリケーション名は好きな名前をつけて下さい。(管理上の名前なので、なんでも構いません)<br/>
-リソースタイプは <code>Deployment</code> を選択します。あとはデフォルトのままでOKです。</p>
-<p><img alt="image3" src="../images/104-3.png" /></p>
-<p>作成済みをクリックします。</p>
-<p><img alt="image4" src="../images/104-4.png" /></p>
+画面右側の「コンテナイメージ」をクリックします。
+先程dockerhubにPushしたイメージを使用したいのですが、Privateのため認証情報をOpenShiftに伝えないとPullすることができません。まずはDockerHubの認証情報を管理するPull Secretを作成します。以下画像の通り、Create Pull Secretをクリックします。
+<img alt="image" src="../images/deploy_image1.png" /></p>
+<p>以下内容を入力し、[Create] ボタンをクリックします。<br />
+- Secret name: docker-private-repo-secret<br />
+- Authentication type: Image Registry credentials<br />
+- Registry server address: docker.io<br />
+- username: <dockerhubに登録したユーザー名><br />
+- password: <dockerhubに登録したパスワード><br />
+<img alt="image" src="../images/pullsecret.png" /></p>
+<p>認証情報が登録できたので、プライベートリポジトリーからOpenShiftへイメージを取得できるようになりました。
+「外部レジストリーからのイメージ名」には先ほどDocker Hubにpushしたイメージを指定します。<br/>
+<code>docker.io/&lt;username&gt;/&lt;reponame&gt;:&lt;tag&gt;</code> です。例えば、私の場合はariariariariariというユーザーでhandson-sagawaというレポジトリーを作成し0.2というタグをつけているので、以下のように記入します。
+<code>docker.io/ariariariariari/handson-sagawa:0.2</code></p>
+<p>ランタイムアイコンは好みですが、<code>node.js</code>を選択します。</p>
+<p><img alt="image" src="../images/deploy_image2.png" /></p>
+<p>application名は、複数のDeploymentをグルーピングするときに使います。今回はデフォルトのままにします。<br />
+nameは、今作成しているDeploymentに付与するラベル名です。こちらもデフォルトのままにします。<br />
+create a routeにチェックが入っていることを確認し、[Create]ボタンをクリックします。</p>
+<p><img alt="image2" src="../images/deploy_image3.png" /></p>
+<!-- !!! info
+    例えば、DBサーバーとWebサーバーからなるShopping_Systemを作るとします。その場合、application名をshopping_systemとし、nameにはそれぞれshopping_system_db、syopping_system_webと入力します。 -->
+
 <p>トポロジ画面にデプロイされたアプリケーションが表示されます。<br/>
-色がデプロイ状況を示しており、水色がデプロイ中、青が稼働中、赤が障害発生中、となります。</p>
+色がデプロイ状況を示しており、水色がデプロイ中、青が稼働中、赤が障害発生中、となります。
+<img alt="image" src="../images/topology1.png" /></p>
 <p>色が青になりましたら、リソースタブの一番下側にある<code>Routes</code>のHTTP URLをクリックして下さい。</p>
-<p><img alt="image5" src="../images/104-5.png" /></p>
+<p><img alt="image5" src="../images/topology_2.png" /></p>
 <p>恐ろしくシンプルですが、ブラウザで以下の表示がされたらデプロイは成功です。</p>
 <p><img alt="image5" src="../images/104-6.png" /></p>
 <p>以上でOpenShiftへのデプロイは完了です。お疲れ様でした！</p>
@@ -675,7 +689,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
       
     
   </small>
