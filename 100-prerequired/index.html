@@ -728,8 +728,11 @@
 </details>
 
 <h2 id="podman_1">Podman 動作確認</h2>
-<p>以下コマンドでPodmanが正常に動作しているかを確認します。Client情報やVersionが表示されれば正常動作しています。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span>version
+<p>環境変数を追加するため、以下コマンドを実行します。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>crc podman-env | Invoke-Expression
+</code></pre></div></p>
+<p><code>podman version</code>コマンドを実行し、Podmanが正常に動作しているかを確認します。Client情報やVersionが表示されれば正常動作しています。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman<span class="w"> </span>version
 </code></pre></div></p>
 <h3 id="hello-world">Hello World</h3>
 <p>Podmanの稼働が確認できたので、コンテナを起動してみましょう。<br />
@@ -741,21 +744,21 @@
 <ul>
 <li>以下コマンドを実行してください。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman container run --name podman-hello-world hello-world
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman container run --name podman-hello-world hello-world
 </code></pre></div>
 <p>「hello-worldというイメージからpodman-hello-worldという名前のコンテナを起動しろ！」というコマンドです。--nameオプションをつけない場合、コンテナはランダムなIDで生成されます。起動中のコンテナを操作する際にランダムなIDだと大変なので、名前をつけるようにしましょう。</p>
 <p>以下が出力されればOKです。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!... Hello Podman World ...!
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>         .--&quot;--.
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>       / -     - \
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>      / (O)   (O) \
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   ~~~| -=(,Y,)=- |
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    .---. /`  \   |~~
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a> ~/  o  o \~~~~.----. ~~
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  | =(X)= |~  / (O (O) \
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>   ~~~~~~~  ~| =(Y_)=-  |
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  ~~~~    ~~~|   U      |~~
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>!... Hello Podman World ...!
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>         .--&quot;--.
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>       / -     - \
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>      / (O)   (O) \
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>   ~~~| -=(,Y,)=- |
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    .---. /`  \   |~~
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a> ~/  o  o \~~~~.----. ~~
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  | =(X)= |~  / (O (O) \
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>   ~~~~~~~  ~| =(Y_)=-  |
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  ~~~~    ~~~|   U      |~~
 </code></pre></div>
 <a href="https://quay.io/">Quay.io</a>からhello-world（podman-hello）という名前のコンテナイメージを取得(pull)、自分のpodman engine環境で実行（run）した結果です。</p>
 <p>podmanのもぐらくん達を素敵なアスキーアートで表現していますね。<br />
