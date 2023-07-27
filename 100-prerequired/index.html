@@ -728,12 +728,14 @@
 </details>
 
 <h2 id="podman_1">Podman 動作確認</h2>
-<p>環境変数を追加するため、以下コマンドを実行します。
+<p>環境変数を追加するため、以下コマンドを実行します。<br />
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>crc podman-env | Invoke-Expression
 </code></pre></div></p>
 <p><code>podman version</code>コマンドを実行し、Podmanが正常に動作しているかを確認します。Client情報やVersionが表示されれば正常動作しています。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman<span class="w"> </span>version
 </code></pre></div></p>
+<p>確認コマンドがエラーになってしまった方は、以下手順を実行してください。  </p>
+<p><strong>ハンズオン事前準備時にに作成した、[C:\Users\&lt;ユーザ名&gt;.ssh\known_hosts]を削除する。</strong></p>
 <h3 id="hello-world">Hello World</h3>
 <p>Podmanの稼働が確認できたので、コンテナを起動してみましょう。<br />
 以下が動作イメージです。</p>
@@ -762,7 +764,7 @@
 </code></pre></div>
 <a href="https://quay.io/">Quay.io</a>からhello-world（podman-hello）という名前のコンテナイメージを取得(pull)、自分のpodman engine環境で実行（run）した結果です。</p>
 <p>podmanのもぐらくん達を素敵なアスキーアートで表現していますね。<br />
-もぐらに見えますが、実はセルキーというアザラシの妖精らしいです。ノルウェーの民間伝承で登場する神話上の動物で、陸にあがるときは「あざらしの皮」を脱いで人間人間に化けるのだとか...。</p>
+もぐらに見えますが、実はセルキーというアザラシの妖精らしいです。ノルウェーの民間伝承で登場する神話上の動物で、陸にあがるときは「あざらしの皮」を脱いで人間に化けるのだとか...。</p>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>第一部コンテナを進めていく準備が完了しました！podmanの基本コマンドはdockerコマンドと共通です。ハンズオンの中で色々なpodman コマンドを実行していきますが、ご興味がある方は<a href="/container-hands-on/option1-podman/">参考: Podmanの基本を学ぶ</a> を実施してみてください</p>
