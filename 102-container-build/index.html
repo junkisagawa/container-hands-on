@@ -431,32 +431,11 @@
     コンテナ内に入り、直接ファイルを編集する
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 変更を行ったコンテナからイメージを作成する
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2.  データをコンテナの外で管理し、コンテナとマウントする方法
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    オプション説明
-  </a>
-  
-    <nav class="md-nav" aria-label="オプション説明">
+    <nav class="md-nav" aria-label="コンテナ内に入り、直接ファイルを編集する">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     コンテナの停止と削除
   </a>
   
@@ -712,32 +691,11 @@
     コンテナ内に入り、直接ファイルを編集する
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 変更を行ったコンテナからイメージを作成する
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2.  データをコンテナの外で管理し、コンテナとマウントする方法
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    オプション説明
-  </a>
-  
-    <nav class="md-nav" aria-label="オプション説明">
+    <nav class="md-nav" aria-label="コンテナ内に入り、直接ファイルを編集する">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     コンテナの停止と削除
   </a>
   
@@ -806,46 +764,45 @@
 </ol>
 <h3 id="_3">コンテナイメージに必要なファイルを用意する</h3>
 <p>まずは作業用ディレクトリを用意し、index.htmlとContainerfileを作成します。
-任意のディレクトリ上で、以下のコマンドを実行してください。touchコマンドはファイル作成コマンドなので、メモ帳などで代替してください。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir node-hello
+任意のディレクトリ上で、以下のコマンドを実行してください。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir node-hello
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd node-hello
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>echo &quot;&lt;h1&gt;Hello, World!&lt;/h1&gt;&quot; &gt; ./index.html
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Containerfileというファイル名でファイル作成
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>windowsだと type null &gt; COntainerfile など
-</code></pre></div></p>
-<p>任意のテキストエディタを使用して、Containerfileを以下内容に更新します。<br />
+<p>任意のテキストエディタを使用して、Containerfileというファイルを作成します。保存場所は、先程作成したnode-helloディレクトリです。<br />
 このContainerfileでは、index.html ファイルをコンテナにコピーし、ポート8080を公開してNode.jsのHTTPサーバーを実行するように定義しています。コンテナが立ち上がるときに<code>npx http-server -p 8080</code>が実行されます。</p>
 <!-- node.jsを触ったことがない方は細かい部分がきになると思うので、ご興味のある方は参考をご覧ください。 -->
 
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Containerfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span>
-<span class="normal"><a href="#__codelineno-2-8">8</a></span>
-<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM registry.access.redhat.com/ubi8/nodejs-14</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="l l-Scalar l-Scalar-Plain">COPY index.html .</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="l l-Scalar l-Scalar-Plain">EXPOSE 8080</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;npx&quot;, &quot;http-server&quot;, &quot;-p&quot;, &quot;8080&quot;]</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Containerfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="l l-Scalar l-Scalar-Plain">FROM registry.access.redhat.com/ubi8/nodejs-14</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="l l-Scalar l-Scalar-Plain">COPY index.html .</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="l l-Scalar l-Scalar-Plain">EXPOSE 8080</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="l l-Scalar l-Scalar-Plain">USER 1001</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;npx&quot;, &quot;http-server&quot;, &quot;-p&quot;, &quot;8080&quot;]</span>
 </code></pre></div></td></tr></table></div>
 <p>以下のコマンドを実行し、ビルドをしてください。ビルドが完了したら、podman image ls コマンドを使用して設定した名前とタグがきちんと設定されているかを確認してみましょう。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman image build -t node-hello:0.1 .
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image build -t node-hello:0.1 .
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman image ls
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman image ls
 </code></pre></div></p>
 <h3 id="_4">コンテナイメージの実行</h3>
 <p>podman image lsで表示されたイメージリストの中にnode-helloが存在することを確認できたので、実際にコンテナを稼働させていきます。今回は、同じ内容のコンテナを2つ立ち上げます。<br />
 次のコマンドを実行しましょう。-d、-pというオプションはこのあと説明します。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman container run -d -p 8080:8080 --name node-hello node-hello:0.1
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>podman container run -d -p 8081:8080 --name node-hello2 node-hello:0.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman container run -d -p 8080:8080 --name node-hello node-hello:0.1
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>podman container run -d -p 8081:8080 --name node-hello2 node-hello:0.1
 </code></pre></div>
 <p>今皆さんの環境では、node-helloというイメージから作成された2つのコンテナが稼働しています。
 <img alt="2つのコンテナが稼働中" src="../images/node-hello-darkmode.png#only-dark" />
@@ -901,140 +858,185 @@
 <h3 id="_5">コンテナ内に入り、直接ファイルを編集する</h3>
 <p>今、皆様の環境ではnode-hello、node-hello2という2つのコンテナが動いています。<br />
 node-hello2 コンテナに入り index.html ファイルを直接変更してみましょう。コンテナに入るために、以下コマンドを実行します。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>node-hello2<span class="w"> </span>/bin/bash
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>node-hello2<span class="w"> </span>/bin/bash
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">参考 WORKDIR<p>カレントディレクトが /app になっていることにお気づきでしょうか？これは、Containerfileに WORKDIR /app と指定しているためです。/appにindex.htmlもいるので、lsコマンドで確認してみてください。</p>
 </p>
 </div>
-<p>コンテナ内のシェルに入れました！それでは、index.htmlを編集するために、コンテナ内にテキストエディタであるVIMをインストールします。以下コマンドを実行してください。</p>
-<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>apt-get<span class="w"> </span>update
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>apt-get<span class="w"> </span>install<span class="w"> </span>vim
+<!-- コンテナ内のシェルに入れました！それでは、index.htmlを編集するために、コンテナ内にテキストエディタであるVIMをインストールします。以下コマンドを実行してください。
+
+<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apt-get<span class="w"> </span>update
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>apt-get<span class="w"> </span>install<span class="w"> </span>vim
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sb">```</span><span class="w"> </span>--&gt;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>それでは、index.htmlを編集していきます。<span class="w">  </span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>以下コマンドを実行すると、コンテナ内にあるindex.htmlをvimで開けます。
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="sb">```</span>bash<span class="w"> </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;node-hello2コンテナ内のbash&quot;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>vi<span class="w"> </span>index.html
 </code></pre></div>
-<p>これで、viコマンドを使いindex.htmlを編集していきます。<br />
-以下コマンドを実行すると、コンテナ内にあるindex.htmlをvimで開けます。</p>
-<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>vi<span class="w"> </span>index.html
-</code></pre></div>
-<p>以下内容に変更しましょう。vimの操作については、ハンズオンのテーマとは外れてしまうため、説明は割愛します。
-vimでファイルを開いたあと、i を押して編集モードにうつり、必要な変更を実施したあと esc を押し編集モードから抜け、 :wq を入力すると 保存して閉じる です。</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">index.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, from Node-hello2<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+以下内容に変更しましょう。vimの操作については、ハンズオンのテーマとは外れてしまうため、説明は割愛します。
+vimでファイルを開いたあと、i を押して編集モードにうつり、必要な変更を実施したあと esc を押し編集モードから抜け、 :wq を入力すると 保存して閉じる です。
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">index.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, from Node-hello2<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>変更が保存できたかどうか、念のため確認しておきましょう。
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cat<span class="w"> </span>index.html
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>&lt;h1&gt;Hello,<span class="w"> </span>from<span class="w"> </span>Node-Hello2&lt;/h1&gt;
-</code></pre></div></p>
-<p>変更が完了したので、再度ブラウザから <a href="http://localhost:8081">http://localhost:8081</a> にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。</p>
-<p><span style="color: orange; "><strong>重要: コンテナの特徴 揮発性と不変性</strong> </span></p>
-<p>コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。</p>
-<p>「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  </p>
-<ol>
-<li>変更を行った稼働中のコンテナから、新しいイメージを作成する</li>
-<li>データはコンテナの外で管理し、コンテナとマウントする</li>
-</ol>
-<p>それでは、node-helloコンテナを利用して実施していきましょう。  </p>
-<h3 id="1">1. 変更を行ったコンテナからイメージを作成する</h3>
-<p>これ方は、変更を行ったコンテナから新たなイメージを作成してしまう方法です。<code>podman container commit</code>を使います。
-コンテナを再度起動するときは、新たに作成したイメージを使用することで変更後のコンテナを立ち上げることが出来ます。<br />
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman<span class="w"> </span>container<span class="w"> </span>commit<span class="w"> </span>コンテナ名<span class="o">(</span>or<span class="w"> </span>ID<span class="o">)</span><span class="w"> </span>作成するイメージ名:タグ
+
+変更が保存できたかどうか、念のため確認しておきましょう。
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>index.html
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>&lt;h1&gt;Hello,<span class="w"> </span>from<span class="w"> </span>Node-Hello2&lt;/h1&gt;
 </code></pre></div>
-<img alt="commit" src="../images/podman-commit-darkmode.png#only-dark" />
-<img alt="commit" src="../images/podman-commit.png#only-light" /></p>
-<p>それでは、先程変更を行ったnode-hello2コンテナを新しいイメージとして保存する方法を試していきましょう。node-hello2は、イメージ名node-hello:0.1をもとに作成され、以下2つの変更が入っています。<br />
+
+変更が完了したので、再度ブラウザから [http://localhost:8081](http://localhost:8081) にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。
+
+<span style="color: orange; ">**重要: コンテナの特徴 揮発性と不変性** </span>
+
+コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。
+
+「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  
+
+1. 変更を行った稼働中のコンテナから、新しいイメージを作成する
+2. データはコンテナの外で管理し、コンテナとマウントする
+
+
+それでは、node-helloコンテナを利用して実施していきましょう。  
+
+
+
+
+### 1. 変更を行ったコンテナからイメージを作成する
+
+これ方は、変更を行ったコンテナから新たなイメージを作成してしまう方法です。`podman container commit`を使います。
+コンテナを再度起動するときは、新たに作成したイメージを使用することで変更後のコンテナを立ち上げることが出来ます。  
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman<span class="w"> </span>container<span class="w"> </span>commit<span class="w"> </span>コンテナ名<span class="o">(</span>or<span class="w"> </span>ID<span class="o">)</span><span class="w"> </span>作成するイメージ名:タグ
+</code></pre></div>
+![commit](./images/podman-commit-darkmode.png#only-dark)
+![commit](./images/podman-commit.png#only-light)
+
+
+それでは、先程変更を行ったnode-hello2コンテナを新しいイメージとして保存する方法を試していきましょう。node-hello2は、イメージ名node-hello:0.1をもとに作成され、以下2つの変更が入っています。  
 1. テキストエディタとして、vimをインストールした
-2. index.htmlの中身を変更した</p>
-<p>今回は、変更後のイメージをnode-hello:0.2にします。以下コマンドを実行してください。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>podman commit node-hello2 node-hello:0.2
-</code></pre></div></p>
-<p>コミットIDとしてランダムな文字列が表示されれば成功です。実際にイメージが作成されているのか、podman image lsコマンドを実行して確認してください。
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>REPOSITORY<span class="w">                         </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.2<span class="w">         </span>65999f65d1a3<span class="w">  </span><span class="m">7</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.1<span class="w">         </span>cf08a56e2c43<span class="w">  </span><span class="m">6</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">884</span><span class="w"> </span>MB
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>localhost/first-hw<span class="w">                 </span><span class="m">1</span>.0<span class="w">         </span>00757cb8db41<span class="w">  </span><span class="m">7</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">521</span><span class="w"> </span>MB
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>registry.fedoraproject.org/fedora<span class="w">  </span>latest<span class="w">      </span>4ad9a58f652f<span class="w">  </span><span class="m">10</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">    </span><span class="m">280</span><span class="w"> </span>MB
-</code></pre></div></p>
-<p>新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>podman container run -d -p 8083:8080 --name node-hello3 node-hello:0.2
-</code></pre></div></p>
-<p>ブラウザから<a href="http://localhost:8083">localhost:8083</a>にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。<br />
-以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。</p>
-<h3 id="2">2.  データをコンテナの外で管理し、コンテナとマウントする方法</h3>
-<p>次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。</p>
-<p><img alt="commit" src="../images/container-mount-darkmode.png#only-dark" />
-<img alt="commit" src="../images/container-mount.png#only-light" /></p>
-<p>上図のマウント方式を、バインドマウントと呼ばれています。ホスト上のファイルを直接コンテナからマウントする方法で、ローカル開発時には非常に便利です。ただ、今回のハンズオン環境ではWindows上で動いている仮想マシンの上でPodmanランタイムが動き、その中でコンテナが動いています。バインドマウントをするためには、ホストと仮想マシン =&gt; 仮想マシン仮想とコンテナのマウントとなり、ハンズオンで各設定を実施するのが難しいため割愛します。　　</p>
-<p>次に、こちらの図を御覧ください。これはボリュームマウントと呼ばれ、Podmanがホストとマウントされた仮想ボリュームを管理する方法です。実際の現場では、こちらのマウント方式がよく使われている印象があります。</p>
-<p>ボリュームを作成するためのコマンドは非常にシンプル。<code>podman volume create volume名</code> です。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>podman volume create hello-volume
+2. index.htmlの中身を変更した
+
+今回は、変更後のイメージをnode-hello:0.2にします。以下コマンドを実行してください。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit node-hello2 node-hello:0.2
 </code></pre></div>
-これで、podmanエンジンが管理し、実態はpodmanホスト（Windows上の仮想マシン）にあるボリュームが作成されました。マウントポイントを各クラウドが提供しているサービスにすることも可能です。</p>
-<p>作成されたvolumeの情報を確認するためには、<code>podman inspect</code>コマンドを使います。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$<span class="w"> </span>podman<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>hello-volume
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">[</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">     </span><span class="o">{</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">          </span><span class="s2">&quot;Name&quot;</span>:<span class="w"> </span><span class="s2">&quot;hello-volume&quot;</span>,
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">          </span><span class="s2">&quot;Driver&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">          </span><span class="s2">&quot;Mountpoint&quot;</span>:<span class="w"> </span><span class="s2">&quot;/var/home/core/.local/share/containers/storage/volumes/hello-volume/_data&quot;</span>,
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">          </span><span class="s2">&quot;CreatedAt&quot;</span>:<span class="w"> </span><span class="s2">&quot;2023-07-02T06:21:37.728193788Z&quot;</span>,
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">          </span><span class="s2">&quot;Labels&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">          </span><span class="s2">&quot;Scope&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">          </span><span class="s2">&quot;Options&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">          </span><span class="s2">&quot;MountCount&quot;</span>:<span class="w"> </span><span class="m">0</span>,
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">          </span><span class="s2">&quot;NeedsCopyUp&quot;</span>:<span class="w"> </span>true,
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">          </span><span class="s2">&quot;NeedsChown&quot;</span>:<span class="w"> </span><span class="nb">true</span>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">     </span><span class="o">}</span>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="o">]</span>
+
+コミットIDとしてランダムな文字列が表示されれば成功です。実際にイメージが作成されているのか、podman image lsコマンドを実行して確認してください。
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>REPOSITORY<span class="w">                         </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.2<span class="w">         </span>65999f65d1a3<span class="w">  </span><span class="m">7</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.1<span class="w">         </span>cf08a56e2c43<span class="w">  </span><span class="m">6</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>localhost/first-hw<span class="w">                 </span><span class="m">1</span>.0<span class="w">         </span>00757cb8db41<span class="w">  </span><span class="m">7</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">521</span><span class="w"> </span>MB
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>registry.fedoraproject.org/fedora<span class="w">  </span>latest<span class="w">      </span>4ad9a58f652f<span class="w">  </span><span class="m">10</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">    </span><span class="m">280</span><span class="w"> </span>MB
 </code></pre></div>
-<h3 id="_6">オプション説明</h3>
-<p><strong>Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。</strong></p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>❯ crc podman-env
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>export PATH=&quot;/Users/junki/.crc/bin/oc:$PATH&quot;
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>export CONTAINER_SSHKEY=&quot;/Users/junki/.crc/machines/crc/id_ecdsa&quot;
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>export CONTAINER_HOST=&quot;ssh://core@127.0.0.1:2222/run/user/1000/podman/podman.sock&quot;
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>export DOCKER_HOST=&quot;unix:///Users/junki/.crc/machines/crc/docker.sock&quot;
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a># Run this command to configure your shell:
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a># eval $(crc podman-env)
+
+新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>podman container run -d -p 8083:8080 --name node-hello3 node-hello:0.2
 </code></pre></div>
-別ターミナルを立ち上げ、sshログインします。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
+
+ブラウザから[localhost:8083](http://localhost:8083)にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。  
+以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。
+
+### 2.  データをコンテナの外で管理し、コンテナとマウントする方法
+次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。
+
+![commit](./images/container-mount-darkmode.png#only-dark)
+![commit](./images/container-mount.png#only-light)
+
+
+上図のマウント方式を、バインドマウントと呼ばれています。ホスト上のファイルを直接コンテナからマウントする方法で、ローカル開発時には非常に便利です。ただ、今回のハンズオン環境ではWindows上で動いている仮想マシンの上でPodmanランタイムが動き、その中でコンテナが動いています。バインドマウントをするためには、ホストと仮想マシン => 仮想マシン仮想とコンテナのマウントとなり、ハンズオンで各設定を実施するのが難しいため割愛します。　　
+
+次に、こちらの図を御覧ください。これはボリュームマウントと呼ばれ、Podmanがホストとマウントされた仮想ボリュームを管理する方法です。実際の現場では、こちらのマウント方式がよく使われている印象があります。
+
+
+
+
+ボリュームを作成するためのコマンドは非常にシンプル。`podman volume create volume名` です。
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman volume create hello-volume
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>❯ podman inspect sample
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>     {
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>          &quot;Name&quot;: &quot;sample&quot;,
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>          &quot;Driver&quot;: &quot;local&quot;,
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>          &quot;Mountpoint&quot;: &quot;/var/home/core/.local/share/containers/storage/volumes/sample/_data&quot;,
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>          &quot;CreatedAt&quot;: &quot;2023-07-01T16:05:32.372338467Z&quot;,
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>          &quot;Labels&quot;: {},
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>          &quot;Scope&quot;: &quot;local&quot;,
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>          &quot;Options&quot;: {},
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>          &quot;MountCount&quot;: 0,
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>          &quot;NeedsCopyUp&quot;: true,
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>          &quot;NeedsChown&quot;: true
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>     }
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>]
+これで、podmanエンジンが管理し、実態はpodmanホスト（Windows上の仮想マシン）にあるボリュームが作成されました。マウントポイントを各クラウドが提供しているサービスにすることも可能です。
+
+作成されたvolumeの情報を確認するためには、`podman inspect`コマンドを使います。
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>podman<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>hello-volume
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">     </span><span class="o">{</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">          </span><span class="s2">&quot;Name&quot;</span>:<span class="w"> </span><span class="s2">&quot;hello-volume&quot;</span>,
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">          </span><span class="s2">&quot;Driver&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">          </span><span class="s2">&quot;Mountpoint&quot;</span>:<span class="w"> </span><span class="s2">&quot;/var/home/core/.local/share/containers/storage/volumes/hello-volume/_data&quot;</span>,
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">          </span><span class="s2">&quot;CreatedAt&quot;</span>:<span class="w"> </span><span class="s2">&quot;2023-07-02T06:21:37.728193788Z&quot;</span>,
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">          </span><span class="s2">&quot;Labels&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">          </span><span class="s2">&quot;Scope&quot;</span>:<span class="w"> </span><span class="s2">&quot;local&quot;</span>,
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">          </span><span class="s2">&quot;Options&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">          </span><span class="s2">&quot;MountCount&quot;</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">          </span><span class="s2">&quot;NeedsCopyUp&quot;</span>:<span class="w"> </span>true,
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">          </span><span class="s2">&quot;NeedsChown&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">     </span><span class="o">}</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="o">]</span>
 </code></pre></div>
-Mountpointが確認できたので、ssh loginしている仮想マシン上で確認してみます。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>
+### オプション説明
+
+**Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。**
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>❯ crc podman-env
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>export PATH=&quot;/Users/junki/.crc/bin/oc:$PATH&quot;
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>export CONTAINER_SSHKEY=&quot;/Users/junki/.crc/machines/crc/id_ecdsa&quot;
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>export CONTAINER_HOST=&quot;ssh://core@127.0.0.1:2222/run/user/1000/podman/podman.sock&quot;
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>export DOCKER_HOST=&quot;unix:///Users/junki/.crc/machines/crc/docker.sock&quot;
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a># Run this command to configure your shell:
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a># eval $(crc podman-env)
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mkdir ./mount
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
+別ターミナルを立ち上げ、sshログインします。
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
 </code></pre></div>
-<p>/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>podman run -d -p 8084:8080 --name node-hello4 -v ./mount:/app node-hello:0.2
-</code></pre></div></p>
-<div class="admonition info">
-<p class="admonition-title">Info<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
-アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理して起動時に読み込むようにしましょう。タグで管理することで、最新版のコンテナを起動したときにエラーが起きたら、すぐに一つ前のバージョンに切り替え戻すことができます。コンテナ・オーケストレーションツールを使うと、無停止でのバージョンアップ/バージョンダウンが可能になるのですが、それは2章で体験いただきます。。お楽しみに。</p>
-</p>
-</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>❯ podman inspect sample
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>[
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>     {
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>          &quot;Name&quot;: &quot;sample&quot;,
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>          &quot;Driver&quot;: &quot;local&quot;,
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>          &quot;Mountpoint&quot;: &quot;/var/home/core/.local/share/containers/storage/volumes/sample/_data&quot;,
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>          &quot;CreatedAt&quot;: &quot;2023-07-01T16:05:32.372338467Z&quot;,
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>          &quot;Labels&quot;: {},
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>          &quot;Scope&quot;: &quot;local&quot;,
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>          &quot;Options&quot;: {},
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>          &quot;MountCount&quot;: 0,
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>          &quot;NeedsCopyUp&quot;: true,
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>          &quot;NeedsChown&quot;: true
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>     }
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>]
+</code></pre></div>
+Mountpointが確認できたので、ssh loginしている仮想マシン上で確認してみます。
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>
+</code></pre></div>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mkdir ./mount
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
+</code></pre></div>
+
+/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>podman run -d -p 8084:8080 --name node-hello4 -v ./mount:/app node-hello:0.2
+</code></pre></div>
+
+
+!!! INFO
+        一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
+        アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理して起動時に読み込むようにしましょう。タグで管理することで、最新版のコンテナを起動したときにエラーが起きたら、すぐに一つ前のバージョンに切り替え戻すことができます。コンテナ・オーケストレーションツールを使うと、無停止でのバージョンアップ/バージョンダウンが可能になるのですが、それは2章で体験いただきます。。お楽しみに。
+
+
 <!-- 参考: 12Factors その3 設定編 -->
 
-<h4 id="_7">コンテナの停止と削除</h4>
+<h4 id="_6">コンテナの停止と削除</h4>
 <p><strong>ハンズオン: 全員実施</strong>  </p>
 <p>コンテナを停止、削除しましょう。コンテナは揮発性という特徴があるため、一度削除すると今行った変更は消えてしまいます。これは不便だ、と思われるかもしれませんが、イメージをもとにコンテナを立ち上げるため、再現性(= どんな環境でいつ立ち上げても同じコンテナが作られる)を担保につながっています。コンテナを直接編集しても元となるイメージは変わっていないため、一度削除して再作成した場合変更内容は保存されていないということです。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>podman container stop node-hello
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>podman container rm node-hello
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>podman container stop node-hello
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>podman container rm node-hello
 </code></pre></div>
 <p>以上が、開発したアプリケーションをコンテナで稼働させる基本的な流れです。次のチャプターでは、データベースコンテナとアプリケーションコンテナの2つを動かし、コンテナ同士を連携させる方法を学んでいきます。</p>
 <hr />
@@ -1060,120 +1062,120 @@ Mountpointが確認できたので、ssh loginしている仮想マシン上で�
 3. myappという名前のイメージを作成する
 4. 作成したmyappをもとにコンテナを実行する
 5. ブラウザからアクセスして稼働確認する</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>mkdir<span class="w"> </span>myapp
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">cd</span><span class="w"> </span>myapp
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>src/main/java/com/example
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>mkdir<span class="w"> </span>myapp
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nb">cd</span><span class="w"> </span>myapp
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>src/main/java/com/example
 </code></pre></div>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pom.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-25-10">10</a></span>
-<span class="normal"><a href="#__codelineno-25-11">11</a></span>
-<span class="normal"><a href="#__codelineno-25-12">12</a></span>
-<span class="normal"><a href="#__codelineno-25-13">13</a></span>
-<span class="normal"><a href="#__codelineno-25-14">14</a></span>
-<span class="normal"><a href="#__codelineno-25-15">15</a></span>
-<span class="normal"><a href="#__codelineno-25-16">16</a></span>
-<span class="normal"><a href="#__codelineno-25-17">17</a></span>
-<span class="normal"><a href="#__codelineno-25-18">18</a></span>
-<span class="normal"><a href="#__codelineno-25-19">19</a></span>
-<span class="normal"><a href="#__codelineno-25-20">20</a></span>
-<span class="normal"><a href="#__codelineno-25-21">21</a></span>
-<span class="normal"><a href="#__codelineno-25-22">22</a></span>
-<span class="normal"><a href="#__codelineno-25-23">23</a></span>
-<span class="normal"><a href="#__codelineno-25-24">24</a></span>
-<span class="normal"><a href="#__codelineno-25-25">25</a></span>
-<span class="normal"><a href="#__codelineno-25-26">26</a></span>
-<span class="normal"><a href="#__codelineno-25-27">27</a></span>
-<span class="normal"><a href="#__codelineno-25-28">28</a></span>
-<span class="normal"><a href="#__codelineno-25-29">29</a></span>
-<span class="normal"><a href="#__codelineno-25-30">30</a></span>
-<span class="normal"><a href="#__codelineno-25-31">31</a></span>
-<span class="normal"><a href="#__codelineno-25-32">32</a></span>
-<span class="normal"><a href="#__codelineno-25-33">33</a></span>
-<span class="normal"><a href="#__codelineno-25-34">34</a></span>
-<span class="normal"><a href="#__codelineno-25-35">35</a></span>
-<span class="normal"><a href="#__codelineno-25-36">36</a></span>
-<span class="normal"><a href="#__codelineno-25-37">37</a></span>
-<span class="normal"><a href="#__codelineno-25-38">38</a></span>
-<span class="normal"><a href="#__codelineno-25-39">39</a></span>
-<span class="normal"><a href="#__codelineno-25-40">40</a></span>
-<span class="normal"><a href="#__codelineno-25-41">41</a></span>
-<span class="normal"><a href="#__codelineno-25-42">42</a></span>
-<span class="normal"><a href="#__codelineno-25-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="w"> </span>
-<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
-<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4"></a>
-<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6"></a>
-<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>myapp<span class="nt">&lt;/artifactId&gt;</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10"></a>
-<a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
-<a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
-<a id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
-<a id="__codelineno-25-15" name="__codelineno-25-15"></a>
-<a id="__codelineno-25-16" name="__codelineno-25-16"></a><span class="w">    </span><span class="nt">&lt;build&gt;</span>
-<a id="__codelineno-25-17" name="__codelineno-25-17"></a><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
-<a id="__codelineno-25-18" name="__codelineno-25-18"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
-<a id="__codelineno-25-19" name="__codelineno-25-19"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-<a id="__codelineno-25-20" name="__codelineno-25-20"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<a id="__codelineno-25-21" name="__codelineno-25-21"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
-<a id="__codelineno-25-22" name="__codelineno-25-22"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
-<a id="__codelineno-25-23" name="__codelineno-25-23"></a><span class="w">                    </span><span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
-<a id="__codelineno-25-24" name="__codelineno-25-24"></a><span class="w">                    </span><span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
-<a id="__codelineno-25-25" name="__codelineno-25-25"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
-<a id="__codelineno-25-26" name="__codelineno-25-26"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
-<a id="__codelineno-25-27" name="__codelineno-25-27"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
-<a id="__codelineno-25-28" name="__codelineno-25-28"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-<a id="__codelineno-25-29" name="__codelineno-25-29"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
-<a id="__codelineno-25-30" name="__codelineno-25-30"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span>
-<a id="__codelineno-25-31" name="__codelineno-25-31"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
-<a id="__codelineno-25-32" name="__codelineno-25-32"></a><span class="w">                    </span><span class="nt">&lt;archive&gt;</span>
-<a id="__codelineno-25-33" name="__codelineno-25-33"></a><span class="w">                        </span><span class="nt">&lt;manifest&gt;</span>
-<a id="__codelineno-25-34" name="__codelineno-25-34"></a><span class="w">                            </span><span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
-<a id="__codelineno-25-35" name="__codelineno-25-35"></a><span class="w">                            </span><span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
-<a id="__codelineno-25-36" name="__codelineno-25-36"></a><span class="w">                            </span><span class="nt">&lt;mainClass&gt;</span>com.example.HelloWorld<span class="nt">&lt;/mainClass&gt;</span>
-<a id="__codelineno-25-37" name="__codelineno-25-37"></a><span class="w">                        </span><span class="nt">&lt;/manifest&gt;</span>
-<a id="__codelineno-25-38" name="__codelineno-25-38"></a><span class="w">                    </span><span class="nt">&lt;/archive&gt;</span>
-<a id="__codelineno-25-39" name="__codelineno-25-39"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
-<a id="__codelineno-25-40" name="__codelineno-25-40"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
-<a id="__codelineno-25-41" name="__codelineno-25-41"></a><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
-<a id="__codelineno-25-42" name="__codelineno-25-42"></a><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
-<a id="__codelineno-25-43" name="__codelineno-25-43"></a><span class="nt">&lt;/project&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pom.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span>
+<span class="normal"><a href="#__codelineno-23-14">14</a></span>
+<span class="normal"><a href="#__codelineno-23-15">15</a></span>
+<span class="normal"><a href="#__codelineno-23-16">16</a></span>
+<span class="normal"><a href="#__codelineno-23-17">17</a></span>
+<span class="normal"><a href="#__codelineno-23-18">18</a></span>
+<span class="normal"><a href="#__codelineno-23-19">19</a></span>
+<span class="normal"><a href="#__codelineno-23-20">20</a></span>
+<span class="normal"><a href="#__codelineno-23-21">21</a></span>
+<span class="normal"><a href="#__codelineno-23-22">22</a></span>
+<span class="normal"><a href="#__codelineno-23-23">23</a></span>
+<span class="normal"><a href="#__codelineno-23-24">24</a></span>
+<span class="normal"><a href="#__codelineno-23-25">25</a></span>
+<span class="normal"><a href="#__codelineno-23-26">26</a></span>
+<span class="normal"><a href="#__codelineno-23-27">27</a></span>
+<span class="normal"><a href="#__codelineno-23-28">28</a></span>
+<span class="normal"><a href="#__codelineno-23-29">29</a></span>
+<span class="normal"><a href="#__codelineno-23-30">30</a></span>
+<span class="normal"><a href="#__codelineno-23-31">31</a></span>
+<span class="normal"><a href="#__codelineno-23-32">32</a></span>
+<span class="normal"><a href="#__codelineno-23-33">33</a></span>
+<span class="normal"><a href="#__codelineno-23-34">34</a></span>
+<span class="normal"><a href="#__codelineno-23-35">35</a></span>
+<span class="normal"><a href="#__codelineno-23-36">36</a></span>
+<span class="normal"><a href="#__codelineno-23-37">37</a></span>
+<span class="normal"><a href="#__codelineno-23-38">38</a></span>
+<span class="normal"><a href="#__codelineno-23-39">39</a></span>
+<span class="normal"><a href="#__codelineno-23-40">40</a></span>
+<span class="normal"><a href="#__codelineno-23-41">41</a></span>
+<span class="normal"><a href="#__codelineno-23-42">42</a></span>
+<span class="normal"><a href="#__codelineno-23-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="w"> </span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>myapp<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10"></a>
+<a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15"></a>
+<a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17"></a><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-23-23" name="__codelineno-23-23"></a><span class="w">                    </span><span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24"></a><span class="w">                    </span><span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+<a id="__codelineno-23-25" name="__codelineno-23-25"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-23-26" name="__codelineno-23-26"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-23-27" name="__codelineno-23-27"></a><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<a id="__codelineno-23-28" name="__codelineno-23-28"></a><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-23-29" name="__codelineno-23-29"></a><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-23-30" name="__codelineno-23-30"></a><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-23-31" name="__codelineno-23-31"></a><span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<a id="__codelineno-23-32" name="__codelineno-23-32"></a><span class="w">                    </span><span class="nt">&lt;archive&gt;</span>
+<a id="__codelineno-23-33" name="__codelineno-23-33"></a><span class="w">                        </span><span class="nt">&lt;manifest&gt;</span>
+<a id="__codelineno-23-34" name="__codelineno-23-34"></a><span class="w">                            </span><span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+<a id="__codelineno-23-35" name="__codelineno-23-35"></a><span class="w">                            </span><span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+<a id="__codelineno-23-36" name="__codelineno-23-36"></a><span class="w">                            </span><span class="nt">&lt;mainClass&gt;</span>com.example.HelloWorld<span class="nt">&lt;/mainClass&gt;</span>
+<a id="__codelineno-23-37" name="__codelineno-23-37"></a><span class="w">                        </span><span class="nt">&lt;/manifest&gt;</span>
+<a id="__codelineno-23-38" name="__codelineno-23-38"></a><span class="w">                    </span><span class="nt">&lt;/archive&gt;</span>
+<a id="__codelineno-23-39" name="__codelineno-23-39"></a><span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<a id="__codelineno-23-40" name="__codelineno-23-40"></a><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<a id="__codelineno-23-41" name="__codelineno-23-41"></a><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<a id="__codelineno-23-42" name="__codelineno-23-42"></a><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<a id="__codelineno-23-43" name="__codelineno-23-43"></a><span class="nt">&lt;/project&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>マルチステージビルドを行うコンテナファイルは以下のようになります。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># ビルドステージ</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="l l-Scalar l-Scalar-Plain">FROM maven:3.8.3-openjdk-11 AS build</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドに必要な依存関係をコピー</span>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="l l-Scalar l-Scalar-Plain">COPY pom.xml .</span>
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="l l-Scalar l-Scalar-Plain">COPY src ./src</span>
-<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
-<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="l l-Scalar l-Scalar-Plain"># アプリケーションのビルド</span>
-<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="l l-Scalar l-Scalar-Plain">RUN mvn clean package</span>
-<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
-<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="l l-Scalar l-Scalar-Plain"># プロダクションステージ</span>
-<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="l l-Scalar l-Scalar-Plain">FROM adoptopenjdk:11-jre-hotspot AS production</span>
-<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
-<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
-<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>
-<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドステージからビルド成果物をコピー</span>
-<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="l l-Scalar l-Scalar-Plain">COPY --from=build /app/target/myapp-1.0.0.jar .</span>
-<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>
-<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="l l-Scalar l-Scalar-Plain"># コンテナの実行時にアプリケーションを起動</span>
-<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="l l-Scalar l-Scalar-Plain">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;myapp-1.0.0.jar&quot;]</span>
-<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;-start&quot;]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># ビルドステージ</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="l l-Scalar l-Scalar-Plain">FROM maven:3.8.3-openjdk-11 AS build</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドに必要な依存関係をコピー</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="l l-Scalar l-Scalar-Plain">COPY pom.xml .</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="l l-Scalar l-Scalar-Plain">COPY src ./src</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="l l-Scalar l-Scalar-Plain"># アプリケーションのビルド</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="l l-Scalar l-Scalar-Plain">RUN mvn clean package</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="l l-Scalar l-Scalar-Plain"># プロダクションステージ</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="l l-Scalar l-Scalar-Plain">FROM adoptopenjdk:11-jre-hotspot AS production</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="l l-Scalar l-Scalar-Plain">WORKDIR /app</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="l l-Scalar l-Scalar-Plain"># ビルドステージからビルド成果物をコピー</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="l l-Scalar l-Scalar-Plain">COPY --from=build /app/target/myapp-1.0.0.jar .</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="l l-Scalar l-Scalar-Plain"># コンテナの実行時にアプリケーションを起動</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="l l-Scalar l-Scalar-Plain">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;myapp-1.0.0.jar&quot;]</span>
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a><span class="l l-Scalar l-Scalar-Plain">CMD [&quot;-start&quot;]</span>
 </code></pre></div>
 <h2 id="todo">ToDo</h2>
 <p>上記のサンプルを利用して、Javaアプリケーション・コンテナを稼働させてみましょう。
