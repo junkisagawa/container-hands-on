@@ -431,11 +431,32 @@
     コンテナ内に入り、直接ファイルを編集する
   </a>
   
-    <nav class="md-nav" aria-label="コンテナ内に入り、直接ファイルを編集する">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 変更を行ったコンテナからイメージを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.  データをコンテナの外で管理し、コンテナとマウントする方法
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    オプション説明
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     コンテナの停止と削除
   </a>
   
@@ -691,11 +712,32 @@
     コンテナ内に入り、直接ファイルを編集する
   </a>
   
-    <nav class="md-nav" aria-label="コンテナ内に入り、直接ファイルを編集する">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 変更を行ったコンテナからイメージを作成する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.  データをコンテナの外で管理し、コンテナとマウントする方法
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    オプション説明
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     コンテナの停止と削除
   </a>
   
@@ -864,103 +906,64 @@ node-hello2 コンテナに入り index.html ファイルを直接変更して�
 <p class="admonition-title">参考 WORKDIR<p>カレントディレクトが /app になっていることにお気づきでしょうか？これは、Containerfileに WORKDIR /app と指定しているためです。/appにindex.htmlもいるので、lsコマンドで確認してみてください。</p>
 </p>
 </div>
-<!-- コンテナ内のシェルに入れました！それでは、index.htmlを編集するために、コンテナ内にテキストエディタであるVIMをインストールします。以下コマンドを実行してください。
-
-<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apt-get<span class="w"> </span>update
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>apt-get<span class="w"> </span>install<span class="w"> </span>vim
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sb">```</span><span class="w"> </span>--&gt;
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>それでは、index.htmlを編集していきます。<span class="w">  </span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>以下コマンドを実行すると、コンテナ内にあるindex.htmlをvimで開けます。
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="sb">```</span>bash<span class="w"> </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;node-hello2コンテナ内のbash&quot;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>vi<span class="w"> </span>index.html
+<p>それでは、index.htmlを編集していきます。<br />
+以下コマンドを実行すると、コンテナ内にあるindex.htmlをvimで開けます。</p>
+<div class="highlight"><span class="filename">node-hello2コンテナ内のbash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vi<span class="w"> </span>index.html
 </code></pre></div>
-
-以下内容に変更しましょう。vimの操作については、ハンズオンのテーマとは外れてしまうため、説明は割愛します。
-vimでファイルを開いたあと、i を押して編集モードにうつり、必要な変更を実施したあと esc を押し編集モードから抜け、 :wq を入力すると 保存して閉じる です。
-
+<p>以下内容に変更しましょう。vimの操作については、ハンズオンのテーマとは外れてしまうため、説明は割愛します。
+vimでファイルを開いたあと、i を押して編集モードにうつり、必要な変更を実施したあと esc を押し編集モードから抜け、 :wq を入力すると 保存して閉じる です。</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">index.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, from Node-hello2<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </code></pre></div></td></tr></table></div>
-
-変更が保存できたかどうか、念のため確認しておきましょう。
+<p>変更が保存できたかどうか、念のため確認しておきましょう。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>index.html
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>&lt;h1&gt;Hello,<span class="w"> </span>from<span class="w"> </span>Node-Hello2&lt;/h1&gt;
-</code></pre></div>
-
-変更が完了したので、再度ブラウザから [http://localhost:8081](http://localhost:8081) にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。
-
-<span style="color: orange; ">**重要: コンテナの特徴 揮発性と不変性** </span>
-
-コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。
-
-「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  
-
-1. 変更を行った稼働中のコンテナから、新しいイメージを作成する
-2. データはコンテナの外で管理し、コンテナとマウントする
-
-
-それでは、node-helloコンテナを利用して実施していきましょう。  
-
-
-
-
-### 1. 変更を行ったコンテナからイメージを作成する
-
-これ方は、変更を行ったコンテナから新たなイメージを作成してしまう方法です。`podman container commit`を使います。
-コンテナを再度起動するときは、新たに作成したイメージを使用することで変更後のコンテナを立ち上げることが出来ます。  
+</code></pre></div></p>
+<p>変更が完了したので、再度ブラウザから <a href="http://localhost:8081">http://localhost:8081</a> にアクセスし、変更した内容が反映されていることを確認します。 変わっていない場合はブラウザをリロードしてください。</p>
+<p><span style="color: orange; "><strong>重要: コンテナの特徴 揮発性と不変性</strong> </span></p>
+<p>コンテナには揮発性があり、再起動を行うと変更内容は全て消えてしまいます。この特徴によってコンテナは起動時に常にクリーンな状況であることが保証されます。つまり、同じイメージから作成したコンテナは必ず同一の状態であることが担保されます。これをコンテナの不変性とよびます。どんな環境で動かしたとしても、同じイメージからは全く同じコンテナが作成されます。</p>
+<p>「いやいや再起動で消えるなんてデメリットでしかないでしょ。使えないよ！」と思った方、ご安心ください。コンテナへの変更内容を保持する方法が複数存在します。例えば...  </p>
+<ol>
+<li>変更を行った稼働中のコンテナから、新しいイメージを作成する</li>
+<li>データはコンテナの外で管理し、コンテナとマウントする</li>
+</ol>
+<p>それでは、node-helloコンテナを利用して実施していきましょう。  </p>
+<h3 id="1">1. 変更を行ったコンテナからイメージを作成する</h3>
+<p>これ方は、変更を行ったコンテナから新たなイメージを作成してしまう方法です。<code>podman container commit</code>を使います。
+コンテナを再度起動するときは、新たに作成したイメージを使用することで変更後のコンテナを立ち上げることが出来ます。<br />
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman<span class="w"> </span>container<span class="w"> </span>commit<span class="w"> </span>コンテナ名<span class="o">(</span>or<span class="w"> </span>ID<span class="o">)</span><span class="w"> </span>作成するイメージ名:タグ
 </code></pre></div>
-![commit](./images/podman-commit-darkmode.png#only-dark)
-![commit](./images/podman-commit.png#only-light)
-
-
-それでは、先程変更を行ったnode-hello2コンテナを新しいイメージとして保存する方法を試していきましょう。node-hello2は、イメージ名node-hello:0.1をもとに作成され、以下2つの変更が入っています。  
+<img alt="commit" src="../images/podman-commit-darkmode.png#only-dark" />
+<img alt="commit" src="../images/podman-commit.png#only-light" /></p>
+<p>それでは、先程変更を行ったnode-hello2コンテナを新しいイメージとして保存する方法を試していきましょう。node-hello2は、イメージ名node-hello:0.1をもとに作成され、以下2つの変更が入っています。<br />
 1. テキストエディタとして、vimをインストールした
-2. index.htmlの中身を変更した
-
-今回は、変更後のイメージをnode-hello:0.2にします。以下コマンドを実行してください。
+2. index.htmlの中身を変更した</p>
+<p>今回は、変更後のイメージをnode-hello:0.2にします。以下コマンドを実行してください。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit node-hello2 node-hello:0.2
-</code></pre></div>
-
-コミットIDとしてランダムな文字列が表示されれば成功です。実際にイメージが作成されているのか、podman image lsコマンドを実行して確認してください。
+</code></pre></div></p>
+<p>コミットIDとしてランダムな文字列が表示されれば成功です。実際にイメージが作成されているのか、podman image lsコマンドを実行して確認してください。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>REPOSITORY<span class="w">                         </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.2<span class="w">         </span>65999f65d1a3<span class="w">  </span><span class="m">7</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>localhost/node-hello<span class="w">               </span><span class="m">0</span>.1<span class="w">         </span>cf08a56e2c43<span class="w">  </span><span class="m">6</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">884</span><span class="w"> </span>MB
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>localhost/first-hw<span class="w">                 </span><span class="m">1</span>.0<span class="w">         </span>00757cb8db41<span class="w">  </span><span class="m">7</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">     </span><span class="m">521</span><span class="w"> </span>MB
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>registry.fedoraproject.org/fedora<span class="w">  </span>latest<span class="w">      </span>4ad9a58f652f<span class="w">  </span><span class="m">10</span><span class="w"> </span>days<span class="w"> </span>ago<span class="w">    </span><span class="m">280</span><span class="w"> </span>MB
-</code></pre></div>
-
-新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
+</code></pre></div></p>
+<p>新しくv0.2イメージの作成が確認できたので、このイメージをもとにnode-hello3という名前のコンテナを作成しましょう。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>podman container run -d -p 8083:8080 --name node-hello3 node-hello:0.2
+</code></pre></div></p>
+<p>ブラウザから<a href="http://localhost:8083">localhost:8083</a>にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。<br />
+以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。</p>
+<h3 id="2">2.  データをコンテナの外で管理し、コンテナとマウントする方法</h3>
+<p>次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。</p>
+<p><img alt="commit" src="../images/container-mount-darkmode.png#only-dark" />
+<img alt="commit" src="../images/container-mount.png#only-light" /></p>
+<p>上図のマウント方式を、バインドマウントと呼ばれています。ホスト上のファイルを直接コンテナからマウントする方法で、ローカル開発時には非常に便利です。ただ、今回のハンズオン環境ではWindows上で動いている仮想マシンの上でPodmanランタイムが動き、その中でコンテナが動いています。バインドマウントをするためには、ホストと仮想マシン =&gt; 仮想マシン仮想とコンテナのマウントとなり、ハンズオンで各設定を実施するのが難しいため割愛します。　　</p>
+<p>次に、こちらの図を御覧ください。これはボリュームマウントと呼ばれ、Podmanがホストとマウントされた仮想ボリュームを管理する方法です。実際の現場では、こちらのマウント方式がよく使われている印象があります。</p>
+<p>ボリュームを作成するためのコマンドは非常にシンプル。<code>podman volume create volume名</code> です。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman volume create hello-volume
 </code></pre></div>
-
-ブラウザから[localhost:8083](http://localhost:8083)にアクセスすると、先程の変更が反映された画面が表示されることが確認できます。  
-以上が、直接稼働中のコンテナに変更を加えたあと、そこからイメージを作成する方法でした。
-
-### 2.  データをコンテナの外で管理し、コンテナとマウントする方法
-次に、データはコンテナの外に置き、コンテナ内とマウントする方法です。データ本体はコンテナ内にないため、再起動後も変更が削除されることはありません。仮にコンテナを削除してしまっても、再度同じイメージから立ち上げれば、変更済みのデータを参照した状態で稼働させることができます。
-
-![commit](./images/container-mount-darkmode.png#only-dark)
-![commit](./images/container-mount.png#only-light)
-
-
-上図のマウント方式を、バインドマウントと呼ばれています。ホスト上のファイルを直接コンテナからマウントする方法で、ローカル開発時には非常に便利です。ただ、今回のハンズオン環境ではWindows上で動いている仮想マシンの上でPodmanランタイムが動き、その中でコンテナが動いています。バインドマウントをするためには、ホストと仮想マシン => 仮想マシン仮想とコンテナのマウントとなり、ハンズオンで各設定を実施するのが難しいため割愛します。　　
-
-次に、こちらの図を御覧ください。これはボリュームマウントと呼ばれ、Podmanがホストとマウントされた仮想ボリュームを管理する方法です。実際の現場では、こちらのマウント方式がよく使われている印象があります。
-
-
-
-
-ボリュームを作成するためのコマンドは非常にシンプル。`podman volume create volume名` です。
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman volume create hello-volume
-</code></pre></div>
-これで、podmanエンジンが管理し、実態はpodmanホスト（Windows上の仮想マシン）にあるボリュームが作成されました。マウントポイントを各クラウドが提供しているサービスにすることも可能です。
-
-作成されたvolumeの情報を確認するためには、`podman inspect`コマンドを使います。
-
+これで、podmanエンジンが管理し、実態はpodmanホスト（Windows上の仮想マシン）にあるボリュームが作成されました。マウントポイントを各クラウドが提供しているサービスにすることも可能です。</p>
+<p>作成されたvolumeの情報を確認するためには、<code>podman inspect</code>コマンドを使います。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>podman<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>hello-volume
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">     </span><span class="o">{</span>
@@ -977,12 +980,9 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">     </span><span class="o">}</span>
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="o">]</span>
 </code></pre></div>
-### オプション説明
-
-**Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。**
-
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>❯ crc podman-env
+<h3 id="_6">オプション説明</h3>
+<p><strong>Mac環境で、上記の流れを説明します。こちらはハンズオンではないので、実行結果だけ読んでいただければと思います。</strong></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>❯ crc podman-env
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>export PATH=&quot;/Users/junki/.crc/bin/oc:$PATH&quot;
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>export CONTAINER_SSHKEY=&quot;/Users/junki/.crc/machines/crc/id_ecdsa&quot;
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>export CONTAINER_HOST=&quot;ssh://core@127.0.0.1:2222/run/user/1000/podman/podman.sock&quot;
@@ -990,9 +990,8 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a># Run this command to configure your shell:
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a># eval $(crc podman-env)
 </code></pre></div>
-別ターミナルを立ち上げ、sshログインします。
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
+別ターミナルを立ち上げ、sshログインします。</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a> ssh -i ~/.crc/machines/crc/id_ecdsa core@127.0.0.1 -p 2222
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>❯ podman inspect sample
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>[
@@ -1010,29 +1009,23 @@ vimでファイルを開いたあと、i を押して編集モードにうつり
 <a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>     }
 <a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>]
 </code></pre></div>
-Mountpointが確認できたので、ssh loginしている仮想マシン上で確認してみます。
-
+Mountpointが確認できたので、ssh loginしている仮想マシン上で確認してみます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>
 </code></pre></div>
-
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mkdir ./mount
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>echo &quot;&lt;h1&gt;Hello, from Mount File!&lt;/h1&gt;&quot; &gt; ./index.html
 </code></pre></div>
-
-/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
+<p>/node-hello/mount/index.htmlをコンテナが参照するように、node-hello4を立ち上げます。
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>podman run -d -p 8084:8080 --name node-hello4 -v ./mount:/app node-hello:0.2
-</code></pre></div>
-
-
-!!! INFO
-        一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
-        アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理して起動時に読み込むようにしましょう。タグで管理することで、最新版のコンテナを起動したときにエラーが起きたら、すぐに一つ前のバージョンに切り替え戻すことができます。コンテナ・オーケストレーションツールを使うと、無停止でのバージョンアップ/バージョンダウンが可能になるのですが、それは2章で体験いただきます。。お楽しみに。
-
-
+</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info<p>一般的に、ファイルに変更を加えた場合は再度コンテナイメージをビルドし、タグを更新していく場合が多いです。検証環境/本番環境や地区ごとのシステムなど、環境によって変わる内容はコンテナの外に配置し、変数としてコンテナ内に取り込むようにします。
+アプリケーションのコードは環境に依存されない（ことが推奨）ためコンテナに含み、環境によって異なる設定はコンテナの外で管理して起動時に読み込むようにしましょう。タグで管理することで、最新版のコンテナを起動したときにエラーが起きたら、すぐに一つ前のバージョンに切り替え戻すことができます。コンテナ・オーケストレーションツールを使うと、無停止でのバージョンアップ/バージョンダウンが可能になるのですが、それは2章で体験いただきます。。お楽しみに。</p>
+</p>
+</div>
 <!-- 参考: 12Factors その3 設定編 -->
 
-<h4 id="_6">コンテナの停止と削除</h4>
+<h4 id="_7">コンテナの停止と削除</h4>
 <p><strong>ハンズオン: 全員実施</strong>  </p>
 <p>コンテナを停止、削除しましょう。コンテナは揮発性という特徴があるため、一度削除すると今行った変更は消えてしまいます。これは不便だ、と思われるかもしれませんが、イメージをもとにコンテナを立ち上げるため、再現性(= どんな環境でいつ立ち上げても同じコンテナが作られる)を担保につながっています。コンテナを直接編集しても元となるイメージは変わっていないため、一度削除して再作成した場合変更内容は保存されていないということです。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>podman container stop node-hello
