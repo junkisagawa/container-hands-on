@@ -684,13 +684,12 @@
 「外部レジストリーからのイメージ名」には先ほどDocker Hubにpushしたイメージを指定します。<br/>
 <code>docker.io/&lt;username&gt;/&lt;reponame&gt;:&lt;tag&gt;</code> です。例えば、私の場合はariariariariariというユーザーでhandson-sagawaというレポジトリーを作成し0.2というタグをつけているので、以下のように記入します。
 <code>docker.io/ariariariariari/handson-sagawa:0.2</code></p>
-<p>ランタイムアイコンは好みですが、<code>Python</code>を選択します。（UI上のアイコンが変わるだけで、機能に影響はないです）</p>
-<p><img alt="image" src="../images/deploy_image2.png" /></p>
-<p>application名は、複数のDeploymentをグルーピングするときに使います。今回はデフォルトのままにします。<br />
+<p>ランタイムアイコンは好みですが、<code>Python</code>を選択します。（UI上のアイコンが変わるだけで、機能に影響はないです）
+application名は、複数のDeploymentをグルーピングするときに使います。今回はデフォルトのままにします。<br />
 nameは、今作成しているDeploymentに付与するラベル名です。こちらもデフォルトのままにします。<br />
 <strong>Target portを5000に変更します</strong> <br />
 create a routeにチェックが入っていることを確認し、[Create]ボタンをクリックします。</p>
-<p><img alt="image2" src="../images/deploy_image3.png" /></p>
+<p><img alt="image2" src="../images/python-deploy.png" /></p>
 <!-- !!! info
     例えば、DBサーバーとWebサーバーからなるShopping_Systemを作るとします。その場合、application名をshopping_systemとし、nameにはそれぞれshopping_system_db、syopping_system_webと入力します。 -->
 
