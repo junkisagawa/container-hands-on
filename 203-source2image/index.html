@@ -9,13 +9,17 @@
       
       
       
+        <link rel="prev" href="../202-openshift1/">
+      
+      
+        <link rel="next" href="../option1-podman/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>203 openshift - コンテナ・ハンズオン</title>
+        <title>オプション:S2Iを利用したデプロイ - コンテナ・ハンズオン</title>
       
     
     
@@ -110,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#0" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -143,7 +147,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              203 openshift
+              オプション:S2Iを利用したデプロイ
             
           </span>
         </div>
@@ -224,13 +228,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../201-opening/" class="md-tabs__link">
+      <a href="../201-opening/" class="md-tabs__link md-tabs__link--active">
         コンテナオーケストレーション編
       </a>
     </li>
@@ -413,16 +419,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -431,7 +437,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           コンテナオーケストレーション編
@@ -466,93 +472,37 @@
 
             
           
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
+            
+              
   
   
     
-    <li class="md-nav__item md-nav__item--nested">
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
-      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
       
-      
-      
-        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          参考情報(仮)
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          オプション:S2Iを利用したデプロイ
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          参考情報(仮)
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../option1-podman/" class="md-nav__link">
-        Podmanの基本
+      <a href="./" class="md-nav__link md-nav__link--active">
+        オプション:S2Iを利用したデプロイ
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../option2-12factors/" class="md-nav__link">
-        12Factors - Cloud Native Architectureの基本
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+      
+        
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -577,21 +527,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    ハンズオンワークショップの流れ
+  <a href="#_2" class="md-nav__link">
+    作業内容
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-openshift" class="md-nav__link">
-    1. OpenShift 環境の起動
-  </a>
   
 </li>
       
@@ -712,7 +655,263 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    その他のアプリケーション
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          参考情報(仮)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          参考情報(仮)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option1-podman/" class="md-nav__link">
+        Podmanの基本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../option2-12factors/" class="md-nav__link">
+        12Factors - Cloud Native Architectureの基本
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    0. 事前準備
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 事前準備">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openshift" class="md-nav__link">
+    OpenShiftへのいろいろな入力パターン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    作業内容
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fork" class="md-nav__link">
+    2. ソースコードのFork
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ソースコードのFork">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-github" class="md-nav__link">
+    2.1 GitHubへのサインイン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-fork" class="md-nav__link">
+    2.2 リポジトリーのFork
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 自分のリポジトリーの確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deploy" class="md-nav__link">
+    3. アプリケーションのDeploy
+  </a>
+  
+    <nav class="md-nav" aria-label="3. アプリケーションのDeploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-openshift-project" class="md-nav__link">
+    3.1 OpenShift Projectの作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-openshift" class="md-nav__link">
+    3.2 OpenShiftユーザータイプの切り替え
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 デプロイするアプリケーションのソースコードを指定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 デプロイするアプリケーションのタイプを選択
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 アプリケーションのデプロイ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    3.6 アプリケーションへのアクセス
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-webhook" class="md-nav__link">
+    4. Webhookの設定
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-deploy" class="md-nav__link">
+    5. ソースコードの修正及びDeploy(自動)
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ソースコードの修正及びDeploy(自動)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 ソースコードの修正
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     その他のアプリケーション
   </a>
   
@@ -733,8 +932,7 @@
                   
 
 
-  <h1>203 openshift</h1>
-
+<h1 id="_1">オプション:</h1>
 <h2 id="0">0. 事前準備</h2>
 <ol>
 <li><a href="https://github.com/">GitHubアカウント作成</a>(参考URL: <a href="https://qiita.com/ayatokura/items/9eabb7ae20752e6dc79d">GitHubアカウントの作成方法 (2021年版)</a>)</br>
@@ -743,110 +941,59 @@
 <li>(OpenShift Localを導入された方のみ) UltraHookの導入 ※<a href="https://qiita.com/LgmQue/items/3db2456bdcb33d7d2edc#1-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89">こちらの1. 環境構築</a>を参照してください。</li>
 </ol>
 <h3 id="openshift">OpenShiftへのいろいろな入力パターン</h3>
-<p><img alt="" src="./images/001.png" /></p>
-<p>本ハンズオンワークショップではこの中からSource to Image (S2I) を試します。
-<img alt="" src="./images/002.png" /></p>
-<h3 id="_1">ハンズオンワークショップの流れ</h3>
+<p><img alt="パターン" src="../images/001.png" /></p>
+<p>本ハンズオンワークショップではこの中からSource to Image (S2I) を試します。</p>
+<p>この機能は、ソースコードからコンテナイメージの作成する手順をOpenShiftが変わりにやってくれるという素晴らしい機能です。 （Kubernetesにはない機能！）  </p>
+<p>S2Iを利用しない場合は、ハンズオンで実施してきたような流れでコンテナイメージをビルドし、コンテナリポジトリーに登録したものをコンテナ・オーケストレーションツールへデプロイすることになります。実際に開発を試していただくと分かるのですが、ソースコードを少しでも編集すると、再度 podman image build コマンドを叩きイメージをビルドして、利用中のdockerhubへPushして....と、単純作業で時間がとられてしまいます。PCスペックによってはビルドに時間がかかることも多く、無駄な時間が多いのが現状です。オプションハンズオンとして、S2Iを試していきましょう。</p>
+<h3 id="_2">作業内容</h3>
 <ol>
-<li>OpenShift 環境の起動</li>
 <li>ソースコードのFork</li>
 <li>アプリケーションのDeploy</li>
 <li>Webhookの設定</li>
 <li>ソースコードの修正及びDeploy(⾃動）</li>
 </ol>
-<h2 id="1-openshift">1. OpenShift 環境の起動</h2>
-<p>:exclamation:注意： ブラウザはFirefox, Chromeをご利⽤ください</p>
-<details>
-<summary>1.1. Developer Sandbox for Red Hat OpenShiftのWebコンソール表示</summary>
-
-事前準備に従ってDeveloper Sandbox for Red Hat OpenShiftを有効にした状態で、[Red Hat Developer Sandbox](https://developers.redhat.com/developer-sandbox)ページを開きます。
-
-![](./images/104.png)
-
-[Start using your sandbox]をクリックしてOpenShift Sandbox環境を起動します。
-</details>
-
-<details>
-<summary>1.2. OpenShift Localの起動</summary>
-
-タスクバーから、Openshift Local のアイコン![](./images/101.png)を右クリックし、[start]をクリックしてください。起動したら[running]にステータスが変わります。
-
-![](./images/100.png)
-
-[Open Console]をクリックし、OpenShift Local のコンソールを開きます。<br>
-ブラウザで以下画面が立ち上がります。ユーザ名をkubeadmin（管理者）にしてログインします。<br>
-
-![](./images/102.png)
-
-パスワードが不明な場合は、以下コマンドで取得します。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crc console --credentials
-</code></pre></div>
-
-※ログインユーザは、右上のユーザ名から、いつでも変更できます。
-
-![](./images/103.png)
-
-コマンドを使用する場合
-
-コマンドプロンプト、あるいはPowerShellを立ち上げて、以下コマンドを実行し、Openshift Localを起動します。<br>
-※管理者権限ではなく、ローカルユーザにて実行<br>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>crc start
-</code></pre></div>
-
-
-続いて、以下コマンドを実行し、Webコンソールを立ち上げます。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>start https://console-openshift-console.apps-crc.testing
-</code></pre></div>
-ユーザ名をkubeadmin（管理者）にしてログインします。パスワードはcrc start したときに表示されています。
-
-![](./images/105.png)
-
-(補足：　macの場合、`start`ではなく`open`コマンドを使ってください)
-
-</details>
-
 <h2 id="2-fork">2. ソースコードのFork</h2>
 <p>ここからはGitHubへアクセスして自分のリポジトリへサンプルソースコードをForkしていきます。</p>
 <h3 id="21-github">2.1 GitHubへのサインイン</h3>
 <p>GitHubにサインイン(Sign in)してください。まだアカウント登録されていない方は<a href="https://github.com/">こちら</a>からサインアップ(Sign up)してください。<br>
-<img alt="" src="./images/010.png" /></p>
+<img alt="サインイン" src="../images/010.png" /></p>
 <h3 id="22-fork">2.2 リポジトリーのFork</h3>
 <p>ブラウザーで<a href="https://github.com/osonoi/node-build-config-openshift">https://github.com/osonoi/node-build-config-openshift</a>を開いてください。<br>
 [Fork]ボタンをクリックして、自分のアカウントを選択してください。</p>
-<p><img alt="" src="./images/011.png" /></p>
+<p><img alt="Fork" src="../images/011.png" /></p>
 <h3 id="23">2.3 自分のリポジトリーの確認</h3>
 <p>Forkする際に指定した自分のリポジトリーへ、対象のプロジェクトがForkされたことを確認します。<br>
 リポジトリーのパスの最初の部分が自分のGitHubアカウントになっていればOKです。
-<img alt="" src="./images/012.png" /></p>
+<img alt="自分のリポジトリー確認" src="../images/012.png" /></p>
 <h2 id="3-deploy">3. アプリケーションのDeploy</h2>
 <p>ここからは、先程用意したOpenShiftの環境へ、自分のGitHubリポジトリーにあるアプリケーションをデプロイします。</p>
 <h3 id="31-openshift-project">3.1 OpenShift Projectの作成</h3>
 <p>:exclamation:注意： Developer Sandboxは作業用のプロジェクトが作成された状態で提供されるため、本作業は不要です。</p>
 <p>OpenShiftのWebコンソールへ戻り、[プロジェクト]ボタンをクリックします。<br>
 その後[プロジェクトの作成]ボタンをクリックするとプロジェクトの作成画面が開きますので、任意のプロジェクト名を入力し[作成]ボタンをクリックしてください。<br>なお、名前にはすべて小文字をお使いください。
-<img alt="" src="./images/013.png" /></p>
+<img alt="作成" src="../images/013.png" /></p>
 <h3 id="32-openshift">3.2 OpenShiftユーザータイプの切り替え</h3>
 <p>左上のメニューにて、[管理者]から[Developer]に切り替えます。<br>
 切り替えたら[ソース:Git]をクリックしてください。
-<img alt="" src="./images/014.png" /></p>
+<img alt="変更" src="../images/014.png" /></p>
 <h3 id="33">3.3 デプロイするアプリケーションのソースコードを指定</h3>
 <p>先ほどコピーした、自分のGitHubリポジトリーのURLを[GitリポジトリーURL]に入力します。<br>
 下の[詳細のGitオプションの表示]をクリックすると入力エリアが展開するので、[コンテキストディレクトリー]に「/site」と入力してください。<br>
 今回デプロイする対象のアプリケーションはGitHubリポジトリー[node-build-config-openshift]の「site」ディレクトリ配下のため、ここでディレクトリを指定します。
-<img alt="" src="./images/015.png" /></p>
+<img alt="ディレクトリ指定" src="../images/015.png" /></p>
 <h3 id="34">3.4 デプロイするアプリケーションのタイプを選択</h3>
 <p>言語やタイプの一覧がタイルで表示され、Node.jsが選択されていることを確認します。今回GitHubリポジトリーへForkしたプロジェクトはNode.jsアプリケーションだからです。<br>
 選択したら最下段の[作成]ボタンをクリックしてください。（他のオプションはすべてデフォルトで構いません)
-<img alt="" src="./images/016-1.png" />
-<img alt="" src="./images/016-2.png" /></p>
+<img alt="作成" src="../images/016-1.png" />
+<img alt="作成2" src="../images/016-2.png" /></p>
 <h3 id="35">3.5 アプリケーションのデプロイ</h3>
 <p>アプリケーションのデプロイが始まります。1分弱お待ちください。中の丸が青くなったら完成です。丸の中をクリックすると右側にメニューが出てくるので[リソース]タブの[ルート]の下のURLをクリックするとWebへ公開されたアプリケーションへアクセスできます。
-<img alt="" src="./images/017.png" /></p>
+<img alt="デプロイ" src="../images/017.png" /></p>
 <h3 id="36">3.6 アプリケーションへのアクセス</h3>
 <p>デプロイされ、Webへ公開されたアプリケーションへアクセスできました。<br>
 実際にこのアプリケーションへログインしてみましょう。ID,Passwordともに「test」と入れてログインしてください。<br>
 医療関連のデータを管理するサンプルアプリケーションへログインできたかと思います。
-<img alt="" src="./images/018.png" /></p>
+<img alt="デプロイ2" src="../images/018.png" /></p>
 <p>ここまでで、GitHub上のソースコードをダイレクトにOpenShiftへデプロイする方法を学びました。</p>
 <h2 id="4-webhook">4. Webhookの設定</h2>
 <p>ここでは、GitHub上のソースコードが変更された際に、自動的にOpenShiftへデプロイされるようにWebhookをGitHub上へ設定していきたいと思います。</p>
@@ -856,21 +1003,21 @@
 
 ### 4.1.1　OpenShiftのWebhook URLの取得
 OpenShiftのWebコンソールへアクセスします。左側のメニューから[ビルド]を選択し、右側のワークスペースに表示される[node-build-config-openshift]をクリックします。
-![](./images/019.png)
+![webhook](./images/019.png)
 
 下にスクロールして一番右の[シークレットの使用によるURLのコピー]をクリックしてWebhookのURLとSecretをクリップボードにコピーしてください。
-![](./images/020.png)
+![URLコピー](./images/020.png)
 
 ### 4.1.2 GitHubにWebhookを設定
 GitHubの自分のリポジトリーへ戻り、[Settings] -> [Webhooks] -> [Add webhook]を選択します。
-![](./images/021.png)
+![webhooks](./images/021.png)
 
 先ほどクリップボードにコピーしたURL+secretを[Payload URL]に貼り付けてください。[Control type]は[application/json]を選択してください。
-![](./images/022.png)
+![選択](./images/022.png)
 
 入力後、[Add webhook]を選択します。<br>
 以下の図の様に緑のチェックマークが付いたら設定成功です。（チェックマークが表示されない場合はページを再読み込みしてください。）
-![](./images/023.png)
+![選択２](./images/023.png)
 </details>
 
 <details>
@@ -884,17 +1031,17 @@ hint: namespaceは一意である必要があります。「dojo自分の名前�
 [こちらの3. UltraHookの起動](https://qiita.com/LgmQue/items/3db2456bdcb33d7d2edc#3-ultrahook%E3%81%AE%E8%B5%B7%E5%8B%95)を実施してください。
 
 OpenShiftのWebhook URLはWebコンソールへアクセスし、左側のメニューから[ビルド]を選択し、右側のワークスペースに表示される[node-build-config-openshift]をクリックし
-![](./images/019.png)
+![テスト](./images/019.png)
 
 下にスクロールして一番右の[シークレットの使用によるURLのコピー]をクリックするとWebhookのURLとSecretをクリップボードにコピーができます。
-![](./images/020.png)
+![画像](./images/020.png)
 
 UltraHookが起動できたら、GitHubの自分のリポジトリーへ戻り、[Settings] -> [Webhooks] -> [Add webhook]を選択します。
-![](./images/021.png)
+![画像](./images/021.png)
 
 [3. UltraHookの起動](https://qiita.com/LgmQue/items/3db2456bdcb33d7d2edc#3-ultrahook%E3%81%AE%E8%B5%B7%E5%8B%95)を参考に入力後、[Add webhook]を選択します。<br>
 以下の図の様に緑のチェックマークが付いたら設定成功です。（チェックマークが表示されない場合はページを再読み込みしてください。）
-![](./images/023.png)
+![画像](./images/023.png)
 </details>
 
 <p>これでwebhookの設定は完了です。後はソースコードの修正で自動的にアプリケーションがデプロイされます。</p>
@@ -902,23 +1049,23 @@ UltraHookが起動できたら、GitHubの自分のリポジトリーへ戻り�
 <p>最後に、GitHub上のソースコードを修正し、それが自動でOpenShiftへ反映されることを試していきます。</p>
 <h3 id="51">5.1 ソースコードの修正</h3>
 <p>GitHubの自分のリポジトリ画面から[Site]フォルダーを選択します。
-<img alt="" src="./images/024.png" /></p>
+<img alt="修正" src="../images/024.png" /></p>
 <p>[public]フォルダ配下の[index.html]を選択しペンのアイコンをクリックして編集モードにします。<br>
 ここでは、GitHubのGUIから編集を行いますが、ローカルにcloneして編集したファイルをcommit、pushしてもOKです。
-<img alt="" src="./images/025.png" /></p>
+<img alt="修正" src="../images/025.png" /></p>
 <p>変更点をクイックに確認するために、ここでは23行目の英文「Example Health」を日本語の「医療管理」に変更してみます。<br>
 変更したらコミットしてください。自分所有のリポジトリーなので、そのまま反映されます。
-<img alt="" src="./images/026.png" /></p>
+<img alt="修正" src="../images/026.png" /></p>
 <p>OpenShiftのWebコンソールへ戻り、左側の[トポロジー]を確認すると、再度デプロイがおこなわれていることが分かります。
-<img alt="" src="./images/027.png" /></p>
+<img alt="修正" src="../images/027.png" /></p>
 <p>再デプロイが完了したらデプロイしたアプリケーションを起動し直してください。（既に表示されている場合はリロードしてください）<br>
 アプリケーション内にある見出しが「Example Health」から「医療管理」に変更されたことが確認できました。
-<img alt="" src="./images/028.png" /></p>
+<img alt="修正" src="../images/028.png" /></p>
 <p>お疲れさまでした！これで、OpenShiftのS2Iを使ったハンズオンワークショップは完了です。</p>
-<h2 id="_2">その他のアプリケーション</h2>
+<h2 id="_3">その他のアプリケーション</h2>
 <p>もし、PHPのサンプルアプリケーションで試してみたい方は下記のリポジトリーのソースコードを試してみてください。
 <a href="https://github.com/IBM/php-s2i-openshift">https://github.com/IBM/php-s2i-openshift</a></p>
-<p><img alt="" src="./images/029.png" /></p>
+<p><img alt="修正" src="../images/029.png" /></p>
 
   <hr>
 <div class="md-source-file">
