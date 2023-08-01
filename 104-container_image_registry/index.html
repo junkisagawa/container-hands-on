@@ -783,64 +783,85 @@
 </p>
 </div>
 <h2 id="push">リポジトリーへイメージをPushしよう</h2>
-<p>ここまでのハンズオンで作成したイメージをプッシュしてみます。
-まずは、現在ローカル環境にあるイメージをを確認しましょう。podmanで保存されているイメージの一覧を表示するコマンドは覚えていますか？</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>REPOSITORY<span class="w">              </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>localhost/node-hello<span class="w">    </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">4</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>localhost/node-hello<span class="w">    </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker.io/library/node<span class="w">  </span><span class="m">14</span><span class="w">          </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">   </span><span class="m">884</span><span class="w"> </span>MB
+<p>作成したリポジトリーへイメージをPushしていきます。今回は、これまでの手順の復習も兼ねて、pythonで書かれた静的Webアプリのイメージを作成していきます。Pythonには色々なWebアプリケーション・フレームワークがありますが、一番シンプルに書けるFlaskを利用していきます。  </p>
+<ul>
+<li>任意のフォルダを作成し、その中に<strong>app.py</strong>というファイルを作成してください。</li>
+<li>app.pyに、以下ソースコードをコピーします</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">return</span> <span class="s2">&quot;Hello World! I&#39;m Flask Server&quot;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div>
-<p>node-hello:0.2をプッシュしていきます。</p>
+<ul>
+<li>
+<p>app.pyと同じフォルダ内に、Containerfileを作成します。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>FROM python:3.11-alpine3.18
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>RUN pip install flask
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>CMD [&quot;python&quot;,&quot;app.py&quot;]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>COPY app.py /app.py
+</code></pre></div>
+ ベースイメージは alpineというlinuxにpythonが導入されたイメージを使います。 flaskライブラリを導入し、flaskを実行します。</p>
+</li>
+<li>
+<p>作成したcontainerfileを使用して、python-hello-worldというタグのイメージを作成します。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>python-hello-world:1.0<span class="w"> </span>.
+</code></pre></div></p>
+</li>
+<li>
+<p>ローカル環境のPodmanで作成したイメージからコンテナを起動してみます。以下コマンドを実行してください
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman run -p 5001:5000 -d --name python-hello python-hello-world
+</code></pre></div></p>
+</li>
+</ul>
+<p>ブラウザー内で <a href="http://localhost:5001">localhost:5001</a> にアクセスして、結果を確認します。 ブラウザー上に「Hello World! I'm Flask Server」と表示されればOKです。</p>
+<p>現在ローカル環境にあるイメージをを確認しましょう。podmanで保存されているイメージの一覧を表示するコマンドは覚えていますか？</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>REPOSITORY<span class="w">                      </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">        </span>SIZE
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>localhost/python-hello-world<span class="w">    </span><span class="m">1</span>.0<span class="w">         </span>xxkkkkssss<span class="w">    </span><span class="m">1</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">77</span>.7<span class="w"> </span>MB
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>localhost/node-hello<span class="w">            </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">4</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>localhost/node-hello<span class="w">            </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker.io/library/node<span class="w">          </span><span class="m">14</span><span class="w">          </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">   </span><span class="m">884</span><span class="w"> </span>MB
+</code></pre></div>
+<p>python-hello-world:1.0をプッシュしていきます。</p>
 <h3 id="podman-login">podman login</h3>
 <p>まずはCLIからdockerHubへログインしましょう。以下コマンドを実行すると、ユーザー名とパスワードを求められるので入力します。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman login docker.io
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman login docker.io
 </code></pre></div></p>
 <p><code>Login Succeeded!</code> と表示されれば、作成したアカウントへログイン成功です。</p>
 <h3 id="_2">イメージ:タグの設定</h3>
 <p>プッシュするためには、保存先のリポジトリー情報に従ってタグをつけ直す必要があります。タグを変更するためには、<code>podman image tag</code> コマンドを使用します。書式は以下です。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman image tag &lt;元のイメージ名&gt;:&lt;タグ&gt; &lt;アカウント名&gt;/&lt;変更する名前(リポジトリ名)&gt;:&lt;タグ&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman image tag &lt;元のイメージ名&gt;:&lt;タグ&gt; &lt;アカウント名&gt;/&lt;変更する名前(リポジトリ名)&gt;:&lt;タグ&gt;
 </code></pre></div>
-<p>それでは、node-hello:0.2というイメージに、タグ付けしましょう。<br />
+<p>それでは、python-hello-world:1.0というイメージに、タグ付けしましょう。<br />
 参考として、私のアカウント(ariariariariari)でのコマンドを以下に示します。皆さんのアカウント名に変えて実行してください。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman<span class="w"> </span>image<span class="w"> </span>tag<span class="w"> </span>node-hello:0.2<span class="w"> </span>docker.io/ariariariariari/handson-sagawa:0.2
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>M1,M2のMacPCをお使いの方は、CPUの違いによりうまくいきません。Mac環境で試している方は、podman build時に--platform linux/amd64をつけていただく必要があります。もしMacを使用して参加している方がいたら、ご連絡ください。</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>podman<span class="w"> </span>image<span class="w"> </span>tag<span class="w">  </span>python-hello-world:1.0<span class="w"> </span>docker.io/ariariariariari/handson-sagawa:0.2
 </code></pre></div>
 <p>podman image lsで確認すると、新しいイメージ（タグ）が追加されているはずです。</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>REPOSITORY<span class="w">                                           </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">         </span>SIZE
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>localhost/ariariariariari/handson-sagawa<span class="w">             </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">41</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker.io/library/node<span class="w">                               </span><span class="m">14</span><span class="w">          </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">    </span><span class="m">884</span><span class="w"> </span>MB
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>REPOSITORY<span class="w">                                           </span>TAG<span class="w">         </span>IMAGE<span class="w"> </span>ID<span class="w">      </span>CREATED<span class="w">         </span>SIZE
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>localhost/ariariariariari/handson-sagawa<span class="w">             </span><span class="m">0</span>.2<span class="w">         </span>0ab809cbac4d<span class="w">  </span><span class="m">39</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">946</span><span class="w"> </span>MB
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>localhost/node-hello<span class="w">                                 </span><span class="m">0</span>.1<span class="w">         </span>0dbd481adde9<span class="w">  </span><span class="m">41</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">  </span><span class="m">884</span><span class="w"> </span>MB
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>docker.io/ariariariariari/python<span class="w">                     </span><span class="m">0</span>.2<span class="w">     </span>b6e1f9016a80<span class="w">  </span><span class="m">2</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">    </span><span class="m">884</span><span class="w"> </span>MB
 </code></pre></div>
 <h3 id="_3">イメージプッシュ</h3>
 <p>用意したプライベートリポジトリーへの向き先に設定できたので、<code>podman push</code>コマンドでイメージをプッシュします。
 事前にpodman login docker.ioを使いdockerhubへログインしている状態のため、プライベートリポジトリーへのpushが成功します。他の管理サービスにイメージをpushするときは、リポジトリホスト名/アカウント名/リポジトリ名:タグを設定したあとに、podman login &lt;リポジトリホスト名&gt; してからpushという流れになります。</p>
 <p>以下コマンドを実行し、作成済みのdockerHubへイメージをプッシュしてください。<br />
 （ユーザー名、リポジトリ名は各自の環境に合わせて変更）</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>podman push docker.io/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;:0.2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman push docker.io/&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;:0.2
 </code></pre></div>
-<details>
-<summary>実行例</summary>
-<div class="highlight"><span class="filename">出力例</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>❯<span class="w"> </span>podman<span class="w"> </span>push<span class="w"> </span>docker.io/ariariariariari/handson-sagawa:0.2
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Getting<span class="w"> </span>image<span class="w"> </span><span class="nb">source</span><span class="w"> </span>signatures
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:476197c298e4e088678ca20c8926bf187cbc0966548706119c1a3afcb4cf1ca6
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:cfec405a23bc89639c747f170cc165513ee5689c72bb9f97bf3867b332e12e46
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:173621e7addd9a122d7aa8c00c6741b6b4426b7b76d65cd26e33c42defc8f4d9
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:82da4502ad28ee2d71f5f6706b53a848c9af3cf0a86c9c28cbb4e9d3c295827c
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:f3e76aaba7cc466ba4d2e82fc9793e1f31a0aa02cfeb3f0d8f6daee49cb6ec4e
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:708291ce05346c36e436ab8b6f65e9cb194ead0fa4be7b7a9737c7b84f768e62
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:20649f23472c55c0d1a6f51859a4cdf1c0ee387d1b6e1c6d7dff142e3e510150
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:b078da4dfde3335d754012aa1f4999f014a9d92c9d974365a504b40300011030
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:4d772e48367e80db04ffe51d27570fa07be0fe9da239ae16c0cc5767054f4742
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:795de09243daf7f1e4a603ea1c0af287a55599d883daa3947fcac78bcd8c65ef
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Copying<span class="w"> </span>blob<span class="w"> </span>sha256:41dd985ca0d2333b880841c30425b7fcc4dec84b874756b3dcb47c6d6291eef2
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>Copying<span class="w"> </span>config<span class="w"> </span>sha256:0ab809cbac4d4ff074ead1f4872b8b455feaffefe557c2ac699a652e46662fc5
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>Writing<span class="w"> </span>manifest<span class="w"> </span>to<span class="w"> </span>image<span class="w"> </span>destination
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Storing<span class="w"> </span>signatures
-</code></pre></div>
-</details>
-
 <h3 id="push_1">Push結果の確認</h3>
 <p>再度ブラウザからDockerHubにアクセスし、結果を確認します。
 <img alt="push結果の確認" src="../images/image_pushed.png" />
@@ -862,7 +883,7 @@
 <p>Red Hat アカウントの SSO ページが表示されたら、自身のRed Hat アカウントを入力して下さい。</p>
 <h2 id="quayio_2">Quay.io にサインインする</h2>
 <p>コンソール作業に戻ります。loginコマンドでサインインします。
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>podman login quay.io
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman login quay.io
 </code></pre></div></p>
 <p>ユーザ名とパスワードを求められるので、Quay.ioで設定した情報を入力します。</p>
 <h2 id="quayio_3">Quay.io を使ってみよう</h2>
@@ -870,20 +891,20 @@
 <p>https://docs.quay.io/solution/getting-started.html</p>
 <h3 id="_4">新しいコンテナを作成する</h3>
 <p>コンテナイメージ ubuntu を実行し、新しいファイルを含むコンテナを新たに作成します。</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman run  --name ubuntu ubuntu echo &quot;fun&quot; &gt; newfile
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman run  --name ubuntu ubuntu echo &quot;fun&quot; &gt; newfile
 </code></pre></div>
 コンテナはすぐに終了します。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman ps -a
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>podman ps -a
 </code></pre></div>
 <h3 id="_5">コンテナーをイメージにタグ付けする</h3>
 <p>次に、コンテナーを既知のイメージ名にタグ付けする必要があります</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>podman commit &lt;container名&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>podman commit &lt;container名&gt; quay.io/&lt;username&gt;/&lt;reponame&gt;
 </code></pre></div>
 <p><code>&lt;container名&gt;</code>: ubuntu<br/>
 <code>&lt;username&gt;</code>: Quay.io のユーザ名<br/>
 <code>&lt;reponame&gt;</code>: 新しく作成したコンテナの名前</p>
 <h3 id="quayio_4">コンテナイメージを Quay.io にプッシュする</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>podman push quay.io/&lt;username&gt;/&lt;reponame&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>podman push quay.io/&lt;username&gt;/&lt;reponame&gt;
 </code></pre></div>
 <p>これで、コンテナイメージがコンテナレジストリに登録されました。</p>
 <h3 id="_6">登録されたコンテナイメージを確認しましょう</h3>
